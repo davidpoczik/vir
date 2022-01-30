@@ -1,0 +1,15 @@
+<section class="flex items-center h-screen login">
+  <div class="container mx-auto">
+    <div>
+      <input [(ngModel)]="inputUsername" class="login__input" type="text"
+        placeholder="{{ 'login.input.username' | translate}}">
+    </div>
+    <div>
+      <input [(ngModel)]="inputPassword" class="login__input" type="password" name="password"
+        placeholder="{{ 'login.input.password' | translate }}">
+    </div>
+    <div>
+      <button (click)="onSubmit()" class="login__button">{{ 'login.input.submit' | translate}}</button>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,13 @@
+vir-login {
+  .login {
+    @apply h-screen flex w-full items-center p-[1.5rem];
+
+    &__input {
+      @apply w-full h-[5rem] bg-gray-200 mb-[3rem] px-[1.5rem]  text-center border-none outline-none;
+    }
+
+    &__button {
+      @apply w-full h-[5rem] bg-blue-200 mb-[3rem] px-[1.5rem]  text-center;
+    }
+  }
+}

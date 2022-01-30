@@ -1,0 +1,28 @@
+<div class="px-[1.5rem]">
+  <div class="flex items-center cursor-pointer" [routerLink]="['../']">
+    <i class="fas fa-backspace"></i> <span class="inline-block ml-[1rem]">Vissza</span>
+  </div>
+
+</div>
+<ul class="mt-[1.5rem]">
+  <li *ngFor="let elem of sidebar | async">
+    <ng-container #withLink *ngIf="elem.url else withoutLink">
+      <a target="_blank" href="{{ elem.url }}"
+        class="cursor-pointer flex min-w-full  justify-start items-center w-full px-[1.5rem]">
+        <span class="block w-[2.5rem] text-center  mr-[0.5rem]">
+          <i class="{{elem.ikon}}"></i>
+        </span>
+        {{ elem.nev }}
+      </a>
+    </ng-container>
+    <ng-template #withoutLink>
+      <a class="cursor-pointer flex min-w-full  justify-start items-center w-full px-[1.5rem]"
+        [routerLink]="['/modules',  elem.w_vir_modul_id, elem.nev_url ]">
+        <span class="block w-[2.5rem] text-center mr-[0.5rem]">
+          <i class="{{elem.ikon}}"></i>
+        </span>
+        {{ elem.nev }}
+      </a>
+    </ng-template>
+  </li>
+</ul>

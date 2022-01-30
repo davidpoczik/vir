@@ -1,0 +1,11 @@
+{
+  "successfully_signed_in": "Sikeres Bejelentkezés",
+  "unauthorised": "Hibás Adatok",
+  "login": {
+    "input": {
+      "username": "Felhasználónév",
+      "password": "Jelszó",
+      "submit": "Bejelentkezés"
+    }
+  }
+}
