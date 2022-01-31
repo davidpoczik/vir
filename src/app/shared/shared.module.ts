@@ -26,9 +26,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     CommonModule,
     FormsModule,
     RouterModule,
-    HotToastModule.forRoot({
-    }
-    ),
+    HotToastModule.forRoot({}),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
