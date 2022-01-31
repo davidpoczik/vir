@@ -14,6 +14,7 @@ import { HotToastModule } from '@ngneat/hot-toast';
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
 }
+
 @NgModule({
 
   declarations: [

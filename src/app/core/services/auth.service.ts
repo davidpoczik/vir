@@ -4,6 +4,7 @@ import { take, tap } from "rxjs";
 import { loginApiPostData, loginApiResponseData } from "src/app/shared/components/login/login.model";
 import { environment } from "src/environments/environment";
 import { User } from "../models/user.model"
+
 @Injectable({
   providedIn: 'root'
 })
@@ -24,11 +25,16 @@ export class AuthService {
 
   login(userData: loginApiPostData) {
     const apiUrl = environment.api.base + environment.api.login
-    return this.httpClient.post<loginApiResponseData>(apiUrl, userData).pipe(take(1), tap(response => {
-      if (response.success) {
-        this.setUserData(response.data)
-      }
-    }))
+    return this.httpClient
+      .post<loginApiResponseData>(apiUrl, userData)
+      .pipe(
+        take(1),
+        tap(response => {
+          if (response.success) {
+            this.setUserData(response.data)
+          }
+        })
+      )
   }
 
   logout() {

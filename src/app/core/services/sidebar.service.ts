@@ -12,7 +12,6 @@ export class SidebarService {
   sidebar: BehaviorSubject<any>
 
   setHeadersForSidebar<HttpHeaders>(id: number) {
-
     let header = new HttpHeaders()
 
     if (id) {
@@ -22,9 +21,7 @@ export class SidebarService {
   }
 
   getSidebar(data: {} | any, params: any) {
-
     const headerWithID = this.setHeadersForSidebar(params.id)
-
     let apiUrl = (data?.root)
       ?
       environment.api.base + environment.api.modules

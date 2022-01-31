@@ -13,7 +13,6 @@ export class LoginComponent implements OnInit {
   inputPassword = "z4r4k1k3np4ch1"
 
   onSubmit() {
-
     this.AuthService.login({
       username: this.inputUsername,
       password: this.inputPassword
@@ -28,11 +27,9 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['modules'])
       }
     })
-
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   constructor(private AuthService: AuthService, private router: Router, private toastService: HotToastService) { }
 }
