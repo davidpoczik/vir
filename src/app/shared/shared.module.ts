@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
-
+import { HotToastModule } from '@ngneat/hot-toast';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -26,6 +26,9 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     CommonModule,
     FormsModule,
     RouterModule,
+    HotToastModule.forRoot({
+    }
+    ),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -41,6 +44,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     FooterComponent,
     TranslateModule,
     SidebarComponent,
+    HotToastModule
   ]
 })
 

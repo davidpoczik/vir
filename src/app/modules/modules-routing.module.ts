@@ -17,7 +17,6 @@ export const routes: Routes = [
   {
     path: ':id/adminisztracio',
     loadChildren: () => import('./administration/administration.module').then(m => m.AdministrationModule),
-
   },
 ]
 

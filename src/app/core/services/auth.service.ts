@@ -8,6 +8,7 @@ import { User } from "../models/user.model"
   providedIn: 'root'
 })
 export class AuthService {
+
   constructor(private httpClient: HttpClient) {
   }
 
@@ -39,10 +40,13 @@ export class AuthService {
   isLoggedIn() {
     return !!localStorage.getItem('vir_token')
   }
+
   static isLoggedIn() {
     return !!localStorage.getItem('vir_token')
   }
+
   isLoggedOut() {
     return !this.isLoggedIn()
   }
+
 }
