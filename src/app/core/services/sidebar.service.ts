@@ -18,7 +18,6 @@ export class SidebarService {
     if (id) {
       header = header.append('modul_id', id?.toString())
     }
-
     return header
   }
 
@@ -26,8 +25,11 @@ export class SidebarService {
 
     const headerWithID = this.setHeadersForSidebar(params.id)
 
-    let apiUrl = (data?.root) ? environment.api.base + environment.api.modules : environment.api.base + environment.api.views
-
+    let apiUrl = (data?.root)
+      ?
+      environment.api.base + environment.api.modules
+      :
+      environment.api.base + environment.api.views
 
     return this.httpClient.get(apiUrl, { headers: headerWithID })
   }
