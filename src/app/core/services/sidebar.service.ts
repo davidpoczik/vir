@@ -11,24 +11,17 @@ export class SidebarService {
 
   sidebar: BehaviorSubject<any>
 
-  setHeadersForSidebar<HttpHeaders>(id: number) {
-    let header = new HttpHeaders()
 
-    if (id) {
-      header = header.append('id', id?.toString())
-    }
-    return header
-  }
 
-  getSidebar<SidebarApiResponseData>(data: {} | any, params: any) {
-    // const headerWithID = this.setHeadersForSidebar(params.id)
-    let apiUrl = (data?.root)
+  getSidebar<SidebarApiResponseData>(id?: number) {
+
+    let apiUrl = (id)
       ?
       environment.api.base + environment.api.modules
       :
       environment.api.base + environment.api.views
-    if (params?.id) {
-      apiUrl += '?id=' + params?.id
+    if (id) {
+      apiUrl += '?id=' + id
     }
 
     return this.httpClient.get(apiUrl)
