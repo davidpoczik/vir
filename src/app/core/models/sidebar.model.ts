@@ -19,7 +19,7 @@ export interface SidebarMenuWithKey {
 
 
 export interface Sidebar {
-    menu: SidebarMenuWithKey[] | SidebarMenuItem,
+    menu: SidebarMenuWithKey,
     type: number
 }
 

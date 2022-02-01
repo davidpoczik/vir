@@ -1,39 +1,34 @@
-<div class="px-[1.5rem]">
+<div class="px-[0rem]" *ngIf=" (sidebar$ | async)?.data?.type == 2 ">
   <div class="flex items-center cursor-pointer" [routerLink]="['../']">
     <i class="fas fa-backspace"></i> <span class="inline-block ml-[1rem]">Vissza</span>
   </div>
 
 </div>
-<!-- <ul class="mt-[1.5rem]" *ngIf="{
-  menu: (sidebar$ | async)?.menu,
-  type: (sidebar$ | async)?.type
+
+<div class="mt-[1.5rem]" *ngIf="{
+  menu: (sidebar$ | async)?.data?.menu,
+  type: (sidebar$ | async)?.data?.type
 } as sidebar
 ">
-  {{
-  sidebar.type
-  }} -->
+  <div *ngFor="let sidebarElement of sidebar.menu | keyvalue; let i = index;">
 
-<!-- <li *ngFor="let elem of sidebar.menu; let index = index;">
-    a
-  </li> -->
-<!-- <li *ngFor="let elem of sidebar.menu; let index = index;">
-    <ng-container #withLink *ngIf="elem[index].alias else withoutLink">
-      <a target="_blank" href="{{ elem[index].alias }}"
-        class="cursor-pointer flex min-w-full  justify-start items-center w-full px-[1.5rem]">
-        <span class="block w-[2.5rem] text-center  mr-[0.5rem]">
-          <i class="{{ elem[index].ikon }}"></i>
-        </span>
-        {{ elem[index].nev }}
-      </a>
-    </ng-container>
+    <a *ngIf="sidebarElement.value.url else withoutLink" target="_blank" href="{{ sidebarElement.value.url }}"
+      class="cursor-pointer flex min-w-full  justify-start items-center w-full px-[0rem]">
+      <span class="block w-[2rem] text-center  mr-[0.5rem]">
+        <i class="{{ sidebarElement.value.ikon }}"></i>
+      </span>
+      {{ sidebarElement.value.nev }}
+    </a>
+
     <ng-template #withoutLink>
-      <a class="cursor-pointer flex min-w-full  justify-start items-center w-full px-[1.5rem]"
-        [routerLink]="['/modules', elem[index].id, elem[index].nev ]">
+      <a class="cursor-pointer flex min-w-full  justify-start items-center w-full px-[0rem]"
+        [routerLink]=" ['/modules', sidebarElement.value.alias, sidebarElement.value.id]">
         <span class="block w-[2.5rem] text-center mr-[0.5rem]">
-          <i class="{{elem[index].ikon}}"></i>
+          <i class="{{sidebarElement.value.ikon}}"></i>
         </span>
-        {{ elem[index].nev }}
+        {{ sidebarElement.value.nev }}
       </a>
     </ng-template>
-  </li> -->
-<!-- </ul> -->
+
+  </div>
+</div>

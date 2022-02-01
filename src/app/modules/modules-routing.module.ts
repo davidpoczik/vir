@@ -13,7 +13,7 @@ export const routes: Routes = [
     component: LayoutComponent,
   },
   {
-    path: 'administration/:id',
+    path: 'adminisztracio/:id',
     loadChildren: () => import('./administration/administration.module').then(m => m.AdministrationModule),
     component: LayoutComponent,
     canActivateChild: [ModuleGuardService]
