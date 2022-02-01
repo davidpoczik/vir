@@ -4,25 +4,36 @@
   </div>
 
 </div>
-<ul class="mt-[1.5rem]">
-  <li *ngFor="let elem of sidebar | async">
-    <ng-container #withLink *ngIf="elem.url else withoutLink">
-      <a target="_blank" href="{{ elem.url }}"
+<!-- <ul class="mt-[1.5rem]" *ngIf="{
+  menu: (sidebar$ | async)?.menu,
+  type: (sidebar$ | async)?.type
+} as sidebar
+">
+  {{
+  sidebar.type
+  }} -->
+
+<!-- <li *ngFor="let elem of sidebar.menu; let index = index;">
+    a
+  </li> -->
+<!-- <li *ngFor="let elem of sidebar.menu; let index = index;">
+    <ng-container #withLink *ngIf="elem[index].alias else withoutLink">
+      <a target="_blank" href="{{ elem[index].alias }}"
         class="cursor-pointer flex min-w-full  justify-start items-center w-full px-[1.5rem]">
         <span class="block w-[2.5rem] text-center  mr-[0.5rem]">
-          <i class="{{elem.ikon}}"></i>
+          <i class="{{ elem[index].ikon }}"></i>
         </span>
-        {{ elem.nev }}
+        {{ elem[index].nev }}
       </a>
     </ng-container>
     <ng-template #withoutLink>
       <a class="cursor-pointer flex min-w-full  justify-start items-center w-full px-[1.5rem]"
-        [routerLink]="['/modules',  elem.w_vir_modul_id, elem.nev_url ]">
+        [routerLink]="['/modules', elem[index].id, elem[index].nev ]">
         <span class="block w-[2.5rem] text-center mr-[0.5rem]">
-          <i class="{{elem.ikon}}"></i>
+          <i class="{{elem[index].ikon}}"></i>
         </span>
-        {{ elem.nev }}
+        {{ elem[index].nev }}
       </a>
     </ng-template>
-  </li>
-</ul>
+  </li> -->
+<!-- </ul> -->

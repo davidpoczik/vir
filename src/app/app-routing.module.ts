@@ -5,9 +5,11 @@ import { ModuleGuardService } from './core/guards/module-guard.service';
 import { LayoutComponent } from './shared/components/layout/layout.component';
 
 
+
 import { LoginComponent } from './shared/components/login/login.component';
 
 const routes: Routes = [
+
   {
     path: 'auth',
     children: [
@@ -28,19 +30,21 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'modules',
+    path: 'modules/:id',
     component: LayoutComponent,
     loadChildren: () => import('./modules/modules.module').then(m => m.ModulesModule),
-    canActivate: [ModuleGuardService]
+    canActivate: [ModuleGuardService],
+    canActivateChild: [ModuleGuardService]
   },
-  {
-    path: 'administration',
-    loadChildren: () => import('./modules/administration/administration.module').then(m => m.AdministrationModule)
-  },
+
   {
     path: '**',
     redirectTo: 'auth'
-  }
+  },
+  {
+    path: '',
+    component: LayoutComponent
+  },
 ];
 
 @NgModule({

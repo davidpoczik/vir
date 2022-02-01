@@ -1,22 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SidebarResolverService } from '../core/resolvers/sidebar-resolver.service';
+import { SidebarComponent } from '../shared/components/sidebar/sidebar.component';
+
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 export const routes: Routes = [
+
   {
-    path: '',
-    pathMatch: 'full',
-    data: { root: true },
-    resolve: {
-      sidebar: SidebarResolverService
-    },
-    component: DashboardComponent,
-  },
-  {
-    path: ':id/adminisztracio',
-    loadChildren: () => import('./administration/administration.module').then(m => m.AdministrationModule),
+    path: 'administration',
+    loadChildren: () => import('./administration/administration.module').then(m => m.AdministrationModule)
   },
 ]
 

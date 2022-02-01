@@ -15,24 +15,28 @@ export class SidebarService {
     let header = new HttpHeaders()
 
     if (id) {
-      header = header.append('modul_id', id?.toString())
+      header = header.append('id', id?.toString())
     }
     return header
   }
 
-  getSidebar(data: {} | any, params: any) {
-    const headerWithID = this.setHeadersForSidebar(params.id)
+  getSidebar<SidebarApiResponseData>(data: {} | any, params: any) {
+    // const headerWithID = this.setHeadersForSidebar(params.id)
     let apiUrl = (data?.root)
       ?
       environment.api.base + environment.api.modules
       :
       environment.api.base + environment.api.views
+    if (params?.id) {
+      apiUrl += '?id=' + params?.id
+    }
 
-    return this.httpClient.get(apiUrl, { headers: headerWithID })
+    return this.httpClient.get(apiUrl)
   }
 
   constructor(private httpClient: HttpClient, private route: ActivatedRoute) {
     this.sidebar = new BehaviorSubject([])
+
   }
 
 }

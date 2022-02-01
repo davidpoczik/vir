@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
       })
     ).subscribe((response) => {
       if (response.success) {
-        this.router.navigate(['modules'])
+        this.router.navigate(['/'])
       }
     })
   }

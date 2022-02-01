@@ -1,4 +1,5 @@
 {
+  "Internal Server Error": "Váratlan probléma",
   "successfully_signed_in": "Sikeres Bejelentkezés",
   "unauthorised": "Hibás Adatok",
   "login": {

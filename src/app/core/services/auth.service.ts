@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { take, tap } from "rxjs";
-import { loginApiPostData, loginApiResponseData } from "src/app/shared/components/login/login.model";
+import { loginApiPostData, loginApiResponseData } from "src/app/core/models/login.model";
 import { environment } from "src/environments/environment";
 import { User } from "../models/user.model"
 
