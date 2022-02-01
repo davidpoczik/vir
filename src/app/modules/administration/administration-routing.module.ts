@@ -6,7 +6,7 @@ import { AdministrationComponent } from './administration.component';
 const routes: Routes = [
   {
     path: ':id',
-
+    component: AdministrationComponent
   }
 ]
 

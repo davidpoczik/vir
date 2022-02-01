@@ -30,20 +30,22 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'modules/:id',
+    path: '',
+    pathMatch: 'full',
     component: LayoutComponent,
-    loadChildren: () => import('./modules/modules.module').then(m => m.ModulesModule),
     canActivate: [ModuleGuardService],
-    canActivateChild: [ModuleGuardService]
+  },
+  {
+    path: 'modules',
+    loadChildren: () => import('./modules/modules.module').then(m => m.ModulesModule),
+
+    canActivate: [ModuleGuardService],
+
   },
 
   {
     path: '**',
     redirectTo: 'auth'
-  },
-  {
-    path: '',
-    component: LayoutComponent
   },
 ];
 
