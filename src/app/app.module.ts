@@ -17,7 +17,6 @@ import { HotToastModule } from '@ngneat/hot-toast';
     BrowserModule,
     AppRoutingModule,
     HotToastModule.forRoot(),
-
   ],
   providers: [],
   bootstrap: [AppComponent]

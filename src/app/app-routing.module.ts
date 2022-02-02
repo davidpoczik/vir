@@ -2,9 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuardService } from './core/guards/auth-guard.service';
 import { ModuleGuardService } from './core/guards/module-guard.service';
-import { LayoutComponent } from './shared/components/layout/layout.component';
-
-
 
 import { LoginComponent } from './shared/components/login/login.component';
 
@@ -37,11 +34,8 @@ const routes: Routes = [
   {
     path: 'modules',
     loadChildren: () => import('./modules/modules.module').then(m => m.ModulesModule),
-
     canActivate: [ModuleGuardService],
-
   },
-
   {
     path: '**',
     redirectTo: 'auth'

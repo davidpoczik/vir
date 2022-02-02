@@ -2,12 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AdministrationRoutingModule } from './administration-routing.module';
-import { AdministrationComponent } from './administration.component';
+
+import { AdministrationModulesComponent } from './modules/modules.component';
 
 
 @NgModule({
   declarations: [
-    AdministrationComponent
+    AdministrationModulesComponent
   ],
   imports: [
     CommonModule,

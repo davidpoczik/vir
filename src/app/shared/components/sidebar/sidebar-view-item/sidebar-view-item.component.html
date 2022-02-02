@@ -1,6 +1,5 @@
-<a class="cursor-pointer" *ngIf="!sidebarElement.submenu"
-    [routerLink]="[moduleUrl, sidebarElement.alias, sidebarElement.id]">
-    <vir-sidebar-link-item [sidebarElement]="sidebarElement"></vir-sidebar-link-item>
+<a class="cursor-pointer" *ngIf="!sidebarElement.submenu" [routerLink]="[moduleUrl, sidebarElement.alias]">
+    <vir-sidebar-link-item [sidebarElement]=" sidebarElement"></vir-sidebar-link-item>
 </a>
 
 <div *ngIf="sidebarElement.submenu">
