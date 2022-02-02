@@ -1,4 +1,3 @@
-
 export interface SidebarMenuItem {
     id: number,
     url?: string,
@@ -9,14 +8,13 @@ export interface SidebarMenuItem {
     kep?: string,
     szulo_id?: string,
     modul_id?: string,
-    submenu: SidebarMenuItem[]
+    submenu: SidebarMenuWithKey[]
 }
+
 export interface SidebarMenuWithKey {
     [key: number]:
     SidebarMenuItem
 }
-
-
 
 export interface Sidebar {
     menu: SidebarMenuWithKey,

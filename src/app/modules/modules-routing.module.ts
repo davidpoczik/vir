@@ -2,9 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ModuleGuardService } from '../core/guards/module-guard.service';
 import { LayoutComponent } from '../shared/components/layout/layout.component';
-import { SidebarComponent } from '../shared/components/sidebar/sidebar.component';
 
-import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 export const routes: Routes = [
@@ -27,5 +25,7 @@ export const routes: Routes = [
   exports: [RouterModule]
 })
 export class ModulesRoutingModule {
+  constructor() {
 
+  }
 }

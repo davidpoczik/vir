@@ -10,6 +10,10 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
 import { HotToastModule } from '@ngneat/hot-toast';
+import { SidebarModuleItemComponent } from './components/sidebar/sidebar-module-item/sidebar-module-item.component';
+import { SidebarViewItemComponent } from './components/sidebar/sidebar-view-item/sidebar-view-item.component';
+import { SidebarLinkItemComponent } from './components/sidebar/sidebar-link-item/sidebar-link-item.component';
+
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -21,7 +25,10 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     HeaderComponent,
     FooterComponent,
     LoginComponent,
-    SidebarComponent
+    SidebarComponent,
+    SidebarModuleItemComponent,
+    SidebarViewItemComponent,
+    SidebarLinkItemComponent
   ],
   imports: [
     CommonModule,
@@ -43,8 +50,9 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     FooterComponent,
     TranslateModule,
     SidebarComponent,
-    HotToastModule
-  ]
+    HotToastModule,
+    SidebarModuleItemComponent
+  ],
 })
 
 

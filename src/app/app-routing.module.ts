@@ -31,9 +31,8 @@ const routes: Routes = [
   },
   {
     path: '',
-    pathMatch: 'full',
-    component: LayoutComponent,
-    canActivate: [ModuleGuardService],
+    redirectTo: 'modules',
+    pathMatch: 'full'
   },
   {
     path: 'modules',

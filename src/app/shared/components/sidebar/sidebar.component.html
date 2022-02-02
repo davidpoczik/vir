@@ -2,7 +2,6 @@
   <div class="flex items-center cursor-pointer" [routerLink]="['../']">
     <i class="fas fa-backspace"></i> <span class="inline-block ml-[1rem]">Vissza</span>
   </div>
-
 </div>
 
 <div class="mt-[1.5rem]" *ngIf="{
@@ -11,24 +10,10 @@
 } as sidebar
 ">
   <div *ngFor="let sidebarElement of sidebar.menu | keyvalue; let i = index;">
-
-    <a *ngIf="sidebarElement.value.url else withoutLink" target="_blank" href="{{ sidebarElement.value.url }}"
-      class="cursor-pointer flex min-w-full  justify-start items-center w-full px-[0rem]">
-      <span class="block w-[2rem] text-center  mr-[0.5rem]">
-        <i class="{{ sidebarElement.value.ikon }}"></i>
-      </span>
-      {{ sidebarElement.value.nev }}
-    </a>
-
-    <ng-template #withoutLink>
-      <a class="cursor-pointer flex min-w-full  justify-start items-center w-full px-[0rem]"
-        [routerLink]=" ['/modules', sidebarElement.value.alias, sidebarElement.value.id]">
-        <span class="block w-[2.5rem] text-center mr-[0.5rem]">
-          <i class="{{sidebarElement.value.ikon}}"></i>
-        </span>
-        {{ sidebarElement.value.nev }}
-      </a>
-    </ng-template>
-
+    <div [ngSwitch]="sidebar.type">
+      <vir-sidebar-module-item *ngSwitchCase="'1'" [sidebarElement]="sidebarElement.value"></vir-sidebar-module-item>
+      <vir-sidebar-view-item *ngSwitchCase="'2'" [sidebarElement]="sidebarElement.value" [moduleUrl]="routerState">
+      </vir-sidebar-view-item>
+    </div>
   </div>
 </div>
