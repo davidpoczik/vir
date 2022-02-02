@@ -1,6 +1,6 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Router, UrlSegment } from '@angular/router';
+import { Observable, of, Subscription, take } from 'rxjs';
 
 import { SidebarService } from 'src/app/core/services/sidebar.service';
 import { SidebarApiResponseData } from 'src/app/core/models/sidebar.model';
@@ -11,23 +11,35 @@ import { SidebarApiResponseData } from 'src/app/core/models/sidebar.model';
   templateUrl: './sidebar.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SidebarComponent implements OnInit {
-  sidebar$?: Observable<SidebarApiResponseData>
+export class SidebarComponent implements OnInit, OnDestroy {
+
+  sidebar$: Observable<SidebarApiResponseData>
+
+  routerState: string | UrlSegment[]
+
 
   constructor(
     private route: ActivatedRoute,
     private sidebarService: SidebarService,
-    private ref: ChangeDetectorRef) {
-
+    private router: Router
+  ) {
+    this.routerState = this.router.url
+    this.sidebar$ = of()
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe((response: { id?: number }) => {
-
-      this.sidebar$ = this.sidebarService.getSidebar(response.id)
-    })
-
+    console.log('initt')
+    this.routerState = this.router.url
+    if (this.route.snapshot.params.hasOwnProperty('id')) {
+      const moduleID = this.route.snapshot.params['id']
+      this.sidebar$ = this.sidebarService.getSidebarViews(moduleID)
+    } else {
+      this.sidebar$ = this.sidebarService.getSidebarModules()
+    }
   }
 
+  ngOnDestroy(): void {
+
+  }
 
 }
