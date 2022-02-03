@@ -1,7 +1,11 @@
 {
   "Internal Server Error": "Váratlan probléma",
-  "successfully_signed_in": "Sikeres Bejelentkezés",
-  "unauthorised": "Hibás Adatok",
+  "alert": {
+    "unauthorised": "Hibás Adatok",
+    "Forbidden": "Hibás Adatok",
+    "successfull_login": "Sikeres Bejelentkezés",
+    "successfull_logout": "Sikeres Kijelentkezés"
+  },
   "login": {
     "title": "Bejelentkezés",
     "copyright": "Copyright ©",
