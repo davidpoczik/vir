@@ -10,7 +10,11 @@ import { User } from "../models/user.model"
 })
 export class AuthService {
 
-  constructor(private httpClient: HttpClient) {
+  loginApiUrl = environment.api.base + environment.api.login
+
+  constructor(
+    private httpClient: HttpClient
+  ) {
   }
 
   setUserData(user: User) {
@@ -24,9 +28,8 @@ export class AuthService {
   }
 
   login(userData: loginApiPostData) {
-    const apiUrl = environment.api.base + environment.api.login
     return this.httpClient
-      .post<loginApiResponseData>(apiUrl, userData)
+      .post<loginApiResponseData>(this.loginApiUrl, userData)
       .pipe(
         take(1),
         tap(response => {

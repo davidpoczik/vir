@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HotToastService } from '@ngneat/hot-toast';
-import { tap } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
@@ -17,13 +17,26 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup
 
+  constructor(
+    private AuthService: AuthService,
+    private router: Router,
+    private translateService: TranslateService,
+    private toastService: HotToastService) {
+
+    this.loginForm = new FormGroup({
+      username: new FormControl('simonz'),
+      password: new FormControl('z4r4k1k3np4ch1')
+    })
+
+  }
+
   onSubmit(form: FormGroup) {
     this.submitted = true
 
     this.AuthService.login(form.value).pipe(
       this.toastService.observe({
         loading: 'Egy pillanat...',
-        success: 'success',
+        success: this.translateService.instant('successfull_login'),
         error: 'error'
       })
     )
@@ -48,17 +61,5 @@ export class LoginComponent implements OnInit {
       console.log(r)
       this.showEyes = r.length > 0
     })
-  }
-
-  constructor(
-    private AuthService: AuthService,
-    private router: Router,
-    private toastService: HotToastService) {
-
-    this.loginForm = new FormGroup({
-      username: new FormControl('simonz'),
-      password: new FormControl('z4r4k1k3np4ch1')
-    })
-
   }
 }

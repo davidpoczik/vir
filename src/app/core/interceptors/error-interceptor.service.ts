@@ -5,17 +5,23 @@ import { AuthService } from '../services/auth.service';
 import { HotToastService } from '@ngneat/hot-toast';
 import { TranslateService } from '@ngx-translate/core';
 
-
 @Injectable()
 export class ErrorInterceptorService implements HttpInterceptor {
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  constructor(
+    private authService: AuthService,
+    private toastService: HotToastService,
+    private translateService: TranslateService
+  ) {
+  }
 
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
       catchError((error: HttpErrorResponse) => {
         const errorCode = error.error.message
-        const defaultErrorMessageTranslated = this.translateService.instant(error.statusText)
 
+        const defaultErrorMessageTranslated = this.translateService.instant("alert." + error.statusText)
+        console.log(defaultErrorMessageTranslated)
         if (errorCode === 'unauthorised') {
           this.authService.logout()
         } else {
@@ -27,6 +33,5 @@ export class ErrorInterceptorService implements HttpInterceptor {
     )
   }
 
-  constructor(private authService: AuthService, private toastService: HotToastService, private translateService: TranslateService) {
-  }
+
 }
