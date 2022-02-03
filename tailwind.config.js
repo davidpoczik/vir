@@ -1,7 +1,6 @@
 module.exports = {
-  mode: 'jit',
-  purge: {},
-  darkMode: false,
+  //mode: 'jit',
+  darkMode: 'media',
 
   content: [
     './app/**/*.{html,ts}',
