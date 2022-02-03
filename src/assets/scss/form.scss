@@ -1,0 +1,10 @@
+form.ng-dirty {
+  .ng-dirty.ng-invalid {
+    background-image: url(../icons/alert/invalid.svg);
+
+    @apply bg-no-repeat;
+    background-position: calc(100% - 1.8rem) 50%;
+    background-size: auto;
+    background-size: 2.4rem auto;
+  }
+}

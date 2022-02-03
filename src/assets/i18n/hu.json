@@ -3,10 +3,19 @@
   "successfully_signed_in": "Sikeres Bejelentkezés",
   "unauthorised": "Hibás Adatok",
   "login": {
+    "title": "Bejelentkezés",
+    "copyright": "Copyright ©",
+    "allrights": "Minden jog fenntartva",
+    "privacy": "Adatvédelem",
+    "legal": "Jogi nyilatkozat",
+    "forgotten": "Elfelejtette a jelszavát?",
     "input": {
       "username": "Felhasználónév",
       "password": "Jelszó",
       "submit": "Bejelentkezés"
     }
+  },
+  "developer": {
+    "name": "Matusz-Vad Zrt."
   }
 }

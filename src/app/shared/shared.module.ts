@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
@@ -33,6 +33,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule,
     HotToastModule.forRoot({}),
     TranslateModule.forRoot({
@@ -46,6 +47,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
   exports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     HeaderComponent,
     FooterComponent,
     TranslateModule,

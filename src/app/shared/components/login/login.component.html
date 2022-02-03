@@ -1,15 +1,71 @@
-<section class="flex items-center h-screen login">
-  <div class="container mx-auto">
-    <div>
-      <input [(ngModel)]="inputUsername" class="login__input" type="text"
-        placeholder="{{ 'login.input.username' | translate}}">
+<section class="flex items-center h-screen login flex-col sm:flex-row justify-items-stretch">
+  <div class="login__left ">
+    <div class="w-[30rem]">
+      <div class="login__left__logo">
+        <span class="login__left__logo__text">logo</span>
+      </div>
+      <div class="login__title">{{ 'login.title' | translate }}</div>
+      <div class="login__form">
+        <form (ngSubmit)="onSubmit(loginForm)" [formGroup]="loginForm">
+          <div class="login__form__group">
+            <label class="login__form__label" for="inputUsername">
+              {{ 'login.input.username' | translate }}
+            </label>
+            <div class="login__form__control">
+              <input class="login__form__input" formControlName="username" id="inputUsername" type="text" required>
+            </div>
+          </div>
+          <div class="login__form__group">
+            <label class="login__form__label" for="inputPassword">
+              {{ 'login.input.password' | translate }}
+            </label>
+            <div class="login__form__control">
+              <input class="login__form__input" formControlName="password" id="inputPassword"
+                type="{{ (showPassword) ? 'text' : 'password' }}" required>
+              <div class="login__show-password" (click)="onShowPassword()" *ngIf="showEyes">
+                <i class=" far fa-eye-slash"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="login__form__helper">
+            <div class="login__form__helper__forgotten">
+              <a href="#">{{ 'login.forgotten' | translate}}</a>
+            </div>
+          </div>
+          <div class="login__form__submit">
+            <button class="login__button" type="submit" [disabled]="submitted || !loginForm.valid">
+              {{ 'login.input.submit' |
+              translate}}
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="login__copyright">
+        <div>
+          <span>{{ 'login.copyright' |
+            translate}}2021</span>
+          <span>{{ 'login.allrights' |
+            translate}}</span>
+        </div>
+        <div>
+          <span>{{ 'developer.name' |
+            translate}}</span>
+          <a href="#"><span>{{ 'login.privacy' |
+              translate}}</span></a>
+          <a href="#"><span>{{ 'login.legal' |
+              translate}}</span></a>
+        </div>
+      </div>
+      <div>
+      </div>
     </div>
-    <div>
-      <input [(ngModel)]="inputPassword" class="login__input" type="password" name="password"
-        placeholder="{{ 'login.input.password' | translate }}">
-    </div>
-    <div>
-      <button (click)="onSubmit()" class="login__button">{{ 'login.input.submit' | translate}}</button>
+  </div>
+  <div class="login__right ">
+    <div class="login__logo">
+      <div class="login__logo__text ">
+        <div>Gastro Prof logo</div>
+      </div>
     </div>
   </div>
 </section>
