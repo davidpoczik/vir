@@ -22,11 +22,11 @@ export class HeaderComponent implements OnInit {
 
   }
   onLogout() {
+    const translatedLogoutMessage = this.translateService.instant('alert.successfull_logout')
     this.authService.logout()
     this.router.navigate(['/login/auth']).then(() => {
-      this.toastService.success(this.translateService.instant('successfull_logout'))
-    }
-    )
+      this.toastService.success(translatedLogoutMessage)
+    })
 
   }
 }

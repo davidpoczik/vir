@@ -4,7 +4,8 @@
     "unauthorised": "Hibás Adatok",
     "Forbidden": "Hibás Adatok",
     "successfull_login": "Sikeres Bejelentkezés",
-    "successfull_logout": "Sikeres Kijelentkezés"
+    "successfull_logout": "Sikeres Kijelentkezés",
+    "Too Many Requests": "Túl sokszor próbálkoztál, várj egy kicsit."
   },
   "login": {
     "title": "Bejelentkezés",

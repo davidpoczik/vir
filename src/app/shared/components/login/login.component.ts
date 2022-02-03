@@ -32,16 +32,15 @@ export class LoginComponent implements OnInit {
 
   onSubmit(form: FormGroup) {
     this.submitted = true
-
     this.AuthService.login(form.value).pipe(
       this.toastService.observe({
         loading: 'Egy pillanat...',
-        success: this.translateService.instant('successfull_login'),
+        success: this.translateService.instant('alert.successfull_login'),
         error: 'error'
       })
     )
       .subscribe((response) => {
-        console.log(response)
+
         if (response.success) {
           this.router.navigate(['/modules'])
         } else {
