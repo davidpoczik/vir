@@ -1,17 +1,19 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
+import { SharedModule } from 'src/app/shared/shared.module';
 import { AdministrationRoutingModule } from './administration-routing.module';
 
-import { AdministrationModulesComponent } from './modules/modules.component';
+import { AdministrationModulesComponent } from './administration-modules/administration-modules.component';
+import { AdministrationModulesEditComponent } from './administration-modules-edit/administration-modules-edit.component';
+
 
 
 @NgModule({
   declarations: [
-    AdministrationModulesComponent
+    AdministrationModulesComponent,
+    AdministrationModulesEditComponent
   ],
   imports: [
-    CommonModule,
+    SharedModule,
     AdministrationRoutingModule
   ]
 })

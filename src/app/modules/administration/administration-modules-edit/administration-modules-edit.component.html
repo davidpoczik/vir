@@ -1,0 +1,22 @@
+<section class="flex flex-row text-[1.4rem] multiple">
+    <div class="p-[1rem] w-1/2 ">
+        <div *ngIf="moduleData.employee_positions" class="border-2 border-b-0 max-h-[30rem] overflow-auto">
+            <div *ngFor="let employee_position of moduleData.employee_positions" class="border-b-2 cursor-pointer">
+                <div (click)="onEmployeeToAllowed(employee_position)"
+                    [ngClass]="{'disabled':  isElementDisabled(employee_position.sm_ceghierarchia_id)}"
+                    class="p-[0.5rem]">{{
+                    employee_position.nev }}
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="p-[1rem] w-1/2">
+        <div *ngIf="moduleData.allowed_positions" class="border-2 border-b-0 max-h-[30rem] overflow-auto">
+            <div *ngFor="let allowed_position of moduleData.allowed_positions"
+                class="border-b-2 p-[0.5rem] cursor-pointer">
+                <div (click)="onAllowedToEmployee(allowed_position)">{{ allowed_position.nev }}</div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -5,15 +5,17 @@ import { environment } from 'src/environments/environment';
 import { ModuleApiResponseData } from '../shared/modules.model';
 
 @Component({
-  templateUrl: './modules.component.html',
+  templateUrl: './administration-modules.component.html',
 })
 export class AdministrationModulesComponent implements OnInit {
 
-  private apiGetUrl = `${environment.api.base}${environment.api.administration.base}${environment.api.administration.modules}`
+  private apiGetUrl = `${environment.api.base}${environment.api.administration.base}${environment.api.administration.modules.get}`
 
   modules$: Observable<any>
 
-  constructor(private httpClient: HttpClient) {
+  constructor(
+    private httpClient: HttpClient
+  ) {
     this.modules$ = of(null)
   }
 
@@ -22,7 +24,7 @@ export class AdministrationModulesComponent implements OnInit {
   }
 
   getAdminModulesData() {
-    this.httpClient.get<ModuleApiResponseData>(this.apiGetUrl)
+    this.httpClient.get<ModuleApiResponseData>(`${this.apiGetUrl}`)
       .pipe(
         tap(response => {
           response.data = Object.values(response.data)

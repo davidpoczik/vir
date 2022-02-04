@@ -1,6 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
-import { HotToastService } from '@ngneat/hot-toast';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from 'src/app/core/services/auth.service';
 
@@ -14,7 +13,6 @@ export class HeaderComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private toastService: HotToastService,
     private translateService: TranslateService
   ) { }
 
@@ -25,7 +23,6 @@ export class HeaderComponent implements OnInit {
     const translatedLogoutMessage = this.translateService.instant('alert.successfull_logout')
     this.authService.logout()
     this.router.navigate(['/login/auth']).then(() => {
-      this.toastService.success(translatedLogoutMessage)
     })
 
   }

@@ -1,5 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { HotToastService } from "@ngneat/hot-toast";
+import { TranslateService } from "@ngx-translate/core";
 import { take, tap } from "rxjs";
 import { loginApiPostData, loginApiResponseData } from "src/app/core/models/login.model";
 import { environment } from "src/environments/environment";
@@ -12,8 +14,16 @@ export class AuthService {
 
   loginApiUrl = environment.api.base + environment.api.login
 
+  loginAlertLoading = 'login.alert.loading'
+  loginAlertSuccess = 'login.alert.success'
+  loginAlertError = 'login.alert.error'
+
+  loginAlertLogou = 'login.alert.logout'
+
   constructor(
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private toastService: HotToastService,
+    private translateService: TranslateService
   ) {
   }
 
@@ -28,9 +38,17 @@ export class AuthService {
   }
 
   login(userData: loginApiPostData) {
+
     return this.httpClient
       .post<loginApiResponseData>(this.loginApiUrl, userData)
       .pipe(
+        this.toastService.observe(
+          {
+            loading: this.translateService.instant(this.loginAlertLoading),
+            success: this.translateService.instant(this.loginAlertSuccess),
+            error: this.translateService.instant(this.loginAlertError),
+          }
+        ),
         take(1),
         tap(response => {
           if (response.success) {
@@ -44,6 +62,9 @@ export class AuthService {
     localStorage.removeItem('vir_fullname')
     localStorage.removeItem('vir_position')
     localStorage.removeItem('vir_token')
+    this.toastService.warning(
+      this.translateService.instant(this.loginAlertLogou)
+    )
   }
 
   isLoggedIn() {

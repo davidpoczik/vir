@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AdministrationComponent } from './administration.component';
-import { AdministrationModulesComponent } from './modules/modules.component';
+import { AdministrationModulesComponent } from './administration-modules/administration-modules.component';
+import { AdministrationModulesEditComponent } from './administration-modules-edit/administration-modules-edit.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,10 @@ const routes: Routes = [
   {
     path: 'modulok',
     component: AdministrationModulesComponent
+  },
+  {
+    path: 'modulok/:id',
+    component: AdministrationModulesEditComponent
   }
 ]
 

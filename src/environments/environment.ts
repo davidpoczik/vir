@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  version: 1,
+  version: 1.1,
   baseUrl: './app/src',
   api: {
     base: 'https://dev.matusz-vad.hu/dev/Vir/api/',
@@ -13,7 +13,11 @@ export const environment = {
     views: `general/get-views`,
     administration: {
       base: `administration/`,
-      modules: `get-modules`
+      modules: {
+        get: `get-modules`,
+        edit: 'edit'
+      }
+
     }
 
   }

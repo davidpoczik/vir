@@ -2,7 +2,9 @@
     <div *ngFor="let module of modules$ | async ">
         <div>
             <div>
-                {{ module.nev }}
+                <a class="cursor-pointer" [routerLink]="[ module.w_vir_modul_id]">
+                    {{ module.nev }}
+                </a>
 
             </div>
         </div>

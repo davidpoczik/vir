@@ -5,7 +5,8 @@
     "Forbidden": "Hibás Adatok",
     "successfull_login": "Sikeres Bejelentkezés",
     "successfull_logout": "Sikeres Kijelentkezés",
-    "Too Many Requests": "Túl sokszor próbálkoztál, várj egy kicsit."
+    "Too Many Requests": "Túl sokszor próbálkoztál, várj egy kicsit.",
+    "loading": "Egy kis türelmet"
   },
   "login": {
     "title": "Bejelentkezés",
@@ -18,6 +19,12 @@
       "username": "Felhasználónév",
       "password": "Jelszó",
       "submit": "Bejelentkezés"
+    },
+    "alert": {
+      "loading": "Bejelentkezés folyamatban, kérlek várj.",
+      "success": "Sikeres bejelentkezés.",
+      "error": "Sikertelen bejelentkezés",
+      "logout": "Kijelentkezve"
     }
   },
   "developer": {
