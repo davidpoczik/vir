@@ -1,0 +1,24 @@
+.sidebar {
+  @apply w-[24rem] bg-brown z-30 fixed top-0 left-0  h-screen pt-[5.5rem];
+
+  &__list {
+    @apply font-bold text-white list-none;
+    li {
+      a {
+        @apply border-orange text-sidebarText flex-col h-[4.6rem] px-[2rem] flex w-full relative justify-center border-l-[2px] border-solid border-opacity-0 transition-colors  duration-300;
+
+        &:hover,
+        &:active {
+          @apply border-opacity-100 text-orange;
+        }
+      }
+      &:not(:last-child) {
+        a {
+          &:after {
+            @apply content-[''] h-[1px] block bg-[#3e3e3e] absolute bottom-0 left-[2rem] w-[calc(100%-4rem)];
+          }
+        }
+      }
+    }
+  }
+}

@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     this.AuthService.login(form.value)
       .subscribe((response) => {
         if (response.success) {
-          this.router.navigate(['/modules'])
+          this.router.navigate(['/vezerlopult'])
         } else {
           this.submitted = false
         }

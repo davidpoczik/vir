@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { map, share, shareReplay, tap } from "rxjs";
+import { ActivatedRoute } from "@angular/router";
+import { BehaviorSubject, tap } from "rxjs";
 import { environment } from "src/environments/environment";
 import { SidebarApiResponseData } from "../models/sidebar.model";
 
@@ -9,44 +10,40 @@ import { SidebarApiResponseData } from "../models/sidebar.model";
 })
 export class SidebarService {
 
-  private apiUrlForGetModules = environment.api.base + environment.api.modules
   private apiUrlForGetViews = environment.api.base + environment.api.views
 
+  isOpen = new BehaviorSubject(false)
 
-  getSidebarModules() {
+  constructor(
+    private httpClient: HttpClient,
+    private route: ActivatedRoute
+  ) { }
+
+  getViews() {
     return this.httpClient
-      .get<SidebarApiResponseData>(this.apiUrlForGetModules)
+      .get<SidebarApiResponseData>(this.apiUrlForGetViews)
       .pipe(
-        shareReplay(),
         tap((response) => {
-          console.log(response)
           return this.convertResponseMenuToArray({ ...response })
         })
       )
   }
 
-  getSidebarViews(id: number) {
-    return this.httpClient
-      .get<SidebarApiResponseData>(`${this.apiUrlForGetViews}?id=${id}`)
-      .pipe(
-        shareReplay(),
-        tap((response) => {
-          return this.convertResponseMenuToArray({ ...response })
-        })
-      )
+  toggleSidebar() {
+    this.isOpen.next(
+      !this.isOpen.getValue()
+    )
   }
 
   convertResponseMenuToArray(response: SidebarApiResponseData) {
-    if (!Array.isArray(response.data?.menu)) {
-      response.data.menu = Object.values(response.data.menu)
+    if (!Array.isArray(response?.data)) {
+      response.data = Object.values(response.data)
+
+      response.data = { ...response.data }
+      return response
     }
-    response.data.menu = { ...response.data.menu }
+
     return response
-  }
 
-  constructor(
-    private httpClient: HttpClient
-  ) {
   }
-
 }

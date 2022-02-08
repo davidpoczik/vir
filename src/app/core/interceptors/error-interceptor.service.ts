@@ -18,7 +18,7 @@ export class ErrorInterceptorService implements HttpInterceptor {
 
       }),
       catchError((error: HttpErrorResponse) => {
-        const errorCode = error.error.message
+        const errorCode = error?.error?.message ?? null
         if (errorCode === 'unauthorised') {
           this.authService.logout()
         } else {

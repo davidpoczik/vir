@@ -1,19 +1,11 @@
-<div class="px-[0rem]" *ngIf=" (sidebar$ | async)?.data?.type == 2 ">
-  <div class="flex items-center cursor-pointer" [routerLink]="['../']">
-    <i class="fas fa-backspace"></i> <span class="inline-block ml-[1rem]">Vissza</span>
-  </div>
-</div>
-
-<div class="mt-[1.5rem]" *ngIf="{
-  menu: (sidebar$ | async)?.data?.menu,
-  type: (sidebar$ | async)?.data?.type
-} as sidebar
-">
-  <div *ngFor="let sidebarElement of sidebar.menu | keyvalue; let i = index;">
-    <div [ngSwitch]="sidebar.type">
-      <vir-sidebar-module-item *ngSwitchCase="'1'" [sidebarElement]="sidebarElement.value"></vir-sidebar-module-item>
-      <vir-sidebar-view-item *ngSwitchCase="'2'" [sidebarElement]="sidebarElement.value" [moduleUrl]="routerState">
-      </vir-sidebar-view-item>
-    </div>
-  </div>
-</div>
+<section class="sidebar" [@sidebarToggle]="isOpened ? 'opened' : 'closed'">
+    <nav>
+        <ul class="sidebar__list" *ngIf="sidebar">
+            <li *ngFor="let sidebarElement of sidebar ; let i = index;">
+                <a class="" [routerLink]="[sidebarElement.alias]">
+                    {{ sidebarElement.nev }}
+                </a>
+            </li>
+        </ul>
+    </nav>
+</section>

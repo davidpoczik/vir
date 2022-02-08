@@ -23,7 +23,7 @@
               <input class="login__form__input" formControlName="password" id="inputPassword"
                 type="{{ (showPassword) ? 'text' : 'password' }}" required>
               <div class="login__show-password" (click)="onShowPassword()" *ngIf="showEyes">
-                <i class=" far fa-eye-slash"></i>
+                <i class="{{ (showPassword) ? 'fa-eye' : 'fa-eye-slash' }} far "></i>
               </div>
             </div>
           </div>

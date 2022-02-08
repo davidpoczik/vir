@@ -1,22 +1,53 @@
 <section class="flex flex-row text-[1.4rem] multiple">
-    <div class="p-[1rem] w-1/2 ">
+    <div class=" w-1/2 ">
         <div *ngIf="moduleData.employee_positions" class="border-2 border-b-0 max-h-[30rem] overflow-auto">
             <div *ngFor="let employee_position of moduleData.employee_positions" class="border-b-2 cursor-pointer">
-                <div (click)="onEmployeeToAllowed(employee_position)"
-                    [ngClass]="{'disabled':  isElementDisabled(employee_position.sm_ceghierarchia_id)}"
-                    class="p-[0.5rem]">{{
+                <div (click)="onPushToAllowed(employee_position)"
+                    [ngClass]="{'disabled':  isElementDisabled(employee_position)}" class="p-[0.5rem]">{{
                     employee_position.nev }}
                 </div>
 
             </div>
         </div>
     </div>
-    <div class="p-[1rem] w-1/2">
+    <div class="px-[1rem] w-1/2">
         <div *ngIf="moduleData.allowed_positions" class="border-2 border-b-0 max-h-[30rem] overflow-auto">
             <div *ngFor="let allowed_position of moduleData.allowed_positions"
                 class="border-b-2 p-[0.5rem] cursor-pointer">
-                <div (click)="onAllowedToEmployee(allowed_position)">{{ allowed_position.nev }}</div>
+                <div (click)="onRemoveFromAllowed(allowed_position)">{{ allowed_position.nev }}</div>
             </div>
         </div>
     </div>
+</section>
+
+<section *ngIf="moduleData.module" class="form">
+    <form (ngSubmit)="onSubmit(editForm)" [formGroup]="editForm">
+        <input type="hidden" name="newAllowed" formControlName="newAllowed">
+        <input type="hidden" name="newRemoved" formControlName="newRemoved">
+        <div class="form__control">
+            <input type="text" formControlName="w_vir_modul_id">
+        </div>
+        <div class="form__control">
+            <input type="text" formControlName="ikon" placeholder="pl: fa fa-users-cog">
+        </div>
+        <div class="form__control">
+            <img *ngIf="editForm.value.kep" [src]="editForm.value.kep" alt="">
+            <input type="file" formControlName="kep" name="fileInput">
+        </div>
+        <div class="form__control">
+            <textarea name="" formControlName="leiras" placeholder="leiras"></textarea>
+        </div>
+        <div class="form__control">
+            <input type="text" formControlName="nev" placeholder="nev">
+        </div>
+        <div class="form__control">
+            <input type="text" formControlName="nev_url" placeholder="nev url">
+        </div>
+        <div class="form__control">
+            <input type="text" formControlName="url" placeholder="url">
+        </div>
+        <div class="form__control">
+            <button type="submit" class="button w-full">Mentés</button>
+        </div>
+    </form>
 </section>

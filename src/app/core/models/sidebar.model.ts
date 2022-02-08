@@ -7,23 +7,16 @@ export interface SidebarMenuItem {
     leiras?: string,
     kep?: string,
     szulo_id?: string,
-    modul_id?: string,
-    submenu: SidebarMenuWithKey[]
+    modul_id?: string
 }
 
-export interface SidebarMenuWithKey {
-    [key: number]:
-    SidebarMenuItem
-}
 
-export interface Sidebar {
-    menu: SidebarMenuWithKey,
-    type: number
-}
+
+
 
 export interface SidebarApiResponseData {
     success: boolean,
-    data: Sidebar,
+    data: SidebarMenuItem[],
     message: string
 }
 

@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ModuleGuardService } from '../core/guards/module-guard.service';
-import { LayoutComponent } from '../shared/components/layout/layout.component';
+import { ViewPermissionGuard } from '../core/guards/view-permission.service';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 
 export const routes: Routes = [
   {
-    path: '',
-    component: LayoutComponent,
+    path: 'vezerlopult',
+    component: DashboardComponent
   },
   {
     path: 'adminisztracio/:id',
     loadChildren: () => import('./administration/administration.module').then(m => m.AdministrationModule),
-    component: LayoutComponent,
-    canActivateChild: [ModuleGuardService]
+    canActivateChild: [ModuleGuardService, ViewPermissionGuard]
   },
 ]
 
@@ -25,7 +25,5 @@ export const routes: Routes = [
   exports: [RouterModule]
 })
 export class ModulesRoutingModule {
-  constructor() {
-
-  }
+  constructor() { }
 }

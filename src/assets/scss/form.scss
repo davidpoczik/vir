@@ -11,6 +11,19 @@ form.ng-dirty {
 
 .multiple {
   .disabled {
-    @apply pointer-events-none bg-slate-400 text-white;
+    @apply pointer-events-none bg-brown text-white cursor-not-allowed;
+  }
+}
+
+.form {
+  input {
+    @apply block h-[5rem] w-full bg-[#f8f8f8] rounded-2xl border-[#cfcfd1] border-[1px] px-[2rem] text-[1.4rem] text-[#666666] focus:outline-none;
+  }
+  textarea {
+    @apply block h-[20rem] w-full bg-[#f8f8f8] rounded-2xl border-[#cfcfd1] border-[1px] px-[2rem] text-[1.4rem] text-[#666666] focus:outline-none py-[2rem];
+  }
+
+  &__control {
+    @apply mt-4;
   }
 }

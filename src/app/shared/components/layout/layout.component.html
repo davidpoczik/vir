@@ -1,16 +1,7 @@
-<div id="page" class="bg-slate-600 ">
-  <vir-header></vir-header>
-  <div class="flex min-h-screen col ">
-    <div class="w-[30vw] bg-slate-200 py-[4.5rem] px-[1.5rem]">
-      <vir-sidebar></vir-sidebar>
-    </div>
-    <div class="w-[70vw] py-[4.5rem] px-[1.5rem]">
-      <main class="py-[2rem]">
-        <div class="bg-white p-[1.5rem]">
-          <router-outlet></router-outlet>
-        </div>
-      </main>
-    </div>
-  </div>
-  <vir-footer></vir-footer>
-</div>
+<vir-header></vir-header>
+
+<vir-sidebar></vir-sidebar>
+
+<router-outlet></router-outlet>
+
+<vir-footer></vir-footer>

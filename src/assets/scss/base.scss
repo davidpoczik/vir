@@ -1,7 +1,10 @@
-html,
+html {
+  font-size: 62.5% !important;
+}
 body {
-  @apply select-none;
-  font-family: Arial !important;
+  // font-family: Arial !important;
+  font-family: 'Nunito', sans-serif !important;
+  @apply select-none text-[1.4rem] bg-gray;
 }
 
 .button {

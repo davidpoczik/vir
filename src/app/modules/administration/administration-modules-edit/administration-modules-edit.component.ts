@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { ModuleEditData, ModuleEditResponseData, ModuleHierarchiaData } from '../shared/modules.model';
 @Component({
@@ -7,68 +8,92 @@ import { ModuleEditData, ModuleEditResponseData, ModuleHierarchiaData } from '..
 })
 export class AdministrationModulesEditComponent implements OnInit {
 
-  moduleData: ModuleEditData = {}
-
-  tempAllowed_positions?: ModuleHierarchiaData[]
-  tempEmployee_positions?: ModuleHierarchiaData[]
-
-  originalAllowed_positions?: ModuleHierarchiaData[]
-  originalEmployee_positions?: ModuleHierarchiaData[]
-
-  pushedAllowed_positions: ModuleHierarchiaData[]
-  removedAllowed_positions: ModuleHierarchiaData[]
-
   private apiEditUrl = `${environment.api.base}${environment.api.administration.base}${environment.api.administration.modules.edit}`
 
+  private apiSaveUrl = `${environment.api.base}${environment.api.administration.base}${environment.api.administration.modules.save}`
+  moduleData: ModuleEditData = {}
+
+  originalAllowed?: ModuleHierarchiaData[] = []
+  newAllowed?: ModuleHierarchiaData[] = []
+  newRemoved?: ModuleHierarchiaData[] = []
+
+  editForm: FormGroup
 
   constructor(
     private httpClient: HttpClient
   ) {
-    this.pushedAllowed_positions = []
-    this.removedAllowed_positions = []
-
-    this.tempAllowed_positions = []
-    this.tempEmployee_positions = []
+    this.editForm = new FormGroup({
+      newAllowed: new FormControl(''),
+      newRemoved: new FormControl('')
+    })
   }
 
   ngOnInit(): void {
     this.httpClient.get<ModuleEditResponseData>(`${this.apiEditUrl}?id=3`).subscribe((response) => {
       this.moduleData = response.data
-      this.originalAllowed_positions = this.moduleData.allowed_positions
-      this.originalEmployee_positions = this.moduleData.employee_positions
+      this.originalAllowed = this.moduleData.allowed_positions?.slice()
 
-      this.tempAllowed_positions = this.moduleData.allowed_positions
-
+      if (response.data.module?.length) {
+        for (const [key, value] of Object.entries(response.data.module[0])) {
+          this.editForm.addControl(key, new FormControl(value))
+        }
+      }
     })
   }
 
-  onEmployeeToAllowed(data: ModuleHierarchiaData) {
-    this.tempAllowed_positions?.push(data)
+  isElementDisabled(data: ModuleHierarchiaData) {
+    return this.isElementInArray(data, this.moduleData.allowed_positions)
+  }
 
-    this.tempEmployee_positions?.filter(tempData => tempData.sm_ceghierarchia_id !== data.sm_ceghierarchia_id)
+  onPushToAllowed(elem: ModuleHierarchiaData) {
+    this.moduleData.allowed_positions?.push(elem)
 
-    this.moduleData.allowed_positions = this.tempAllowed_positions
+    this.newRemoved = this.newRemoved?.filter(originalElement => originalElement.sm_ceghierarchia_id !== elem.sm_ceghierarchia_id)
 
-    if (this.originalAllowed_positions?.some(hierdata => hierdata.sm_ceghierarchia_id === data.sm_ceghierarchia_id)) {
-      this.pushedAllowed_positions.push(data)
+    if (!this.isElementInArray(elem, this.originalAllowed)) {
+      this.newAllowed?.push(elem)
+      this.newRemoved = this.newRemoved?.filter(originalElement => originalElement.sm_ceghierarchia_id !== elem.sm_ceghierarchia_id)
     }
-
-
-
-    console.log(this.removedAllowed_positions, this.pushedAllowed_positions)
   }
 
-  onAllowedToEmployee(data: ModuleHierarchiaData) {
+  onRemoveFromAllowed(elem: ModuleHierarchiaData) {
+    this.moduleData.allowed_positions = this.moduleData.allowed_positions?.filter(originalElement => originalElement.sm_ceghierarchia_id !== elem.sm_ceghierarchia_id)
+
+    this.newAllowed = this.newAllowed?.filter(originalElement => originalElement.sm_ceghierarchia_id !== elem.sm_ceghierarchia_id)
+
+    if (this.isElementInArray(elem, this.originalAllowed)) {
+      this.newRemoved?.push(elem)
+    }
+  }
+
+  onSubmit(editForm: FormGroup) {
+    console.log(editForm.controls['kep'])
+
+
+
+    this.convertChange()
+    this.sendFormDataToApi(editForm.value, this.apiSaveUrl)
+    console.log(editForm)
 
   }
 
+  convertChange() {
+    const newAllowedJSON = JSON.stringify(this.newAllowed?.map(el => el.sm_ceghierarchia_id))
+    const newRemovedJSON = JSON.stringify(this.newRemoved?.map(el => el.sm_ceghierarchia_id))
+    this.editForm.controls['newAllowed'].setValue(newAllowedJSON)
+    this.editForm.controls['newRemoved'].setValue(newRemovedJSON)
+  }
 
+  sendFormDataToApi(formData: {}, apiUrl: string) {
+    ///administration/save-module 
 
-  isElementDisabled(data: number | string) {
-    return this.tempAllowed_positions?.some((tempData) => tempData.sm_ceghierarchia_id === data
+    this.httpClient.post(apiUrl, formData).subscribe(response => {
+      console.log('response', response)
+    })
+  }
+
+  isElementInArray(elem: ModuleHierarchiaData, array?: ModuleHierarchiaData[]) {
+    return array?.some((arrayElem) => elem.sm_ceghierarchia_id === arrayElem.sm_ceghierarchia_id
     )
   }
-
-
-
 }

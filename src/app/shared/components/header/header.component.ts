@@ -1,7 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
-import { AuthService } from 'src/app/core/services/auth.service';
+import { SidebarService } from 'src/app/core/services/sidebar.service';
+
 
 @Component({
   selector: 'vir-header',
@@ -11,19 +10,14 @@ import { AuthService } from 'src/app/core/services/auth.service';
 export class HeaderComponent implements OnInit {
 
   constructor(
-    private authService: AuthService,
-    private router: Router,
-    private translateService: TranslateService
+    private sidebarService: SidebarService
   ) { }
 
   ngOnInit(): void {
-
   }
-  onLogout() {
-    const translatedLogoutMessage = this.translateService.instant('alert.successfull_logout')
-    this.authService.logout()
-    this.router.navigate(['/login/auth']).then(() => {
-    })
 
+  onSidebarToggle() {
+    this.sidebarService.toggleSidebar()
   }
+
 }

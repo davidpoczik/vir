@@ -1,10 +1,14 @@
-<header class="fixed top-0 left-0 z-20 w-full bg-slate-500">
-  <div class="container flex justify-between mx-auto">
-    <div>VIR</div>
-    <div>
-      <button class="button w-[15rem]" (click)=(onLogout())>
-        logout
-      </button>
+<header class="relative z-40 text-white bg-brown">
+    <div class="px-[3rem] h-[5.5rem] flex items-center">
+        <div class="text-[3rem] flex cursor-pointer" (click)="onSidebarToggle()">
+            <i class=" fas fa-list-alt"></i>
+        </div>
+        <div class="ml-[2.5rem] font-light">
+            <h1 class="text-[2.4rem] font-normal">
+                <span class="font-semibold">Gastro</span>
+                <span class="text-[#cccccc]">Prof</span>
+                <span class="text-[1.6rem]"> by Matusz-Vad Zrt.</span>
+            </h1>
+        </div>
     </div>
-  </div>
 </header>
