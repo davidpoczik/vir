@@ -9,7 +9,7 @@ import { ModuleApiResponseData } from '../shared/modules.model';
 })
 export class AdministrationModulesComponent implements OnInit {
 
-  private apiGetUrl = `${environment.api.base}${environment.api.administration.base}${environment.api.administration.modules.get}`
+  private apiGetUrl = `${environment.api.base}${environment.api.administration.base}${environment.api.administration.view.get}`
 
   modules$: Observable<any>
 

@@ -3,10 +3,11 @@ import { SidebarService } from 'src/app/core/services/sidebar.service';
 import { SidebarMenuItem } from 'src/app/core/models/sidebar.model';
 
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import { Subscription } from 'rxjs';
 
 
 @Component({
-  selector: 'vir-sidebar',
+  selector: 'gastroprof-sidebar',
   templateUrl: './sidebar.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
@@ -32,7 +33,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   isOpened = false
   sidebar?: SidebarMenuItem[]
-
+  isOpenSubscription?: Subscription
   constructor(
     private sidebarService: SidebarService,
     private ref: ChangeDetectorRef
@@ -50,16 +51,20 @@ export class SidebarComponent implements OnInit, OnDestroy {
         }
       })
 
-    this.sidebarService.isOpen.subscribe(response => {
+    this.isOpenSubscription = this.sidebarService.isOpen.subscribe(response => {
       this.isOpened = response
-      console.log(this.isOpened)
       this.ref.markForCheck()
-
     })
+
+  }
+
+  onNavigationClicked() {
+    this.sidebarService.toggleSidebar()
+    this.ref.markForCheck()
   }
 
   ngOnDestroy(): void {
-
+    this.isOpenSubscription?.unsubscribe()
   }
 
 }

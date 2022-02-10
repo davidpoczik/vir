@@ -3,11 +3,13 @@ export interface SidebarMenuItem {
     url?: string,
     nev: string,
     alias: string,
-    ikon: string,
+    ikon?: string,
     leiras?: string,
     kep?: string,
     szulo_id?: string,
-    modul_id?: string
+    modul_id?: string,
+    modul_nev?: string,
+    modul_nev_url?: string
 }
 
 

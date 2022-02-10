@@ -6,7 +6,7 @@
     li {
       a {
         @apply border-orange text-sidebarText flex-col h-[4.6rem] px-[2rem] flex w-full relative justify-center border-l-[2px] border-solid border-opacity-0 transition-colors  duration-300;
-
+        &.is-active,
         &:hover,
         &:active {
           @apply border-opacity-100 text-orange;

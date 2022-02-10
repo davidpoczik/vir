@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { HotToastService } from "@ngneat/hot-toast";
 import { TranslateService } from "@ngx-translate/core";
-import { take, tap } from "rxjs";
+import { BehaviorSubject, take, tap } from "rxjs";
 import { loginApiPostData, loginApiResponseData } from "src/app/core/models/login.model";
 import { environment } from "src/environments/environment";
 import { User } from "../models/user.model"
@@ -20,6 +20,8 @@ export class AuthService {
 
   loginAlertLogou = 'login.alert.logout'
 
+  userData = new BehaviorSubject<User | null>(null)
+
   constructor(
     private httpClient: HttpClient,
     private toastService: HotToastService,
@@ -31,6 +33,12 @@ export class AuthService {
     localStorage.setItem('vir_fullname', user.fullname)
     localStorage.setItem('vir_position', user.position)
     localStorage.setItem('vir_token', user.token)
+
+    this.userData.next({
+      fullname: user.fullname,
+      position: user.position,
+      token: user.token
+    })
   }
 
   getToken() {

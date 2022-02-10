@@ -45,7 +45,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     FooterComponent,
     TranslateModule,
     SidebarComponent,
-    HotToastModule
+    HotToastModule,
+    RouterModule
   ],
 })
 

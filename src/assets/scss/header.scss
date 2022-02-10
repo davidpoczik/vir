@@ -1,0 +1,13 @@
+.header {
+  &__user {
+  }
+
+  &__icons {
+    @apply ml-[8rem];
+    > div {
+      &:not(:last-child) {
+        @apply mr-[1.3rem];
+      }
+    }
+  }
+}

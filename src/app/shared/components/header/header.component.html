@@ -1,14 +1,45 @@
-<header class="relative z-40 text-white bg-brown">
-    <div class="px-[3rem] h-[5.5rem] flex items-center">
-        <div class="text-[3rem] flex cursor-pointer" (click)="onSidebarToggle()">
-            <i class=" fas fa-list-alt"></i>
+<header class="relative z-40 text-white bg-brown header">
+
+    <div class="px-[3rem] h-[5.5rem] flex items-center justify-between header__container">
+        <div class="flex items-center header__brand">
+            <!-- sidebar trigger starts -->
+            <div class="text-[3rem] flex cursor-pointer" (click)="onSidebarToggle()">
+                <i *ngIf="!isSidebarOpen" class="fas fa-list-alt"></i>
+                <i *ngIf="isSidebarOpen" class="fas fa-window-close"></i>
+            </div>
+            <!-- sidebar trigger ends -->
+            <!-- logo starts -->
+            <div class="ml-[2.5rem] font-light">
+                <h1 class="text-[2.4rem] font-normal">
+                    <span class="font-semibold">Gastro</span>
+                    <span class="text-[#cccccc]">Prof</span>
+                    <span class="text-[1.6rem]"> by Matusz-Vad Zrt.</span>
+                </h1>
+            </div>
+            <!-- logo ends -->
         </div>
-        <div class="ml-[2.5rem] font-light">
-            <h1 class="text-[2.4rem] font-normal">
-                <span class="font-semibold">Gastro</span>
-                <span class="text-[#cccccc]">Prof</span>
-                <span class="text-[1.6rem]"> by Matusz-Vad Zrt.</span>
-            </h1>
+        <!-- sidebar search starts -->
+        <div class="header__search w-[52rem]">
+            <input class="w-full h-[3.6rem] rounded-full px-[1.5rem] bg-[#F5F5F5] border-0 text-black" type="search"
+                placeholder="Keresés ..." [(ngModel)]="sidebarSearchText">
+        </div>
+        <!-- sidebar search starts -->
+
+        <div class="flex items-center">
+            <div class="flex items-center ">
+                <div class="mr-[2rem] text-[1.3rem] header__user__name">{{ user?.fullname }}</div>
+                <div class="header__lang">
+                    <img src="./assets/icons/lang/hu.svg" alt="">
+                </div>
+            </div>
+            <div class="flex items-center header__icons">
+                <div><img src="./assets/header/gpm.png" alt=""></div>
+                <div><img src="./assets/header/tudasbazis.png" alt=""></div>
+                <div><img src="./assets/header/outlook.png" alt=""></div>
+                <div><img src="./assets/header/webshop.png" alt=""></div>
+                <div><img src="./assets/header/hr3.png" alt=""></div>
+                <div><img src="./assets/header/info.svg" alt=""></div>
+            </div>
         </div>
     </div>
 </header>

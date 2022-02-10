@@ -1,11 +1,11 @@
-<div class="p-[1.5rem] bg-white">
-    <div *ngFor="let module of modules$ | async ">
-        <div>
-            <div>
-                <a class="cursor-pointer" [routerLink]="[ module.w_vir_modul_id]">
+<div class="p-[1.5rem] ">
+    <div class="gp-list">
+        <div *ngFor="let module of modules$ | async " class="gp-list__item "
+            [routerLink]="['szerk', module.w_vir_kepernyo_id]">
+            <div class="gp-list__item__inner">
+                <div>
                     {{ module.nev }}
-                </a>
-
+                </div>
             </div>
         </div>
     </div>

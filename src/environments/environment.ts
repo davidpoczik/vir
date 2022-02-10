@@ -12,14 +12,20 @@ export const environment = {
     views: `general/get-views`,
     validate: {
       view: `general/validate-view-permission`,
-      module: `general/validate-module-permission`
+      module: `general/validate-module-permission`,
+
     },
     administration: {
       base: `administration/`,
-      modules: {
+      module: {
         get: `get-modules`,
         save: `save-module`,
         edit: `edit-module`
+      },
+      view: {
+        get: `get-views`,
+        save: `save-view`,
+        edit: `edit-view`
       }
     },
   }

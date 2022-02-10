@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { BehaviorSubject, tap } from "rxjs";
+import { BehaviorSubject, take, tap } from "rxjs";
 import { environment } from "src/environments/environment";
 import { SidebarApiResponseData } from "../models/sidebar.model";
 
@@ -23,6 +23,7 @@ export class SidebarService {
     return this.httpClient
       .get<SidebarApiResponseData>(this.apiUrlForGetViews)
       .pipe(
+        take(1),
         tap((response) => {
           return this.convertResponseMenuToArray({ ...response })
         })
@@ -30,9 +31,11 @@ export class SidebarService {
   }
 
   toggleSidebar() {
+    let newValue
     this.isOpen.next(
-      !this.isOpen.getValue()
+      newValue = !this.isOpen.getValue()
     )
+    return newValue
   }
 
   convertResponseMenuToArray(response: SidebarApiResponseData) {

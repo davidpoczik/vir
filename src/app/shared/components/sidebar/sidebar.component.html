@@ -1,8 +1,13 @@
 <section class="sidebar" [@sidebarToggle]="isOpened ? 'opened' : 'closed'">
     <nav>
         <ul class="sidebar__list" *ngIf="sidebar">
-            <li *ngFor="let sidebarElement of sidebar ; let i = index;">
-                <a class="" [routerLink]="[sidebarElement.alias]">
+            <li *ngFor="let sidebarElement of sidebar ; let i = index;" (click)="onNavigationClicked()">
+                <a *ngIf="sidebarElement.modul_id === '1'" class="" [routerLinkActive]="'is-active'"
+                    [routerLink]="[ sidebarElement.alias]">
+                    {{ sidebarElement.nev }}
+                </a>
+                <a *ngIf="sidebarElement.modul_id !== '1'" class="" [routerLinkActive]="'is-active'"
+                    [routerLink]="[ sidebarElement.modul_nev_url, sidebarElement.alias , sidebarElement.id]">
                     {{ sidebarElement.nev }}
                 </a>
             </li>

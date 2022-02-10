@@ -1,22 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AdministrationComponent } from './administration.component';
 import { AdministrationModulesComponent } from './administration-modules/administration-modules.component';
 import { AdministrationModulesEditComponent } from './administration-modules-edit/administration-modules-edit.component';
 
+
 const routes: Routes = [
+
   {
-    path: '',
-    component: AdministrationComponent
+    path: 'kepernyok/:viewid',
+    component: AdministrationModulesComponent,
   },
   {
-    path: 'modulok',
-    component: AdministrationModulesComponent
-  },
-  {
-    path: 'modulok/:id',
-    component: AdministrationModulesEditComponent
+    path: 'kepernyok/:viewid/szerk/:id',
+    component: AdministrationModulesEditComponent,
   }
 ]
 

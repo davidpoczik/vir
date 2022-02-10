@@ -1,12 +1,12 @@
 
 export const environment = {
-  production: false,
+  production: true,
   version: 1.1,
   baseUrl: `./app/src`,
 
 
   api: {
-    base: `https://dev.matusz-vad.hu/dev/Vir/api/`,
+    base: `https://dev-api.gastroprof.com/api/`,
     login: `login`,
     modules: `general/get-modules`,
     views: `general/get-views`,
@@ -16,10 +16,15 @@ export const environment = {
     },
     administration: {
       base: `administration/`,
-      modules: {
+      module: {
         get: `get-modules`,
         save: `save-module`,
         edit: `edit-module`
+      },
+      view: {
+        get: `get-views`,
+        save: `save-view`,
+        edit: `edit-view`
       }
     },
   }

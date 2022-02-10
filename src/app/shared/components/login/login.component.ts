@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
-  selector: 'vir-login',
+  selector: 'gastroprof-login',
   templateUrl: './login.component.html',
 })
 export class LoginComponent implements OnInit {

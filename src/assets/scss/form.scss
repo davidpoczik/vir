@@ -1,29 +1,58 @@
-form.ng-dirty {
-  .ng-dirty.ng-invalid {
-    background-image: url(../icons/alert/invalid.svg);
+.gp-list {
+  @apply bg-white;
+  &__item {
+    @apply w-full border-b-[0.1rem] border-b-[#CFCFD1];
+    &:not(.cursor-not-allowed) {
+      @apply cursor-pointer;
+    }
+    &__inner {
+      @apply h-[4.6rem] w-full flex items-center justify-between px-[1.5rem];
 
-    @apply bg-no-repeat;
-    background-position: calc(100% - 1.8rem) 50%;
-    background-size: auto;
-    background-size: 2.4rem auto;
+      font-family: 'Arial', sans-serif !important;
+
+      &:hover {
+        @apply bg-inputHover;
+      }
+      &.is-disabled:not(.allowed) {
+        @apply pointer-events-none cursor-not-allowed bg-gray;
+      }
+
+      i {
+        @apply text-border;
+      }
+    }
   }
 }
 
-.multiple {
-  .disabled {
-    @apply pointer-events-none bg-brown text-white cursor-not-allowed;
+.gp-input {
+  label {
+    @apply block text-black font-bold mb-[2px];
+    font-family: 'Arial', sans-serif !important;
   }
-}
+  input:not([type='submit']) {
+    @apply border-border border-[2px] w-full h-[4.8rem] bg-inputBackground rounded-2xl px-[1.5rem];
+  }
 
-.form {
-  input {
-    @apply block h-[5rem] w-full bg-[#f8f8f8] rounded-2xl border-[#cfcfd1] border-[1px] px-[2rem] text-[1.4rem] text-[#666666] focus:outline-none;
-  }
   textarea {
-    @apply block h-[20rem] w-full bg-[#f8f8f8] rounded-2xl border-[#cfcfd1] border-[1px] px-[2rem] text-[1.4rem] text-[#666666] focus:outline-none py-[2rem];
+    @apply border-border border-[2px] w-full h-auto min-h-[12.4rem]  bg-inputBackground rounded-2xl p-[1.5rem];
   }
 
-  &__control {
-    @apply mt-4;
+  input[type='submit'],
+  button[type='submit'],
+  .submit {
+    @apply flex items-center justify-center rounded-2xl px-[1.5rem] w-[15rem] h-[4.8rem] text-submitText bg-submit font-bold transition-colors;
+
+    &:hover {
+      @apply bg-submitHover;
+    }
+
+    &:disabled,
+    &.disabled {
+      @apply bg-subitDisabled text-submitDisabledText;
+    }
+  }
+
+  &:not(:last-child) {
+    @apply mb-[2rem];
   }
 }

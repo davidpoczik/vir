@@ -26,7 +26,8 @@ export interface ModuleHierarchiaData {
 export interface ModuleEditData {
     allowed_positions?: ModuleHierarchiaData[],
     employee_positions?: ModuleHierarchiaData[],
-    module?: Module[]
+    module?: Module[],
+    view?: Module[]
 }
 
 export interface ModuleEditResponseData {

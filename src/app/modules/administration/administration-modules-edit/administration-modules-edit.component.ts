@@ -1,44 +1,57 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { take } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ModuleEditData, ModuleEditResponseData, ModuleHierarchiaData } from '../shared/modules.model';
+
 @Component({
   templateUrl: './administration-modules-edit.component.html',
 })
 export class AdministrationModulesEditComponent implements OnInit {
 
-  private apiEditUrl = `${environment.api.base}${environment.api.administration.base}${environment.api.administration.modules.edit}`
+  private apiEditUrl = `${environment.api.base}${environment.api.administration.base}${environment.api.administration.view.edit}`
 
-  private apiSaveUrl = `${environment.api.base}${environment.api.administration.base}${environment.api.administration.modules.save}`
+  private apiSaveUrl = `${environment.api.base}${environment.api.administration.base}${environment.api.administration.view.save}`
+
+
+  viewId?: number | string
   moduleData: ModuleEditData = {}
-
   originalAllowed?: ModuleHierarchiaData[] = []
   newAllowed?: ModuleHierarchiaData[] = []
   newRemoved?: ModuleHierarchiaData[] = []
-
-  editForm: FormGroup
+  editForm: FormGroup | any
 
   constructor(
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private route: ActivatedRoute
   ) {
-    this.editForm = new FormGroup({
-      newAllowed: new FormControl(''),
-      newRemoved: new FormControl('')
-    })
+
+
+    this.viewId = this.route.snapshot.params['id']
   }
 
   ngOnInit(): void {
-    this.httpClient.get<ModuleEditResponseData>(`${this.apiEditUrl}?id=3`).subscribe((response) => {
-      this.moduleData = response.data
-      this.originalAllowed = this.moduleData.allowed_positions?.slice()
 
-      if (response.data.module?.length) {
-        for (const [key, value] of Object.entries(response.data.module[0])) {
-          this.editForm.addControl(key, new FormControl(value))
+    this.httpClient.get<ModuleEditResponseData>(`${this.apiEditUrl}?id=${this.viewId}`)
+      .pipe(take(1))
+      .subscribe((response) => {
+        this.moduleData = response.data
+        this.originalAllowed = this.moduleData.allowed_positions?.slice()
+        if (response.data.view?.length) {
+          this.editForm = new FormGroup({
+            newAllowed: new FormControl(''),
+            newRemoved: new FormControl(''),
+            w_vir_modul_id: new FormControl(response.data.view[0].w_vir_modul_id),
+            ikon: new FormControl(response.data.view[0].ikon),
+            nev: new FormControl(response.data.view[0].nev),
+            nev_url: new FormControl({ value: response.data.view[0].nev_url, disabled: true }),
+            url: new FormControl(response.data.view[0].url),
+          })
+
         }
-      }
-    })
+      })
   }
 
   isElementDisabled(data: ModuleHierarchiaData) {
