@@ -20,13 +20,15 @@ export class AuthService {
 
   loginAlertLogou = 'login.alert.logout'
 
-  userData = new BehaviorSubject<User | null>(null)
+  userData?: BehaviorSubject<User>
 
   constructor(
     private httpClient: HttpClient,
     private toastService: HotToastService,
     private translateService: TranslateService
   ) {
+    const user = this.getUserData()
+    this.userData = new BehaviorSubject<User>(user)
   }
 
   setUserData(user: User) {
@@ -34,11 +36,19 @@ export class AuthService {
     localStorage.setItem('vir_position', user.position)
     localStorage.setItem('vir_token', user.token)
 
-    this.userData.next({
+    this.userData?.next({
       fullname: user.fullname,
       position: user.position,
       token: user.token
     })
+  }
+  getUserData<User>() {
+    const returnableUser = {
+      fullname: localStorage.getItem('vir_fullname') ?? '',
+      position: localStorage.getItem('vir_position') ?? '',
+      token: localStorage.getItem('vir_token') ?? ''
+    }
+    return returnableUser
   }
 
   getToken() {
@@ -46,7 +56,6 @@ export class AuthService {
   }
 
   login(userData: loginApiPostData) {
-
     return this.httpClient
       .post<loginApiResponseData>(this.loginApiUrl, userData)
       .pipe(
@@ -70,6 +79,8 @@ export class AuthService {
     localStorage.removeItem('vir_fullname')
     localStorage.removeItem('vir_position')
     localStorage.removeItem('vir_token')
+
+    this.userData?.closed
     this.toastService.warning(
       this.translateService.instant(this.loginAlertLogou)
     )

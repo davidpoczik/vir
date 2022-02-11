@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { take } from 'rxjs';
+import { take, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ModuleEditData, ModuleEditResponseData, ModuleHierarchiaData } from '../shared/modules.model';
 
@@ -34,6 +34,8 @@ export class AdministrationModulesEditComponent implements OnInit {
 
   ngOnInit(): void {
 
+
+
     this.httpClient.get<ModuleEditResponseData>(`${this.apiEditUrl}?id=${this.viewId}`)
       .pipe(take(1))
       .subscribe((response) => {
@@ -46,8 +48,9 @@ export class AdministrationModulesEditComponent implements OnInit {
             w_vir_modul_id: new FormControl(response.data.view[0].w_vir_modul_id),
             ikon: new FormControl(response.data.view[0].ikon),
             nev: new FormControl(response.data.view[0].nev),
-            nev_url: new FormControl({ value: response.data.view[0].nev_url, disabled: true }),
+            nev_url: new FormControl(response.data.view[0].nev_url),
             url: new FormControl(response.data.view[0].url),
+            id: new FormControl(response.data.view[0].w_vir_kepernyo_id)
           })
 
         }
@@ -80,13 +83,12 @@ export class AdministrationModulesEditComponent implements OnInit {
   }
 
   onSubmit(editForm: FormGroup) {
-    console.log(editForm.controls['kep'])
 
-
-
+    console.log(this.apiSaveUrl)
     this.convertChange()
     this.sendFormDataToApi(editForm.value, this.apiSaveUrl)
-    console.log(editForm)
+
+    console.log('edit', editForm)
 
   }
 
@@ -100,7 +102,9 @@ export class AdministrationModulesEditComponent implements OnInit {
   sendFormDataToApi(formData: {}, apiUrl: string) {
     ///administration/save-module 
 
-    this.httpClient.post(apiUrl, formData).subscribe(response => {
+    this.httpClient.post<{}>(apiUrl, formData).pipe(tap(response => {
+      console.log('tapped', response)
+    })).subscribe(response => {
       console.log('response', response)
     })
   }

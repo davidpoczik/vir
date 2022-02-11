@@ -34,6 +34,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   isOpened = false
   sidebar?: SidebarMenuItem[]
   isOpenSubscription?: Subscription
+
   constructor(
     private sidebarService: SidebarService,
     private ref: ChangeDetectorRef
@@ -43,9 +44,9 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    this.sidebarService.getViews()
+    this.sidebarService.sidebarViews
       .subscribe(sidebarResponse => {
-        if (sidebarResponse.success) {
+        if (sidebarResponse?.success) {
           this.sidebar = sidebarResponse.data
           this.ref.markForCheck()
         }

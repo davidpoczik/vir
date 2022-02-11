@@ -86,8 +86,8 @@
           },
           "defaultConfiguration": "development",
           "options": {
-            "browserTarget": "frontend:build"
-            // "proxyConfig": "src/proxy.conf.json"
+            "browserTarget": "frontend:build",
+            "proxyConfig": "src/proxy.conf.json"
           }
         },
         "extract-i18n": {

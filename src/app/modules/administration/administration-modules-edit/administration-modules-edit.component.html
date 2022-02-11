@@ -31,10 +31,10 @@
         <form (ngSubmit)="onSubmit(editForm)" [formGroup]="editForm">
             <input type="hidden" name="newAllowed" formControlName="newAllowed">
             <input type="hidden" name="newRemoved" formControlName="newRemoved">
-
+            <input type="hidden" name="id" formControlName="id">
             <div class="gp-input">
                 <label for="module_id">Modul ID</label>
-                <input type="text" formControlName="w_vir_modul_id" id="module_id">
+                <input type="text" formControlName="w_vir_modul_id" id="module_id" readonly>
             </div>
             <div class="gp-input">
                 <label for="ikon">Ikon</label>
@@ -55,7 +55,7 @@
             </div>
             <div class="gp-input">
                 <label for="nev_url">Név URL</label>
-                <input type="text" formControlName="nev_url" placeholder="Név url" id="nev_url">
+                <input type="text" formControlName="nev_url" placeholder="Név url" id="nev_url" class="readonly">
             </div>
             <div class="gp-input">
                 <label for="url">URL</label>

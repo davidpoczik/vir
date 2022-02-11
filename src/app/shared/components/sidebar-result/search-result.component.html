@@ -1,0 +1,15 @@
+<div *ngIf="searchResultElements" class="max-h-[30rem] overflow-auto gp-list">
+    <div *ngFor="let searchResultElement of searchResultElements" class="gp-list__item">
+        <a class="p-[0.5rem] gp-list__item__inner" *ngIf="searchResultElement.modul_id === '1'"
+            [routerLink]="[ searchResultElement.alias]" (click)="onNavigationClicked()">
+            <span>{{ searchResultElement.nev }}</span>
+            <i class="fa fa-angle-right"></i>
+        </a>
+        <a class="p-[0.5rem] gp-list__item__inner" *ngIf="searchResultElement.modul_id !== '1'" href=""
+            [routerLink]="[ searchResultElement.modul_nev_url, searchResultElement.alias , searchResultElement.id]"
+            (click)="onNavigationClicked()">
+            <span>{{ searchResultElement.nev }}</span>
+            <i class="fa fa-angle-right"></i>
+        </a>
+    </div>
+</div>

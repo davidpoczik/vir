@@ -10,6 +10,9 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
 import { HotToastModule } from '@ngneat/hot-toast';
+import { DropdownDirective } from './directives/dropdown.directive';
+import { SearchComponent } from './components/search/search.component';
+import { SidebarResultComponent } from './components/sidebar-result/search-result.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -22,6 +25,9 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     FooterComponent,
     LoginComponent,
     SidebarComponent,
+    DropdownDirective,
+    SearchComponent,
+    SidebarResultComponent
   ],
   imports: [
     CommonModule,
@@ -46,7 +52,10 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     TranslateModule,
     SidebarComponent,
     HotToastModule,
-    RouterModule
+    RouterModule,
+    DropdownDirective,
+    SearchComponent,
+    SidebarResultComponent
   ],
 })
 

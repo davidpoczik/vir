@@ -13,6 +13,8 @@ import { SidebarService } from 'src/app/core/services/sidebar.service';
 export class HeaderComponent implements OnInit {
 
   isSidebarOpen?: boolean = false
+  isUserMenuOpen?: boolean = false
+  isSearchOpen?: boolean = false
   sidebarSearchText = ''
   user?: User
 
@@ -31,20 +33,37 @@ export class HeaderComponent implements OnInit {
       this.ref.markForCheck()
     })
 
-    this.authService.userData.subscribe((responseUser: User | null) => {
+    this.sidebarService.getViews()
+
+    this.authService.userData?.subscribe((responseUser: User | null) => {
       this.user = (responseUser) ? responseUser : undefined
       this.ref.markForCheck()
     })
-
-    this.router.events.subscribe(event => {
-
-    })
   }
 
+  onClickUserMenu() {
+    this.isUserMenuOpen = !this.isUserMenuOpen
+    this.ref.markForCheck()
+  }
+
+  onLogout() {
+    this.authService.logout()
+    this.router.navigateByUrl('/auth')
+  }
 
 
   onSidebarToggle() {
     this.isSidebarOpen = this.sidebarService.toggleSidebar()
+  }
+
+  onSearchClicked() {
+    this.isSearchOpen = !this.isSearchOpen
+    this.ref.markForCheck()
+  }
+
+  onSearchClosed() {
+    this.isSearchOpen = false
+    this.ref.markForCheck()
   }
 
 }

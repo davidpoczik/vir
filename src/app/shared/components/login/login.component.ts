@@ -15,18 +15,19 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup
 
   constructor(
-    private AuthService: AuthService,
+    private authService: AuthService,
     private router: Router) {
 
     this.loginForm = new FormGroup({
       username: new FormControl('simonz'),
       password: new FormControl('z4r4k1k3np4ch1')
     })
+
   }
 
   onSubmit(form: FormGroup) {
     this.submitted = true
-    this.AuthService.login(form.value)
+    this.authService.login(form.value)
       .subscribe((response) => {
         if (response.success) {
           this.router.navigate(['/vezerlopult'])
@@ -47,5 +48,6 @@ export class LoginComponent implements OnInit {
       console.log(response)
       this.showEyes = response.length > 0
     })
+
   }
 }

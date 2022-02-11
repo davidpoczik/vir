@@ -1,13 +1,74 @@
+@mixin menu {
+  @apply absolute bg-white text-black top-full shadow-md hidden;
+  &__item {
+    @apply cursor-pointer p-[1rem] hover:bg-inputBackground;
+  }
+}
+@mixin dropdown {
+  &.dropdown.is--open {
+    .is--open-target {
+      @apply block;
+    }
+  }
+}
+
 .header {
+  &__logo {
+    @apply ml-[1rem] xl:ml-[2.5rem] font-light;
+    > h1 {
+      @apply text-[2.4rem] font-normal;
+    }
+  }
+  &__container {
+    @apply flex items-center justify-between;
+  }
   &__user {
+    @apply mr-[1rem] xl:mr-[2rem];
+    @include dropdown;
+    &__name {
+      @apply text-[1.3rem] cursor-pointer relative;
+    }
+    &__menu {
+      @include menu;
+    }
   }
 
   &__icons {
-    @apply ml-[8rem];
-    > div {
-      &:not(:last-child) {
-        @apply mr-[1.3rem];
+    @apply xl:ml-[8rem] ml-[1.5rem] lg:ml-[3rem];
+    @media (max-width: 1024px) {
+      @include dropdown;
+    }
+    &__menu {
+      @apply flex right-0;
+      @media (max-width: 1024px) {
+        @include menu;
+      }
+      > div {
+        &:not(:last-child) {
+          @media (min-width: 1024px) {
+            @apply mr-[1.3rem];
+          }
+        }
       }
     }
+  }
+
+  &__search {
+    @apply 2xl:w-[52rem] xl:w-[42rem] lg:w-[25rem] w-[20rem];
+    input {
+      @apply w-full h-[3.6rem] rounded-full px-[1.5rem] bg-[#F5F5F5] border-0 text-black;
+    }
+
+    &__icon {
+      i {
+        @apply text-[2.5rem];
+      }
+    }
+  }
+}
+
+.search-bar {
+  input {
+    @apply w-screen h-[5rem] px-[1.5rem] shadow-md rounded-none;
   }
 }

@@ -5,7 +5,8 @@ export interface Module {
     nev: string,
     nev_url: string,
     url?: string,
-    w_vir_modul_id: string | number
+    w_vir_modul_id: string | number,
+    w_vir_kepernyo_id: string | number
 }
 
 export interface ModuleItemWithKey {
@@ -27,7 +28,8 @@ export interface ModuleEditData {
     allowed_positions?: ModuleHierarchiaData[],
     employee_positions?: ModuleHierarchiaData[],
     module?: Module[],
-    view?: Module[]
+    view?: Module[],
+    csrf?: string
 }
 
 export interface ModuleEditResponseData {

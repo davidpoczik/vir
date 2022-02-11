@@ -10,9 +10,11 @@ import { SidebarApiResponseData } from "../models/sidebar.model";
 })
 export class SidebarService {
 
+
   private apiUrlForGetViews = environment.api.base + environment.api.views
 
   isOpen = new BehaviorSubject(false)
+  sidebarViews = new BehaviorSubject<SidebarApiResponseData | null>(null)
 
   constructor(
     private httpClient: HttpClient,
@@ -27,7 +29,9 @@ export class SidebarService {
         tap((response) => {
           return this.convertResponseMenuToArray({ ...response })
         })
-      )
+      ).subscribe(response => {
+        this.sidebarViews.next(response)
+      })
   }
 
   toggleSidebar() {

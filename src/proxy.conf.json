@@ -1,7 +1,10 @@
 {
-  "/https://dev-api.gastroprof.com*": {
-    "target": "http://localhost:4200",
-    "secure": false,
-    "logLevel": "debug"
+  "/api": {
+    "target": "https://dev-api.gastroprof.com",
+    "secure": true,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api": ""
+    }
   }
 }
