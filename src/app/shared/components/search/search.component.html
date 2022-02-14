@@ -1,1 +1,2 @@
-<input type="search" placeholder="Keresés ..." [(ngModel)]="sidebarSearchText" (keyup)="onTyping($event)">
+<input type="search" placeholder="Keresés ..." [(ngModel)]="sidebarSearchText" (search)="onTyping($event)"
+    (keyup)="onTyping($event)">
