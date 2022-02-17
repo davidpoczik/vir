@@ -6,7 +6,8 @@
     "successfull_login": "Sikeres Bejelentkezés",
     "successfull_logout": "Sikeres Kijelentkezés",
     "Too Many Requests": "Túl sokszor próbálkoztál, várj egy kicsit.",
-    "loading": "Egy kis türelmet"
+    "loading": "Egy kis türelmet",
+    "success_save": "Sikeres Mentés"
   },
   "login": {
     "title": "Bejelentkezés",

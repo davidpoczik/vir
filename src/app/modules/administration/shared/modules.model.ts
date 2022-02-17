@@ -6,7 +6,33 @@ export interface Module {
     nev_url: string,
     url?: string,
     w_vir_modul_id: string | number,
-    w_vir_kepernyo_id: string | number
+    w_vir_kepernyo_id?: string | number
+}
+
+export interface View {
+    ikon?: string,
+    kep?: string,
+    leiras?: string,
+    nev: string,
+    nev_url: string,
+    url?: string,
+    w_vir_modul_id: string | number,
+    w_vir_kepernyo_id?: string | number
+}
+export interface ViewResponse {
+    count: number,
+    views: View[]
+}
+
+
+export interface ViewItemWithKey {
+    [key: number]: View[]
+}
+
+export interface ViewApiResponseData {
+    success: boolean,
+    data: ViewResponse,
+    message: string
 }
 
 export interface ModuleItemWithKey {
@@ -15,7 +41,7 @@ export interface ModuleItemWithKey {
 
 export interface ModuleApiResponseData {
     success: boolean,
-    data: ModuleItemWithKey,
+    data: Module[],
     message: string
 }
 

@@ -1,0 +1,62 @@
+<nav class="flex justify-center" *ngIf="pages">
+    <div class="mx-[1rem]" *ngIf="currentPage != 1">
+        <button href="#" (click)="paginationService.setPage(1)">
+            <i class="fas fa-angle-double-left"></i>
+        </button>
+    </div>
+    <div class="mx-[1rem]" *ngIf="currentPage != 1">
+        <button href="#" (click)="paginationService.decreasePage()">
+            <i class="fas fa-angle-left"></i>
+        </button>
+    </div>
+    <!-- nincs 5nel tobb eleme -->
+    <div *ngIf="pages && pages.length < 5" class="flex">
+        <div *ngFor="let paginationElement of pages" class="mx-[1rem]">
+            <span class="cursor-default is--active text-blue" *ngIf="(paginationElement + 1) === currentPage">{{
+                (paginationElement + 1) }}</span>
+            <span (click)="paginationService.setPage(paginationElement+1)" class="cursor-pointer"
+                *ngIf="(paginationElement + 1) !== currentPage">{{ (paginationElement + 1)
+                }}</span>
+        </div>
+    </div>
+    <!-- van 5nel tobb eleme -->
+
+    <div *ngIf="pages && pages.length >= 5" class="flex">
+
+        <div *ngIf="pages[currentPage - 2 ]" class="mx-[1rem]">
+            <span (click)="paginationService.setPage(pages[currentPage - 2 ])"
+                class="cursor-pointer">{{pages[currentPage - 2 ] }}</span>
+        </div>
+        <div *ngIf="pages[currentPage - 1]" class="mx-[1rem]">
+            <span (click)="paginationService.setPage(pages[currentPage - 1 ])"
+                class="cursor-pointer">{{pages[currentPage - 1] }}</span>
+        </div>
+
+        <div class="mx-[1rem]">
+            <span class="cursor-default is--active text-blue">{{ currentPage }}</span>
+        </div>
+
+        <div *ngIf="pages[currentPage]" class="mx-[1rem]">
+            <span (click)="paginationService.setPage(pages[currentPage] + 1)"
+                class="cursor-pointer">{{pages[currentPage]+1 }}</span>
+        </div>
+        <div *ngIf="pages[currentPage + 1]" class="mx-[1rem]">
+            <span (click)="paginationService.setPage(pages[currentPage]+2)" class="cursor-pointer">{{
+                pages[currentPage + 1 ] + 1 }}</span>
+        </div>
+        <div *ngIf="!pages[currentPage + 1]" class="mx-[1rem]">
+            ... <span>{{ pages.length + 1 }}</span>
+        </div>
+    </div>
+
+    <div class="mx-[1rem]" *ngIf="currentPage !== pages?.length">
+        <button (click)="paginationService.increasePage()">
+            <i class="fas fa-angle-right"></i>
+        </button>
+    </div>
+    <div class="mx-[1rem]" *ngIf="currentPage !== pages?.length">
+        <button (click)="paginationService.setPage(pages?.length ?? 1)">
+            <i class="fas fa-angle-double-right"></i>
+        </button>
+    </div>
+</nav>

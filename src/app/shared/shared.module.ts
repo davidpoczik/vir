@@ -13,6 +13,7 @@ import { HotToastModule } from '@ngneat/hot-toast';
 import { DropdownDirective } from './directives/dropdown.directive';
 import { SearchComponent } from './components/search/search.component';
 import { SidebarResultComponent } from './components/sidebar-result/search-result.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -27,7 +28,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     SidebarComponent,
     DropdownDirective,
     SearchComponent,
-    SidebarResultComponent
+    SidebarResultComponent,
+    PaginationComponent
   ],
   imports: [
     CommonModule,
@@ -55,7 +57,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     RouterModule,
     DropdownDirective,
     SearchComponent,
-    SidebarResultComponent
+    SidebarResultComponent,
+    PaginationComponent
   ],
 })
 

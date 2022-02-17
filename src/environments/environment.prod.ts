@@ -12,7 +12,8 @@ export const environment = {
     views: `general/get-views`,
     validate: {
       view: `general/validate-view-permission`,
-      module: `general/validate-module-permission`
+      module: `general/validate-module-permission`,
+
     },
     administration: {
       base: `administration/`,
@@ -24,8 +25,10 @@ export const environment = {
       view: {
         get: `get-views`,
         save: `save-view`,
-        edit: `edit-view`
+        edit: `edit-view`,
+        create: `create-view`
       }
     },
   }
 };
+

@@ -1,0 +1,26 @@
+<section class="flex flex-row text-[1.4rem] multiple bg-white  p-[1.5rem]">
+    <div class="w-1/2 ">
+        <div *ngIf="employeePositions" class="max-h-[30rem] overflow-auto gp-list">
+            <div *ngFor="let employeePosition of employeePositions" class="gp-list__item"
+                [ngClass]="{'cursor-not-allowed ': isElementDisabled(employeePosition)}">
+                <div (click)="onPushToAllowed(employeePosition)"
+                    [ngClass]="{'is-disabled ': isElementDisabled(employeePosition)}"
+                    class="p-[0.5rem] gp-list__item__inner">
+                    <span>{{ employeePosition.nev }}</span>
+                    <i class="fa fa-angle-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="px-[1rem] w-1/2">
+        <div *ngIf="allowedPositions" class="max-h-[30rem] overflow-auto gp-list">
+            <div *ngFor="let allowedPosition of allowedPositions" class="gp-list__item">
+                <div (click)="onRemoveFromAllowed(allowedPosition)"
+                    class="is-disabled allowed p-[0.5rem] gp-list__item__inner">
+                    <span>{{ allowedPosition.nev }}</span>
+                    <i class="fa fa-angle-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

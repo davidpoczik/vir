@@ -18,7 +18,7 @@ export class ViewPermissionGuard implements CanActivateChild {
 
     canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<any | UrlTree> | Promise<boolean | UrlTree> {
 
-        return this.httpClient.get(this.apiUrl + '?id=' + route.params['viewid']).pipe(
+        return this.httpClient.get(this.apiUrl + '?id=' + route.params['viewID']).pipe(
             map(response => {
                 console.log(response)
                 if (response) {
