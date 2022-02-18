@@ -12,22 +12,15 @@ export class ErrorInterceptorService implements HttpInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
     return next.handle(req).pipe(
-      tap((response) => {
-
-      }),
       catchError((error: HttpErrorResponse) => {
         const errorCode = error?.error?.message ?? null
         if (errorCode === 'unauthorised') {
           this.authService.logout()
-        } else {
         }
 
         return throwError(error)
       })
     )
   }
-
-
 }
