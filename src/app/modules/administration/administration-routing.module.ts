@@ -1,35 +1,62 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AdministrationModulesComponent } from './administration-modules/administration-modules.component';
-import { AdministrationModulesEditComponent } from './administration-modules-edit/administration-modules-edit.component';
-import { AdministrationModulesNewComponent } from './administration-modules-new/administration-modules-new.component';
+import { AdministrationViewsEditComponent } from './views/administration-views-edit/administration-views-edit.component';
+import { AdministrationViewsNewComponent } from './views/administration-views-new/administration-views-new.component';
+import { DashboardListComponent } from './shared/dashboard-list/dashboard-list.component';
+import { environment } from 'src/environments/environment';
+import { AdministrationPermissionsEditComponent } from './permissions/administration-permissions-edit/administration-permissions-edit.component';
+import { Urls } from 'src/app/core/constants/url.constant';
 
+const urlHelper = new Urls
 
 const routes: Routes = [
   {
     path: 'kepernyok/:viewID',
-    component: AdministrationModulesComponent,
+    component: DashboardListComponent,
+    data: {
+      getUrl: urlHelper.api.administration.view.get,
+      id: `w_vir_kepernyo_id`,
+      newButton: true,
+    }
   },
   {
     path: 'kepernyok/:viewID/szerk/:id',
-    component: AdministrationModulesEditComponent,
+    component: AdministrationViewsEditComponent,
+    data: {
+      listBlueprint: [
+        ['sm_ceghierarchia_id'], ['nev']
+      ]
+    }
   },
   {
     path: 'kepernyok/:viewID/uj',
-    component: AdministrationModulesNewComponent,
+    component: AdministrationViewsNewComponent,
+
   },
   {
     path: 'jogosultsagok/:permissionID',
-    component: AdministrationModulesComponent,
+    component: DashboardListComponent,
+    data: {
+      getUrl: urlHelper.api.administration.permission.get,
+      id: `w_vir_csop_jogosultsag_id`,
+      newButton: false
+    }
   },
   {
     path: 'jogosultsagok/:permissionID/szerk/:id',
-    component: AdministrationModulesEditComponent,
+    data: {
+      getUrl: urlHelper.api.administration.view.edit,
+      saveUrl: urlHelper.api.administration.view.save,
+      listBlueprint: [
+        ['sm_munkatars_id'], ['teljes_nev', 'beosztas']
+      ]
+    },
+    component: AdministrationPermissionsEditComponent,
   },
   {
-    path: 'jogosultsagok/:permissionID/uj',
-    component: AdministrationModulesNewComponent,
+    path: '',
+    redirectTo: '/vezerlopult'
   }
 ]
 @NgModule({

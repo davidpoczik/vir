@@ -4,18 +4,21 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { HotToastService } from '@ngneat/hot-toast';
 import { TranslateService } from '@ngx-translate/core';
 import { take } from 'rxjs';
+import { Urls } from 'src/app/core/constants/url.constant';
 import { Response } from 'src/app/core/models/response.model';
-import { environment } from 'src/environments/environment';
-import { Module, ModuleApiResponseData, ModuleEditData, ModuleEditResponseData, ModuleHierarchiaData } from '../shared/modules.model';
+
+import { Module, ModuleApiResponseData, ModuleEditData, ModuleEditResponseData, ModuleHierarchiaData } from '../../../../core/models/modules.model';
 
 @Component({
-  templateUrl: './administration-modules-new.component.html'
+  templateUrl: './administration-views-new.component.html'
 })
-export class AdministrationModulesNewComponent implements OnInit {
+export class AdministrationViewsNewComponent implements OnInit {
 
-  private apiCreateUrl = `${environment.api.base}${environment.api.administration.base}${environment.api.administration.view.create}`
-  private apiGetModulesUrl = `${environment.api.base}${environment.api.administration.base}${environment.api.administration.module.get}`
-  private apiSaveUrl = `${environment.api.base}${environment.api.administration.base}${environment.api.administration.view.save}`
+
+  urlHelper = new Urls
+  private apiCreateUrl = this.urlHelper.api.administration.view.create
+  private apiGetModulesUrl = this.urlHelper.api.administration.view.get
+  private apiSaveUrl = this.urlHelper.api.administration.view.save
 
   moduleData: ModuleEditData = {}
 
@@ -67,8 +70,6 @@ export class AdministrationModulesNewComponent implements OnInit {
       }
     })
   }
-
-
 
   onSubmit(editForm: FormGroup) {
 

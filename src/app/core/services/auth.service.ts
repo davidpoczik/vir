@@ -4,7 +4,8 @@ import { HotToastService } from "@ngneat/hot-toast";
 import { TranslateService } from "@ngx-translate/core";
 import { BehaviorSubject, take, tap } from "rxjs";
 import { loginApiPostData, loginApiResponseData } from "src/app/core/models/login.model";
-import { environment } from "src/environments/environment";
+import { Urls } from "../constants/url.constant";
+
 import { User } from "../models/user.model"
 
 @Injectable({
@@ -12,7 +13,9 @@ import { User } from "../models/user.model"
 })
 export class AuthService {
 
-  loginApiUrl = environment.api.base + environment.api.login
+  urlHelper = new Urls
+  loginApiUrl = this.urlHelper.api.login
+
 
   loginAlertLoading = 'login.alert.loading'
   loginAlertSuccess = 'login.alert.success'

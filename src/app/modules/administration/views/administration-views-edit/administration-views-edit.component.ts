@@ -5,17 +5,23 @@ import { ActivatedRoute } from '@angular/router';
 import { HotToastService } from '@ngneat/hot-toast';
 import { TranslateService } from '@ngx-translate/core';
 import { take } from 'rxjs';
+import { Urls } from 'src/app/core/constants/url.constant';
 import { Response } from 'src/app/core/models/response.model';
-import { environment } from 'src/environments/environment';
-import { Module, ModuleApiResponseData, ModuleEditData, ModuleEditResponseData, ModuleHierarchiaData } from '../shared/modules.model';
+
+import { Module, ModuleApiResponseData, ModuleEditData, ModuleEditResponseData, ModuleHierarchiaData } from '../../../../core/models/modules.model';
 
 @Component({
-  templateUrl: './administration-modules-edit.component.html',
+  templateUrl: './administration-views-edit.component.html',
 })
-export class AdministrationModulesEditComponent implements OnInit {
-  private apiEditUrl = `${environment.api.base}${environment.api.administration.base}${environment.api.administration.view.edit}`
-  private apiSaveUrl = `${environment.api.base}${environment.api.administration.base}${environment.api.administration.view.save}`
-  private apiGetModules = `${environment.api.base}${environment.api.administration.base}${environment.api.administration.module.get}`
+export class AdministrationViewsEditComponent implements OnInit {
+
+  urlHelper = new Urls
+  private apiUrlForGetViews = this.urlHelper.api.views
+
+
+  private apiEditUrl = this.urlHelper.api.administration.view.edit
+  private apiSaveUrl = this.urlHelper.api.administration.view.save
+  private apiGetModules = this.urlHelper.api.administration.view.get
 
   viewID?: number | string
   moduleData: ModuleEditData = {}
@@ -38,6 +44,7 @@ export class AdministrationModulesEditComponent implements OnInit {
   ngOnInit(): void {
     this.getModules()
     this.setUpForm()
+
   }
 
   isElementDisabled(data: ModuleHierarchiaData) {

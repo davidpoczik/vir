@@ -2,19 +2,20 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AdministrationRoutingModule } from './administration-routing.module';
 
-import { AdministrationModulesComponent } from './administration-modules/administration-modules.component';
-import { AdministrationModulesEditComponent } from './administration-modules-edit/administration-modules-edit.component';
-import { AdministrationModulesNewComponent } from './administration-modules-new/administration-modules-new.component';
+import { AdministrationViewsEditComponent } from './views/administration-views-edit/administration-views-edit.component';
+import { AdministrationViewsNewComponent } from './views/administration-views-new/administration-views-new.component';
 import { PermissionListComponent } from './shared/permission-list/permission-list.component';
-
+import { DashboardListComponent } from './shared/dashboard-list/dashboard-list.component';
+import { AdministrationPermissionsEditComponent } from './permissions/administration-permissions-edit/administration-permissions-edit.component';
 
 
 @NgModule({
   declarations: [
-    AdministrationModulesComponent,
-    AdministrationModulesEditComponent,
-    AdministrationModulesNewComponent,
-    PermissionListComponent
+    AdministrationViewsEditComponent,
+    AdministrationViewsNewComponent,
+    PermissionListComponent,
+    DashboardListComponent,
+    AdministrationPermissionsEditComponent
   ],
   imports: [
     SharedModule,

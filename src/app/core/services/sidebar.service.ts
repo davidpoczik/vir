@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { BehaviorSubject, take, tap } from "rxjs";
-import { environment } from "src/environments/environment";
+import { Urls } from "../constants/url.constant";
 import { SidebarApiResponseData } from "../models/sidebar.model";
 
 @Injectable({
@@ -10,8 +10,8 @@ import { SidebarApiResponseData } from "../models/sidebar.model";
 })
 export class SidebarService {
 
-
-  private apiUrlForGetViews = environment.api.base + environment.api.views
+  urlHelper = new Urls
+  private apiUrlForGetViews = this.urlHelper.api.views
 
   isOpen = new BehaviorSubject(false)
   sidebarViews = new BehaviorSubject<SidebarApiResponseData | null>(null)

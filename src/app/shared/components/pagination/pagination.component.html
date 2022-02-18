@@ -20,9 +20,7 @@
         </div>
     </div>
     <!-- van 5nel tobb eleme -->
-
     <div *ngIf="pages && pages.length >= 5" class="flex">
-
         <div *ngIf="pages[currentPage - 2 ]" class="mx-[1rem]">
             <span (click)="paginationService.setPage(pages[currentPage - 2 ])"
                 class="cursor-pointer">{{pages[currentPage - 2 ] }}</span>
@@ -31,11 +29,9 @@
             <span (click)="paginationService.setPage(pages[currentPage - 1 ])"
                 class="cursor-pointer">{{pages[currentPage - 1] }}</span>
         </div>
-
         <div class="mx-[1rem]">
             <span class="cursor-default is--active text-blue">{{ currentPage }}</span>
         </div>
-
         <div *ngIf="pages[currentPage]" class="mx-[1rem]">
             <span (click)="paginationService.setPage(pages[currentPage] + 1)"
                 class="cursor-pointer">{{pages[currentPage]+1 }}</span>
@@ -44,11 +40,11 @@
             <span (click)="paginationService.setPage(pages[currentPage]+2)" class="cursor-pointer">{{
                 pages[currentPage + 1 ] + 1 }}</span>
         </div>
-        <div *ngIf="!pages[currentPage + 1]" class="mx-[1rem]">
-            ... <span>{{ pages.length + 1 }}</span>
+        <div *ngIf="currentPage < pages.length - 3" class="mx-[1rem]">
+            ... <span class="cursor-pointer" (click)="paginationService.setPage(pages?.length ?? 1)">{{ pages.length
+                }}</span>
         </div>
     </div>
-
     <div class="mx-[1rem]" *ngIf="currentPage !== pages?.length">
         <button (click)="paginationService.increasePage()">
             <i class="fas fa-angle-right"></i>

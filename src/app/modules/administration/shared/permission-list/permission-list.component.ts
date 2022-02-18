@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter, OnChanges } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
-import { ModuleHierarchiaData } from '../modules.model';
+import { Generic } from './generic.model';
 
 @Component({
   selector: 'gastroprof-permission-list',
@@ -9,55 +10,82 @@ import { ModuleHierarchiaData } from '../modules.model';
 })
 export class PermissionListComponent implements OnInit, OnChanges {
 
-  @Input() originalAllowed?: ModuleHierarchiaData[] = []
-  @Input() employeePositions?: ModuleHierarchiaData[] = []
-  @Input() allowedPositions?: ModuleHierarchiaData[] = []
+  @Input() originalAllowed?: any[] = []
+  @Input() all?: any[] = []
+  @Input() allowed?: any[] = []
 
   @Output() newAndRemovedChange = new EventEmitter<{ allowed: string, removed: string }>();
 
-  newAllowed?: ModuleHierarchiaData[] = []
-  newRemoved?: ModuleHierarchiaData[] = []
+  newAllowed?: Generic[] = []
+  newRemoved?: Generic[] = []
 
+  bluepintForList: [][]
 
-  constructor() {
-
+  constructor(
+    private route: ActivatedRoute
+  ) {
+    this.bluepintForList = this.route.snapshot.data['listBlueprint']
   }
+
   ngOnChanges(): void {
-    this.allowedPositions = this.originalAllowed?.slice()
-    console.log(this.allowedPositions)
+    this.originalAllowed = this.convertInput(this.originalAllowed)
+    this.allowed = this.originalAllowed?.slice()
+    this.all = this.convertInput(this.all)
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void { }
+
+  convertInput(object?: any[]) {
+    let blueprint = this.bluepintForList
+
+    let [idBlueprint, nameBlueprint, ...rest] = blueprint
+
+    return object?.slice().map((el) => {
+
+      let id = Array()
+      let name = Array()
+
+      if (this.bluepintForList) {
+
+        idBlueprint.forEach((idKey) => {
+          id.push(el[idKey])
+        }, '')
+
+        nameBlueprint.forEach((nameKey) => {
+          name.push(el[nameKey])
+        }, '')
+
+      }
+      return {
+        id: id.join(','),
+        name: name.join(', ')
+      }
+    })
 
   }
 
-  isElementDisabled(data: ModuleHierarchiaData) {
-    return this.isElementInArray(data, this.allowedPositions)
+  isElementDisabled(data: Generic) {
+    return this.isElementInArray(data, this.allowed)
   }
 
-  isElementInArray(elem: ModuleHierarchiaData, array?: ModuleHierarchiaData[]) {
-    return array?.some((arrayElem) => elem.sm_ceghierarchia_id === arrayElem.sm_ceghierarchia_id
+  isElementInArray(elem: Generic, array?: Generic[]) {
+    return array?.some((arrayElem) => elem.id === arrayElem.id
     )
   }
 
-
-  onPushToAllowed(elem: ModuleHierarchiaData) {
-    this.allowedPositions?.push(elem)
-
-    this.newRemoved = this.newRemoved?.filter(originalElement => originalElement.sm_ceghierarchia_id !== elem.sm_ceghierarchia_id)
-
-    console.log(elem, this.originalAllowed)
-
+  onPushToAllowed(elem: Generic) {
+    this.allowed?.push(elem)
+    this.newRemoved = this.newRemoved?.filter(originalElement => originalElement.id !== elem.id)
     if (!this.isElementInArray(elem, this.originalAllowed)) {
       this.newAllowed?.push(elem)
-      this.newRemoved = this.newRemoved?.filter(originalElement => originalElement.sm_ceghierarchia_id !== elem.sm_ceghierarchia_id)
+      this.newRemoved = this.newRemoved?.filter(originalElement => originalElement.id !== elem.id)
     }
     this.convertChange()
   }
 
-  onRemoveFromAllowed(elem: ModuleHierarchiaData) {
-    this.allowedPositions = this.allowedPositions?.filter(originalElement => originalElement.sm_ceghierarchia_id !== elem.sm_ceghierarchia_id)
-    this.newAllowed = this.newAllowed?.filter(originalElement => originalElement.sm_ceghierarchia_id !== elem.sm_ceghierarchia_id)
+  onRemoveFromAllowed(elem: Generic) {
+    this.allowed = this.allowed?.filter(originalElement => originalElement.id !== elem.id)
+    this.newAllowed = this.newAllowed?.filter(originalElement => originalElement.id !== elem.id)
 
     if (this.isElementInArray(elem, this.originalAllowed)) {
       this.newRemoved?.push(elem)
@@ -65,17 +93,13 @@ export class PermissionListComponent implements OnInit, OnChanges {
     this.convertChange()
   }
 
-
   convertChange() {
-    console.log(this.newAllowed, this.newRemoved)
-    const ujHozzadatottJSON = JSON.stringify(this.newAllowed?.map(el => el.sm_ceghierarchia_id))
-    const ujEltavolitottJSON = JSON.stringify(this.newRemoved?.map(el => el.sm_ceghierarchia_id))
-
+    const ujHozzadatottJSON = JSON.stringify(this.newAllowed?.map(el => el.id))
+    const ujEltavolitottJSON = JSON.stringify(this.newRemoved?.map(el => el.id))
     this.newAndRemovedChange.emit({
       allowed: ujHozzadatottJSON,
       removed: ujEltavolitottJSON
     })
-
   }
 
 }

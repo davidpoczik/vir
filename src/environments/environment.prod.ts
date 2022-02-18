@@ -27,8 +27,12 @@ export const environment = {
         save: `save-view`,
         edit: `edit-view`,
         create: `create-view`
+      },
+      permission: {
+        get: `get-group-permissions`,
+        edit: `edit-group-permission`,
+        update: `update-group-permission`
       }
     },
   }
-};
-
+}; 

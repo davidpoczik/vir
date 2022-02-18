@@ -1,0 +1,34 @@
+<div class="p-[1.5rem] pb-0 flex justify-between items-center">
+    <div class="!mb-0 gp-input w-2/6">
+        <button *ngIf="hasNewButton" [routerLink]="['uj']" class=" submit">Új képernyő</button>
+    </div>
+    <div class="flex justify-end w-4/6">
+        <div class="!mb-0 gp-input w-[30rem] mr-[1rem]">
+            <input type="search" (keyup)="onViewSearch($event)" (search)="onViewSearch($event)"
+                placeholder="Keresés a találatok közt...">
+        </div>
+        <div class="!mb-0 gp-input w-[10rem]">
+            <select (change)="paginationService.changeLimit($event)">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="p-[1.5rem]">
+    <div class="gp-list">
+        <div *ngFor="let module of views$ | async " class="gp-list__item" [routerLink]="['szerk', module[idParameter]]">
+            <div class="gp-list__item__inner">
+                <div>
+                    {{ module.nev }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="p-[1.5rem]">
+    <gastroprof-pagination></gastroprof-pagination>
+</div>

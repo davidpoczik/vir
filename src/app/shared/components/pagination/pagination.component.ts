@@ -26,7 +26,7 @@ export class PaginationComponent implements OnInit {
 
     this.paginationService.count.subscribe(response => {
       this.count = response
-      const paginationNumber = Math.round(this.count / this.paginationService.limit)
+      const paginationNumber = Math.ceil(this.count / this.paginationService.limit)
       this.pages = Array.from(Array(paginationNumber).keys())
       this.ref.markForCheck()
     })

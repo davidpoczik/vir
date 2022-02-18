@@ -6,5 +6,6 @@ export interface Response {
 
 export interface PaginationResponse {
     page: number,
-    limit: number
+    limit: number,
+    search?: string
 }

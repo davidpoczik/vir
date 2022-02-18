@@ -1,0 +1,20 @@
+<div class="container mx-auto py-[3rem]">
+
+    <h2 class="text-[3rem]">{{permissionName }}</h2>
+
+    <gastroprof-permission-list [originalAllowed]="allowed" [all]="all" (newAndRemovedChange)="convertChange($event)">
+    </gastroprof-permission-list>
+
+    <section *ngIf="editForm" class="bg-white form p-[1.5rem]">
+
+        <form (ngSubmit)="onSubmit(editForm)" [formGroup]="editForm">
+            <input type="hidden" name="uj_hozzaadott" formControlName="uj_hozzaadott">
+            <input type="hidden" name="uj_eltavolitott" formControlName="uj_eltavolitott">
+            <input type="hidden" name="id" formControlName="id">
+            <div class="gp-input">
+                <button type="submit">Mentés</button>
+            </div>
+        </form>
+
+    </section>
+</div>

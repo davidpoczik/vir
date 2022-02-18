@@ -1,23 +1,22 @@
 <section class="flex flex-row text-[1.4rem] multiple bg-white  p-[1.5rem]">
     <div class="w-1/2 ">
-        <div *ngIf="employeePositions" class="max-h-[30rem] overflow-auto gp-list">
-            <div *ngFor="let employeePosition of employeePositions" class="gp-list__item"
-                [ngClass]="{'cursor-not-allowed ': isElementDisabled(employeePosition)}">
-                <div (click)="onPushToAllowed(employeePosition)"
-                    [ngClass]="{'is-disabled ': isElementDisabled(employeePosition)}"
+        <div *ngIf="all" class="max-h-[30rem] overflow-auto gp-list">
+            <div *ngFor="let item of all" class="gp-list__item"
+                [ngClass]="{'cursor-not-allowed ': isElementDisabled(item)}">
+                <div (click)="onPushToAllowed(item)" [ngClass]="{'is-disabled ': isElementDisabled(item)}"
                     class="p-[0.5rem] gp-list__item__inner">
-                    <span>{{ employeePosition.nev }}</span>
+                    <span>{{ item.name }}</span>
                     <i class="fa fa-angle-right"></i>
                 </div>
             </div>
         </div>
     </div>
     <div class="px-[1rem] w-1/2">
-        <div *ngIf="allowedPositions" class="max-h-[30rem] overflow-auto gp-list">
-            <div *ngFor="let allowedPosition of allowedPositions" class="gp-list__item">
-                <div (click)="onRemoveFromAllowed(allowedPosition)"
+        <div *ngIf="allowed" class="max-h-[30rem] overflow-auto gp-list">
+            <div *ngFor="let allowedItem of allowed" class="gp-list__item">
+                <div (click)="onRemoveFromAllowed(allowedItem)"
                     class="is-disabled allowed p-[0.5rem] gp-list__item__inner">
-                    <span>{{ allowedPosition.nev }}</span>
+                    <span>{{ allowedItem.name }}</span>
                     <i class="fa fa-angle-right"></i>
                 </div>
             </div>

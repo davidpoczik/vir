@@ -1,12 +1,11 @@
 <div class="container mx-auto py-[3rem]">
 
-    <gastroprof-permission-list [originalAllowed]="moduleData.allowed_positions"
-        [employeePositions]="moduleData.employee_positions" (newAndRemovedChange)="convertChange($event)">
+    <gastroprof-permission-list [originalAllowed]="moduleData.allowed_positions" [all]="moduleData.employee_positions"
+        (newAndRemovedChange)="convertChange($event)">
     </gastroprof-permission-list>
 
-
-    <section *ngIf="newForm" class="bg-white form p-[1.5rem]">
-        <form (ngSubmit)="onSubmit(newForm)" [formGroup]="newForm">
+    <section *ngIf="editForm" class="bg-white form p-[1.5rem]">
+        <form (ngSubmit)="onSubmit(editForm)" [formGroup]="editForm">
             <input type="hidden" name="uj_hozzaadott" formControlName="uj_hozzaadott">
             <input type="hidden" name="uj_eltavolitott" formControlName="uj_eltavolitott">
             <input type="hidden" name="id" formControlName="id">
@@ -22,6 +21,15 @@
                 <label for="ikon">Ikon</label>
                 <input type="text" formControlName="ikon" placeholder="pl: fa fa-users-cog" id="ikon">
             </div>
+            <!-- <div class="gp-input">
+                <label for="kep">Kép</label>
+                <input type="file" formControlName="kep" name="fileInput" id="kep">
+                <img *ngIf="editForm.value.kep" [src]="editForm.value.kep" alt="">
+            </div>
+            <div class="gp-input">
+                <label for="leiras">Leírás</label>
+                <textarea name="" formControlName="leiras" placeholder="leiras" id="leiras"></textarea>
+            </div> -->
             <div class="gp-input">
                 <label for="nev">Név</label>
                 <input type="text" formControlName="nev" placeholder="nev" id="nev">

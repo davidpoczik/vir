@@ -13,15 +13,19 @@ export interface View {
     ikon?: string,
     kep?: string,
     leiras?: string,
-    nev: string,
-    nev_url: string,
+    nev?: string,
+    nev_url?: string,
     url?: string,
-    w_vir_modul_id: string | number,
-    w_vir_kepernyo_id?: string | number
+    w_vir_modul_id?: string | number,
+    w_vir_kepernyo_id?: string | number,
+    w_vir_csop_jogosultsag_id?: string | number
 }
+
 export interface ViewResponse {
-    count: number,
-    views: View[]
+    count: number | string,
+    views: View[],
+    [key: string]: any
+
 }
 
 

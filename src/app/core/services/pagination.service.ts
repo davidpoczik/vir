@@ -6,7 +6,7 @@ import { BehaviorSubject } from "rxjs";
 })
 export class PaginationService {
 
-    paginationState = new BehaviorSubject<{ page: number, limit: number }>({ page: 1, limit: 1 })
+    paginationState = new BehaviorSubject<{ page: number, limit: number, search?: string }>({ page: 1, limit: 1 })
     count = new BehaviorSubject<number>(0)
 
     get page() { return this.paginationState.getValue().page }
@@ -42,6 +42,12 @@ export class PaginationService {
         const newLimitValue = (event.target as HTMLInputElement).value
         const currentPaginationState = this.paginationState.getValue()
         const nextPaginationState = Object.assign(currentPaginationState, { limit: +newLimitValue, page: 1 })
+        this.paginationState.next(nextPaginationState)
+    }
+
+    updateSearch(searchValue?: string) {
+        const currentPaginationState = this.paginationState.getValue()
+        const nextPaginationState = Object.assign(currentPaginationState, { search: searchValue })
         this.paginationState.next(nextPaginationState)
     }
 
