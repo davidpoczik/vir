@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -16,12 +16,10 @@ import { Module, ModuleApiResponseData, ModuleEditData, ModuleEditResponseData, 
 export class AdministrationViewsEditComponent implements OnInit {
 
   urlHelper = new Urls
-  private apiUrlForGetViews = this.urlHelper.api.views
-
 
   private apiEditUrl = this.urlHelper.api.administration.view.edit
   private apiSaveUrl = this.urlHelper.api.administration.view.save
-  private apiGetModules = this.urlHelper.api.administration.view.get
+  private apiGetModules = this.urlHelper.api.administration.module.get
 
   viewID?: number | string
   moduleData: ModuleEditData = {}
@@ -44,7 +42,6 @@ export class AdministrationViewsEditComponent implements OnInit {
   ngOnInit(): void {
     this.getModules()
     this.setUpForm()
-
   }
 
   isElementDisabled(data: ModuleHierarchiaData) {
@@ -82,15 +79,8 @@ export class AdministrationViewsEditComponent implements OnInit {
   }
 
   sendFormDataToApi(formData: {}, apiUrl: string) {
-    let toast = this.toastService.loading(this.translateService.instant('alert.loading'))
-    this.httpClient.post<Response>(apiUrl, formData)
+    this.httpClient.post<Response>(apiUrl, formData, { reportProgress: true })
       .subscribe(response => {
-        if (response.success) {
-          toast.close()
-          this.toastService.success(this.translateService.instant(response.message))
-        } else {
-          this.toastService.error(this.translateService.instant(response.message))
-        }
       })
   }
 
@@ -108,7 +98,8 @@ export class AdministrationViewsEditComponent implements OnInit {
   }
 
   setUpForm() {
-    this.httpClient.get<ModuleEditResponseData>(`${this.apiEditUrl}?id=${this.viewID}`)
+
+    this.httpClient.get<ModuleEditResponseData>(`${this.apiEditUrl}?id=${this.viewID}`, { reportProgress: true })
       .pipe(take(1))
       .subscribe((response) => {
         this.moduleData = response.data

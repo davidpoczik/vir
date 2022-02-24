@@ -3179,9 +3179,9 @@
     "minimatch" "~3.0.4"
 
 "follow-redirects@^1.0.0":
-  "integrity" "sha512-+hbxoLbFMbRKDwohX8GkTataGqO6Jb7jGwpAlwgy2bIz25XtRm7KEzJM76R1WiNT5SwZkX4Y75SwBolkpmE7iQ=="
-  "resolved" "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.14.7.tgz"
-  "version" "1.14.7"
+  "integrity" "sha512-MQDfihBQYMcyy5dhRDJUHcw7lb2Pv/TuE6xP1vyraLukNDHKbDxDNaOE3NbCAdKQApno+GPRyo1YAp89yCjK4w=="
+  "resolved" "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.14.9.tgz"
+  "version" "1.14.9"
 
 "forwarded@0.2.0":
   "integrity" "sha512-buRG0fpBtRHSTCOASe6hD258tEubFoRLb4ZNA6NxMVHNw2gOcwHo9wyablzMzOA5z9xA9L1KNjk/Nt6MT9aYow=="
@@ -4030,9 +4030,9 @@
     "source-map-support" "^0.5.5"
 
 "karma@*", "karma@^6.3.0", "karma@>=0.9", "karma@~6.3.0":
-  "integrity" "sha512-qwIG+oB2YmHx4hjvYSRMNzL3YWAJ9baHaLAxiP7biFNkfpwYTUTtPck0joFpucalNLzMr+7z/FX1uY/kl8DV9A=="
-  "resolved" "https://registry.npmjs.org/karma/-/karma-6.3.12.tgz"
-  "version" "6.3.12"
+  "integrity" "sha512-nEU50jLvDe5yvXqkEJRf8IuvddUkOY2x5Xc4WXHz6dxINgGDrgD2uqQWeVrJs4hbfNaotn+HQ1LZJ4yOXrL7xQ=="
+  "resolved" "https://registry.npmjs.org/karma/-/karma-6.3.16.tgz"
+  "version" "6.3.16"
   dependencies:
     "body-parser" "^1.19.0"
     "braces" "^3.0.2"
@@ -4046,9 +4046,10 @@
     "http-proxy" "^1.18.1"
     "isbinaryfile" "^4.0.8"
     "lodash" "^4.17.21"
-    "log4js" "^6.3.0"
+    "log4js" "^6.4.1"
     "mime" "^2.5.2"
     "minimatch" "^3.0.4"
+    "mkdirp" "^0.5.5"
     "qjobs" "^1.2.0"
     "range-parser" "^1.2.1"
     "rimraf" "^3.0.2"
@@ -4188,7 +4189,7 @@
     "chalk" "^4.1.0"
     "is-unicode-supported" "^0.1.0"
 
-"log4js@^6.3.0":
+"log4js@^6.4.1":
   "integrity" "sha512-iUiYnXqAmNKiIZ1XSAitQ4TmNs8CdZYTAWINARF3LjnsLN8tY5m0vRwd6uuWj/yNY0YHxeZodnbmxKFUOM2rMg=="
   "resolved" "https://registry.npmjs.org/log4js/-/log4js-6.4.1.tgz"
   "version" "6.4.1"
@@ -4790,6 +4791,11 @@
   "version" "5.1.2"
   dependencies:
     "mimic-fn" "^2.1.0"
+
+"onscan.js@^1.5.2":
+  "integrity" "sha512-9oGYy2gXYRjvXO9GYqqVca0VuCTAmWhbmX3egBSBP13rXiMNb+dKPJzKFEeECGqPBpf0m40Zoo+GUQ7eCackdw=="
+  "resolved" "https://registry.npmjs.org/onscan.js/-/onscan.js-1.5.2.tgz"
+  "version" "1.5.2"
 
 "open@^8.0.9", "open@8.4.0":
   "integrity" "sha512-XgFPPM+B28FtCCgSb9I+s9szOC1vZRSwgWsRUA5ylIxRTgKozqjOCrVOqGsYABPYK5qnfqClxZTFBa8PKt2v6Q=="
@@ -6490,9 +6496,9 @@
     "punycode" "^2.1.0"
 
 "url-parse@^1.5.3":
-  "integrity" "sha512-ITeAByWWoqutFClc/lRZnFplgXgEZr3WJ6XngMM/N9DMIm4K8zXPCZ1Jdu0rERwO84w1WC5wkle2ubwTA4NTBg=="
-  "resolved" "https://registry.npmjs.org/url-parse/-/url-parse-1.5.4.tgz"
-  "version" "1.5.4"
+  "integrity" "sha512-HpOvhKBvre8wYez+QhHcYiVvVmeF6DVnuSOOPhe3cTum3BnqHhvKaZm8FU5yTiOu/Jut2ZpB2rA/SbBA1JIGlQ=="
+  "resolved" "https://registry.npmjs.org/url-parse/-/url-parse-1.5.9.tgz"
+  "version" "1.5.9"
   dependencies:
     "querystringify" "^2.1.1"
     "requires-port" "^1.0.0"

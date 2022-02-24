@@ -1,0 +1,79 @@
+<section>
+    <div class="flex justify-center">
+        <div class="pt-[1.5rem] cursor-pointer mr-[5rem]">
+            <i class="fas fa-arrow-circle-left text-[7rem] text-blue"></i>
+        </div>
+        <div class="w-[73rem] pb-[1.5rem]">
+            <form>
+                <div class="flex">
+                    <div class="w-2/12 gp-input pr-[2rem]">
+                        <label for="input_hiba_nr">Hiba Nr.</label>
+                        <input type="text" value="3" readonly>
+                    </div>
+                    <div class="w-8/12 gp-input ">
+                        <label for="input_hibaval_megallo_termek">Hibával megálló termék neve</label>
+                        <input type="text" value="Sertés karaj csont nélkül" readonly>
+                    </div>
+                    <div class="w-2/12 gp-input pl-[2rem]">
+                        <label for="input_mert_suly_kg">Mért súly Kg</label>
+                        <input type="text" value="145,3" readonly>
+                    </div>
+                </div>
+                <div class="gp-input">
+                    <label for="input_mert_suly_kg">Hibás termék kimérési tételt tartalmazó étterem neve</label>
+                    <input type="text" value="Paprika csárda" readonly>
+                </div>
+
+                <div class="flex">
+                    <div class="w-6/12 gp-input">
+                        <label for="">Kiszedést végző munkatárs neve:</label>
+                        <input type="text" value="Tóth János" readonly>
+                    </div>
+                    <div class="w-3/12 gp-input pl-[2rem]">
+                        <label for="">Logisztikai sorszám</label>
+                        <input type="text" value="72" readonly>
+                    </div>
+                    <div class="w-3/12 gp-input pl-[2rem]">
+                        <label for="">Hiba keletkezésének ideje</label>
+                        <input type="text" value="17:25:14" readonly>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <div class="w-3/12 gp-input pr-[2rem]">
+                        <label for="">Újonnan mért súly Kg</label>
+                        <input type="number" value="">
+                    </div>
+                    <div class="w-4/12 gp-button">
+                        <button class="!flex !w-full">Kicserél termék súlyát rögzíti</button>
+                    </div>
+                </div>
+            </form>
+            <div class="text-[3rem] leading-none my-[3rem]">
+                - VAGY -
+            </div>
+            <form>
+                <div class="w-[45rem]">
+                    <div class="gp-button gp-input">
+                        <button class="!w-full !flex">Helyettesítő termék vonalkód beolvasása</button>
+                    </div>
+                    <div class="gp-input">
+                        <label for="">Termék neve</label>
+                        <input type="text" value="Sertés karaj csont nélkül">
+                    </div>
+                    <div class="flex items-end w-9/12">
+                        <div class="w-4/12 !mb-0 gp-input">
+                            <label for="">Mért súly Kg</label>
+                            <input type="number">
+                        </div>
+                        <div class="w-4/12 gp-button pl-[2rem]">
+                            <button>Súlyt cserél</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="pt-[1.5rem] cursor-pointer ml-[5rem] ">
+            <i class="fas fa-arrow-circle-right text-blue text-[7rem]"></i>
+        </div>
+    </div>
+</section>

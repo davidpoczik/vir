@@ -25,8 +25,7 @@ export class ViewPermissionGuard implements CanActivateChild {
 
         return this.httpClient.get(apiUrl).pipe(
             map(response => {
-                console.log(response)
-                console.log(!!response)
+
                 return !!response
             }),
             catchError((error) => {

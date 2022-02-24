@@ -35,6 +35,7 @@ const routes: Routes = [
     component: LayoutComponent,
     canActivateChild: [ModuleGuardService]
   },
+  { path: 'warehouse', loadChildren: () => import('./modules/warehouse/warehouse.module').then(m => m.WarehouseModule) },
   {
     path: '**',
     redirectTo: 'auth'

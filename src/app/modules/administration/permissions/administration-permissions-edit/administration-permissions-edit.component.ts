@@ -40,11 +40,9 @@ export class AdministrationPermissionsEditComponent implements OnInit, OnDestroy
 
   onSubmit(form: FormGroup) {
 
-    this.httpClient.post(this.apiSavePermissionsUrl, form.value)
+    this.httpClient.post(this.apiSavePermissionsUrl, form.value, { reportProgress: true })
       .subscribe(response => {
-        console.log(response)
       })
-
   }
 
   setupForm(): FormGroup {
@@ -58,7 +56,6 @@ export class AdministrationPermissionsEditComponent implements OnInit, OnDestroy
   setupDataForList() {
     return this.httpClient.get<PermissionsResponse>(this.apiEditPermissionsUrl)
       .subscribe((response) => {
-        console.log(response.data.allowed_positions)
         this.all = response.data.all_employees
         this.allowed = response.data.allowed_positions
         this.permissionName = response.data?.permission?.nev
@@ -66,7 +63,6 @@ export class AdministrationPermissionsEditComponent implements OnInit, OnDestroy
   }
 
   convertChange(data: { allowed: string, removed: string }) {
-
     if (this.editForm) {
       this.editForm.controls['uj_hozzaadott'].setValue(data.allowed)
       this.editForm.controls['uj_eltavolitott'].setValue(data.removed)

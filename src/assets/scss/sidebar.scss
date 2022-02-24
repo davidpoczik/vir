@@ -22,3 +22,42 @@
     }
   }
 }
+
+
+.warehouse-sidebar { 
+  &__item {
+    @apply flex w-full bg-white text-text justify-items-stretch font-light;
+    &:not(:last-child) {
+      @apply mb-[1.5rem];
+    }   
+    &__icon {
+      @apply text-white w-[6.8rem]  bg-cyan flex items-center justify-center;
+    }
+    &__text {
+      @apply w-[calc(100%-6.8rem)] leading-none px-[2rem] py-[1rem];
+      &__value {
+       &__col{
+        @apply inline-flex flex-col w-1/2;
+        > div{ 
+          @apply  flex justify-between;          
+          &:not(:last-child) {
+            @apply mb-[0.5rem];
+          }
+        }
+        
+        &:nth-child(2) {
+          @apply pl-[2rem]
+        }
+        > span {
+          &:nth-child(1) {
+            @apply w-[12rem]
+          }
+        }
+       }
+      }
+    }
+    &__label {
+      @apply text-[1.8rem] font-light mb-[0.7rem]
+    }
+  }
+}

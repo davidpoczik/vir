@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
-import { Component } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { Observable, of } from "rxjs";
+import { Observable, of, Subscription, take } from "rxjs";
 import { PaginationResponse } from "src/app/core/models/response.model";
 import { PaginationService } from "src/app/core/services/pagination.service";
 import { ViewApiResponseData } from "../../../../core/models/modules.model";
@@ -10,7 +10,7 @@ import { ViewApiResponseData } from "../../../../core/models/modules.model";
     selector: "gastroprof-dashboard-list",
     templateUrl: './dashboard-list.component.html',
 })
-export class DashboardListComponent {
+export class DashboardListComponent implements OnInit, OnDestroy {
 
     apiGetUrl = this.route.snapshot.data['getUrl']
     idParameter = this.route.snapshot.data['id']
@@ -18,6 +18,9 @@ export class DashboardListComponent {
 
     views$: Observable<any>
     searchChanged = false
+    needsLoading = true
+
+    paginationSubscription?: Subscription
 
     constructor(
         private httpClient: HttpClient,
@@ -28,11 +31,15 @@ export class DashboardListComponent {
     }
 
     ngOnInit(): void {
-        this.paginationService.paginationState.subscribe(paginationResponse => {
+        this.paginationSubscription = this.paginationService.paginationState.subscribe(paginationResponse => {
             this.getAdminModulesData(
                 paginationResponse
             )
         })
+    }
+
+    ngOnDestroy(): void {
+        this.paginationSubscription?.unsubscribe()
     }
 
     getAdminModulesData(paginationState: PaginationResponse) {
@@ -40,7 +47,8 @@ export class DashboardListComponent {
         if (paginationState.search) {
             apiUrl += `&search=${paginationState.search}`
         }
-        this.httpClient.get<ViewApiResponseData>(apiUrl)
+        this.httpClient.get<ViewApiResponseData>(apiUrl, { reportProgress: this.needsLoading })
+            .pipe(take(1))
             .subscribe(response => {
                 const elementKey = Object.keys(response.data)[0]
 
@@ -53,6 +61,7 @@ export class DashboardListComponent {
 
     onViewSearch(event: Event) {
         event.stopPropagation()
+        this.needsLoading = false
         const searchValue = (event.target as HTMLInputElement).value
 
         if (searchValue.length >= 3) {
@@ -76,6 +85,7 @@ export class DashboardListComponent {
                 this.searchChanged = false
             }
         }
+        this.needsLoading = true
     }
 
 } 

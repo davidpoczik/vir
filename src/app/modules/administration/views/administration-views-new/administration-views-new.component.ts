@@ -7,7 +7,7 @@ import { take } from 'rxjs';
 import { Urls } from 'src/app/core/constants/url.constant';
 import { Response } from 'src/app/core/models/response.model';
 
-import { Module, ModuleApiResponseData, ModuleEditData, ModuleEditResponseData, ModuleHierarchiaData } from '../../../../core/models/modules.model';
+import { Module, ModuleEditData, ModuleEditResponseData, ModuleHierarchiaData } from '../../../../core/models/modules.model';
 
 @Component({
   templateUrl: './administration-views-new.component.html'
@@ -17,7 +17,7 @@ export class AdministrationViewsNewComponent implements OnInit {
 
   urlHelper = new Urls
   private apiCreateUrl = this.urlHelper.api.administration.view.create
-  private apiGetModulesUrl = this.urlHelper.api.administration.view.get
+  private apiGetModulesUrl = this.urlHelper.api.administration.module.get
   private apiSaveUrl = this.urlHelper.api.administration.view.save
 
   moduleData: ModuleEditData = {}
@@ -36,7 +36,6 @@ export class AdministrationViewsNewComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getModules()
     this.setUpForm()
   }
 
@@ -44,8 +43,9 @@ export class AdministrationViewsNewComponent implements OnInit {
     this.httpClient.get<ModuleEditResponseData>(`${this.apiCreateUrl}`)
       .pipe(take(1))
       .subscribe((response) => {
-
+        console.log(response)
         this.moduleData = response.data
+        this.modules = response.data.module ?? []
         this.moduleData.allowed_positions = []
 
         this.originalAllowed = []
@@ -63,14 +63,6 @@ export class AdministrationViewsNewComponent implements OnInit {
       })
   }
 
-  getModules() {
-    this.httpClient.get<ModuleApiResponseData>(this.apiGetModulesUrl).subscribe(response => {
-      if (response) {
-        this.modules = response?.data
-      }
-    })
-  }
-
   onSubmit(editForm: FormGroup) {
 
     this.sendFormDataToApi(editForm.value, this.apiSaveUrl)
@@ -82,15 +74,8 @@ export class AdministrationViewsNewComponent implements OnInit {
   }
 
   sendFormDataToApi(formData: {}, apiUrl: string) {
-    let toast = this.toastService.loading(this.translateService.instant('alert.loading'))
-    this.httpClient.post<Response>(apiUrl, formData)
+    this.httpClient.post<Response>(apiUrl, formData, { reportProgress: true })
       .subscribe(response => {
-        if (response.success) {
-          toast.close()
-          this.toastService.success(this.translateService.instant(response.message))
-        } else {
-          this.toastService.error(this.translateService.instant(response.message))
-        }
       })
   }
 }

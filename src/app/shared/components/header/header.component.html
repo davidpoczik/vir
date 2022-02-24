@@ -1,58 +1,59 @@
 <header class="relative z-40 text-white bg-brown header">
-
-    <div class="px-[1.5rem] lg:px-[3rem] h-[5.5rem]  header__container">
-        <div class="flex items-center header__brand">
-            <!-- sidebar trigger starts -->
-            <div class="text-[3rem] flex cursor-pointer" (click)="onSidebarToggle()">
-                <i *ngIf="!isSidebarOpen" class="fas fa-list-alt"></i>
-                <i *ngIf="isSidebarOpen" class="fas fa-window-close"></i>
+    <div class="max-w-[calc(100vw-3rem)] mx-auto">
+        <div class="h-[5.5rem]  header__container">
+            <div class="flex items-center header__brand">
+                <!-- sidebar trigger starts -->
+                <div class="text-[3rem] flex cursor-pointer" (click)="onSidebarToggle()">
+                    <i *ngIf="!isSidebarOpen" class="fas fa-list-alt"></i>
+                    <i *ngIf="isSidebarOpen" class="fas fa-window-close"></i>
+                </div>
+                <!-- sidebar trigger ends -->
+                <!-- logo starts -->
+                <div class=" header__logo">
+                    <h1>
+                        <span class="font-semibold">Gastro</span>
+                        <span class="text-[#cccccc]">Prof</span>
+                        <span class="text-[1.6rem] hidden lg:inline-block"> by Matusz-Vad Zrt.</span>
+                    </h1>
+                </div>
+                <!-- logo ends -->
             </div>
-            <!-- sidebar trigger ends -->
-            <!-- logo starts -->
-            <div class=" header__logo">
-                <h1>
-                    <span class="font-semibold">Gastro</span>
-                    <span class="text-[#cccccc]">Prof</span>
-                    <span class="text-[1.6rem] hidden lg:inline-block"> by Matusz-Vad Zrt.</span>
-                </h1>
+            <!-- sidebar search starts -->
+            <div class="hidden header__search lg:block">
+                <gastroprof-search></gastroprof-search>
             </div>
-            <!-- logo ends -->
-        </div>
-        <!-- sidebar search starts -->
-        <div class="hidden header__search lg:block">
-            <gastroprof-search></gastroprof-search>
-        </div>
-        <!-- sidebar search starts -->
+            <!-- sidebar search starts -->
 
-        <div class="flex items-center">
-            <div class="flex items-center ">
-                <div class="mr-[2rem] header__user" gpDropdown>
-                    <span (click)="onClickUserMenu()" class="header__user__name">{{ user?.fullname }}</span>
-                    <div class="header__user__menu is--open-target">
-                        <div class="header__user__menu__item">
-                            <a (click)="onLogout()">Kijelentkezés</a>
+            <div class="flex items-center">
+                <div class="flex items-center ">
+                    <div class="mr-[2rem] header__user" gpDropdown>
+                        <span (click)="onClickUserMenu()" class="header__user__name">{{ user?.fullname }}</span>
+                        <div class="header__user__menu is--open-target">
+                            <div class="header__user__menu__item">
+                                <a (click)="onLogout()">Kijelentkezés</a>
+                            </div>
                         </div>
                     </div>
+                    <div class="header__lang">
+                        <img src="./assets/icons/lang/hu.svg" alt="">
+                    </div>
                 </div>
-                <div class="header__lang">
-                    <img src="./assets/icons/lang/hu.svg" alt="">
+                <div class="header__search__icon block ml-[1.5rem] lg:hidden" (click)="onSearchClicked()">
+                    <i class="fas fa-search"></i>
                 </div>
-            </div>
-            <div class="header__search__icon block ml-[1.5rem] lg:hidden" (click)="onSearchClicked()">
-                <i class="fas fa-search"></i>
-            </div>
-            <div class="flex items-center header__icons" gpDropdown>
-                <i class="cursor-pointer text-white fas fa-external-link-alt lg:!hidden text-[2.5rem] "></i>
-                <div class="header__icons__menu is--open-target">
-                    <div class="header__icons__menu__item"><img src="./assets/header/gpm.png" alt=""></div>
-                    <div class="header__icons__menu__item"><img src="./assets/header/tudasbazis.png" alt=""></div>
-                    <div class="header__icons__menu__item"><img src="./assets/header/outlook.png" alt=""></div>
-                    <div class="header__icons__menu__item"><img src="./assets/header/webshop.png" alt=""></div>
-                    <div class="header__icons__menu__item"><img src="./assets/header/hr3.png" alt=""></div>
-                    <div class="header__icons__menu__item"><img src="./assets/header/info.svg" alt=""></div>
+                <div class="flex items-center header__icons" gpDropdown>
+                    <i class="cursor-pointer text-white fas fa-external-link-alt lg:!hidden text-[2.5rem] "></i>
+                    <div class="header__icons__menu is--open-target">
+                        <div class="header__icons__menu__item"><img src="./assets/header/gpm.png" alt=""></div>
+                        <div class="header__icons__menu__item"><img src="./assets/header/tudasbazis.png" alt=""></div>
+                        <div class="header__icons__menu__item"><img src="./assets/header/outlook.png" alt=""></div>
+                        <div class="header__icons__menu__item"><img src="./assets/header/webshop.png" alt=""></div>
+                        <div class="header__icons__menu__item"><img src="./assets/header/hr3.png" alt=""></div>
+                        <div class="header__icons__menu__item"><img src="./assets/header/info.svg" alt=""></div>
+                    </div>
                 </div>
-            </div>
 
+            </div>
         </div>
     </div>
 </header>

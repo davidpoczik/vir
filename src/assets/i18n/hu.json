@@ -6,7 +6,14 @@
     "successfull_login": "Sikeres Bejelentkezés",
     "successfull_logout": "Sikeres Kijelentkezés",
     "Too Many Requests": "Túl sokszor próbálkoztál, várj egy kicsit.",
-    "loading": "Egy kis türelmet",
+    "get": {
+      "loading": "Egy kis türelmet! A tartalom töltődik!",
+      "success": "Sikeres betöltés!"
+    },
+    "post": {
+      "loading": "Egy kis türelmet! A művelet folyamatban!",
+      "success": "Sikeres Művelet!"
+    },
     "success_save": "Sikeres Mentés"
   },
   "login": {

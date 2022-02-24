@@ -36,7 +36,9 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    HotToastModule.forRoot({}),
+    HotToastModule.forRoot({
+      theme: 'snackbar'
+    }),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

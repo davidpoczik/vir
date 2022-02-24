@@ -14,6 +14,11 @@ export const routes: Routes = [
     canActivateChild: [ViewPermissionGuard]
   },
   {
+    path: 'raktar',
+    loadChildren: () => import('./warehouse/warehouse.module').then(m => m.WarehouseModule),
+    canActivateChild: [ViewPermissionGuard]
+  },
+  {
     path: '**',
     redirectTo: 'vezerlopult',
   }

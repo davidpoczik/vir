@@ -21,7 +21,7 @@ export class AuthService {
   loginAlertSuccess = 'login.alert.success'
   loginAlertError = 'login.alert.error'
 
-  loginAlertLogou = 'login.alert.logout'
+  loginAlertLogout = 'login.alert.logout'
 
   userData?: BehaviorSubject<User>
 
@@ -58,7 +58,7 @@ export class AuthService {
     return localStorage.getItem('vir_token')
   }
 
-  login(userData: loginApiPostData) {
+  login(userData?: loginApiPostData) {
     return this.httpClient
       .post<loginApiResponseData>(this.loginApiUrl, userData)
       .pipe(
@@ -79,14 +79,13 @@ export class AuthService {
   }
 
   logout() {
+    if (!localStorage.getItem('vir_token')) { }
+    this.toastService.warning(
+      this.translateService.instant(this.loginAlertLogout)
+    )
     localStorage.removeItem('vir_fullname')
     localStorage.removeItem('vir_position')
     localStorage.removeItem('vir_token')
-
-    this.userData?.closed
-    this.toastService.warning(
-      this.translateService.instant(this.loginAlertLogou)
-    )
   }
 
   isLoggedIn() {

@@ -8,17 +8,17 @@ export class ErrorInterceptorService implements HttpInterceptor {
 
   constructor(
     private authService: AuthService
-  ) {
-  }
+  ) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
       catchError((error: HttpErrorResponse) => {
         const errorCode = error?.error?.message ?? null
         if (errorCode === 'unauthorised') {
-          this.authService.logout()
+          if (this.authService.isLoggedIn()) {
+            this.authService.logout()
+          }
         }
-
         return throwError(error)
       })
     )

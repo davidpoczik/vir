@@ -1,0 +1,26 @@
+@mixin label {
+    font-family: 'Arial';
+    @apply w-full h-[3rem] text-white rounded-xl text-[1.3rem] flex items-center justify-center leading-none font-normal px-[0.9rem];
+}
+.label {
+    &-success {
+        @include label();
+        @apply bg-green cursor-default pointer-events-auto;
+    }
+    &-warning {
+        @include label();
+        @apply bg-red pointer-events-none;
+    }
+    &-action {
+        @include label();
+        @apply bg-purple cursor-pointer;
+    }
+    &-default {
+        @include label();
+        @apply border-border border-[1px] border-solid rounded-md text-[#8E8E8E] justify-start font-light;
+
+        &.is--smaller {
+            @apply w-[7rem];
+        }
+    }
+}

@@ -32,6 +32,11 @@ const routes: Routes = [
   {
     path: 'kepernyok/:viewID/uj',
     component: AdministrationViewsNewComponent,
+    data: {
+      listBlueprint: [
+        ['sm_ceghierarchia_id'], ['nev']
+      ]
+    }
 
   },
   {
