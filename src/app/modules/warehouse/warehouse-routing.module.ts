@@ -12,7 +12,7 @@ const urlHelper = new Urls
 
 const routes: Routes = [
   {
-    path: 'automata-kimeres',
+    path: 'automata-kimeres/:viewID',
     component: AutomaticMeasurementComponent,
     data: {
       getUrl: '',

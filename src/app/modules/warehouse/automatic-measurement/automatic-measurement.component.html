@@ -1,10 +1,7 @@
 <section class="py-[1.5rem] text-[2.4rem] mx-auto w-[147.5rem]">
     <div class="title">Automata kimérés</div>
     <div class="flex pt-[1.5rem] justify-between">
-        <section class="w-[45rem]">
-            <gastroprof-measurement-sidebar></gastroprof-measurement-sidebar>
-        </section>
-        <section class="w-[calc(100%-45rem-1.5rem)] ml-[1.5rem] bg-white">
+        <section class="w-[calc(100%-45rem-1.5rem)] mr-[1.5rem] bg-white">
             <div class="w-full tab">
                 <div class="tab__item" [routerLink]="['tura-valaszto']" [routerLinkActive]="'is--active'">
                     Túra
@@ -22,6 +19,9 @@
             <div class="p-[1.5rem] pt-[2rem] text-[1.4rem]">
                 <router-outlet></router-outlet>
             </div>
+        </section>
+        <section class="w-[45rem]">
+            <gastroprof-measurement-sidebar></gastroprof-measurement-sidebar>
         </section>
     </div>
 </section>

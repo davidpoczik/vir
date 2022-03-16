@@ -20,6 +20,7 @@ import { AdministrationPermissionsEditComponent } from './permissions/administra
   imports: [
     SharedModule,
     AdministrationRoutingModule
+
   ],
   exports: [
     PermissionListComponent

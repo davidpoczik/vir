@@ -10,7 +10,7 @@
             <input type="hidden" name="uj_eltavolitott" formControlName="uj_eltavolitott">
             <input type="hidden" name="id" formControlName="id">
             <div class="gp-input">
-                <label for="module_id">Modul ID</label>
+                <label for="module_id">{{ "form.moduleID" | translate }}</label>
                 <select name="module_id" formControlName="w_vir_modul_id" id="module_id" *ngIf="modules">
                     <option *ngFor="let module of modules" [value]="module.w_vir_modul_id">
                         {{ module.nev }}
@@ -18,7 +18,7 @@
                 </select>
             </div>
             <div class="gp-input">
-                <label for="ikon">Ikon</label>
+                <label for="ikon">{{ "form.icon" | translate }}</label>
                 <input type="text" formControlName="ikon" placeholder="pl: fa fa-users-cog" id="ikon">
             </div>
             <!-- <div class="gp-input">
@@ -31,19 +31,19 @@
                 <textarea name="" formControlName="leiras" placeholder="leiras" id="leiras"></textarea>
             </div> -->
             <div class="gp-input">
-                <label for="nev">Név</label>
+                <label for="nev">{{ "form.name" | translate }}</label>
                 <input type="text" formControlName="nev" placeholder="nev" id="nev">
             </div>
             <div class="gp-input">
-                <label for="nev_url">Név URL</label>
+                <label for="nev_url">{{ "form.nameUrl" | translate }}</label>
                 <input type="text" formControlName="nev_url" placeholder="Név url" id="nev_url" readonly>
             </div>
             <div class="gp-input">
-                <label for="url">URL</label>
+                <label for="url">{{ "form.url" | translate }}</label>
                 <input type="text" formControlName="url" placeholder="url" readonly>
             </div>
             <div class="gp-input">
-                <button type="submit">Mentés</button>
+                <button type="submit">{{ 'form.save' | translate }}</button>
             </div>
         </form>
     </section>

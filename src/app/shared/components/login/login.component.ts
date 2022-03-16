@@ -14,7 +14,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   showPassword = false
   showEyes = true
   submitted = false
-
   loginForm: FormGroup
 
   barcodeSubscription?: Subscription
@@ -55,7 +54,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   passwordValueWatching() {
     this.passwordSubscription = this.loginForm.controls['password'].valueChanges.subscribe((response) => {
-      console.log(response)
       this.showEyes = response.length > 0
     })
   }
@@ -81,10 +79,13 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   sendBarcodeLogin(barcodeValue: string) {
+
     this.authService.login({ barcode: barcodeValue })
       .subscribe((response) => {
         if (response.success) {
-          this.router.navigate(['/vezerlopult'])
+          this.authService.setPdaUser(true)
+
+          this.router.navigate(['/raktar-pda'])
         } else {
           this.submitted = false
         }
@@ -100,21 +101,24 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     if (!this.submitted) {
       document.addEventListener('keyup', function (evt) {
+
         if (interval) {
           clearInterval(interval)
         }
         if (evt.code == 'Enter') {
           if (barcodeValue) {
-            barcodeValue = ''
+
             barcodeSubject.next(barcodeValue)
+            barcodeValue = ''
             return false
           }
           return false
         }
         if (evt.key !== 'Shift') {
+
           barcodeValue += evt.key
         }
-        interval = setInterval(() => barcodeValue = '', 20)
+        interval = setInterval(() => { console.log('set', barcodeValue); barcodeValue = '' }, 50)
         return
       })
     }
@@ -123,10 +127,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.barcodeSubscription?.unsubscribe()
     this.passwordSubscription?.unsubscribe()
+
   }
 
 }
-
-
-
-

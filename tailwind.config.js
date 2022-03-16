@@ -29,7 +29,8 @@ module.exports = {
             submitDisabledText: '#CFCFD1',
             submit: '#3BAC4E',
             submitHover: '#0B8D21',
-            subitDisabled: '#CFCFD1'
+            submitDisabled: '#CFCFD1',
+            buttonDelete: '#E76160'
         },
         extend: {}
     },

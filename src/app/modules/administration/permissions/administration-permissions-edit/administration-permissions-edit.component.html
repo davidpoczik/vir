@@ -1,6 +1,6 @@
 <div class="container mx-auto py-[3rem]">
 
-    <h2 class="text-[3rem]">{{permissionName }}</h2>
+    <h2 class="text-[3rem]">{{ permissionName }}</h2>
 
     <gastroprof-permission-list [originalAllowed]="allowed" [all]="all" (newAndRemovedChange)="convertChange($event)">
     </gastroprof-permission-list>
@@ -12,7 +12,7 @@
             <input type="hidden" name="uj_eltavolitott" formControlName="uj_eltavolitott">
             <input type="hidden" name="id" formControlName="id">
             <div class="gp-input">
-                <button type="submit">Mentés</button>
+                <button type="submit">{{ 'form.save' | translate }}</button>
             </div>
         </form>
     </section>

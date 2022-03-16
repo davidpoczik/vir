@@ -34,6 +34,10 @@ export class AuthService {
     this.userData = new BehaviorSubject<User>(user)
   }
 
+  setPdaUser(is: boolean) {
+    localStorage.setItem('pdaUser', is.toString())
+  }
+
   setUserData(user: User) {
     localStorage.setItem('vir_fullname', user.fullname)
     localStorage.setItem('vir_position', user.position)
@@ -86,6 +90,7 @@ export class AuthService {
     localStorage.removeItem('vir_fullname')
     localStorage.removeItem('vir_position')
     localStorage.removeItem('vir_token')
+    localStorage.removeItem('pdaUser')
   }
 
   isLoggedIn() {

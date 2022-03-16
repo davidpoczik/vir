@@ -49,7 +49,7 @@
 
         &:disabled,
         &.disabled {
-            @apply bg-subitDisabled text-submitDisabledText;
+            @apply bg-submitDisabled text-submitDisabledText;
         }
     }
 

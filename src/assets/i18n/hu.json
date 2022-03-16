@@ -1,41 +1,51 @@
 {
-  "Internal Server Error": "Váratlan probléma",
-  "alert": {
-    "unauthorised": "Hibás Adatok",
-    "Forbidden": "Hibás Adatok",
-    "successfull_login": "Sikeres Bejelentkezés",
-    "successfull_logout": "Sikeres Kijelentkezés",
-    "Too Many Requests": "Túl sokszor próbálkoztál, várj egy kicsit.",
-    "get": {
-      "loading": "Egy kis türelmet! A tartalom töltődik!",
-      "success": "Sikeres betöltés!"
-    },
-    "post": {
-      "loading": "Egy kis türelmet! A művelet folyamatban!",
-      "success": "Sikeres Művelet!"
-    },
-    "success_save": "Sikeres Mentés"
-  },
-  "login": {
-    "title": "Bejelentkezés",
-    "copyright": "Copyright ©",
-    "allrights": "Minden jog fenntartva",
-    "privacy": "Adatvédelem",
-    "legal": "Jogi nyilatkozat",
-    "forgotten": "Elfelejtette a jelszavát?",
-    "input": {
-      "username": "Felhasználónév",
-      "password": "Jelszó",
-      "submit": "Bejelentkezés"
-    },
+    "Internal Server Error": "Váratlan probléma",
     "alert": {
-      "loading": "Bejelentkezés folyamatban, kérlek várj.",
-      "success": "Sikeres bejelentkezés.",
-      "error": "Sikertelen bejelentkezés",
-      "logout": "Kijelentkezve"
+        "unauthorised": "Hibás Adatok",
+        "Forbidden": "Hibás Adatok",
+        "successfull_login": "Sikeres Bejelentkezés",
+        "successfull_logout": "Sikeres Kijelentkezés",
+        "Too Many Requests": "Túl sokszor próbálkoztál, várj egy kicsit.",
+        "get": {
+            "loading": "Egy kis türelmet! A tartalom töltődik!",
+            "success": "Sikeres betöltés!"
+        },
+        "post": {
+            "loading": "Egy kis türelmet! A művelet folyamatban!",
+            "success": "Sikeres Művelet!"
+        },
+        "success_save": "Sikeres Mentés"
+    },
+    "login": {
+        "title": "Bejelentkezés",
+        "copyright": "Copyright ©",
+        "allrights": "Minden jog fenntartva",
+        "privacy": "Adatvédelem",
+        "legal": "Jogi nyilatkozat",
+        "forgotten": "Elfelejtette a jelszavát?",
+        "input": {
+            "username": "Felhasználónév",
+            "password": "Jelszó",
+            "submit": "Bejelentkezés"
+        },
+        "alert": {
+            "loading": "Bejelentkezés folyamatban, kérlek várj.",
+            "success": "Sikeres bejelentkezés.",
+            "error": "Sikertelen bejelentkezés",
+            "logout": "Kijelentkezve"
+        }
+    },
+    "form": {
+        "new": "Új képernyő",
+        "save": "Mentés",
+        "moduleID": "Modul ID",
+        "icon": "Ikon",
+        "name": "Név",
+        "nameUrl": "Név Url",
+        "url": "Url",
+        "searchText": "Keresés a találatok közt"
+    },
+    "developer": {
+        "name": "Matusz-Vad Zrt."
     }
-  },
-  "developer": {
-    "name": "Matusz-Vad Zrt."
-  }
 }

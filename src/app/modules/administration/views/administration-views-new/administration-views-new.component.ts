@@ -1,8 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { HotToastService } from '@ngneat/hot-toast';
-import { TranslateService } from '@ngx-translate/core';
 import { take } from 'rxjs';
 import { Urls } from 'src/app/core/constants/url.constant';
 import { Response } from 'src/app/core/models/response.model';
@@ -17,7 +15,6 @@ export class AdministrationViewsNewComponent implements OnInit {
 
   urlHelper = new Urls
   private apiCreateUrl = this.urlHelper.api.administration.view.create
-  private apiGetModulesUrl = this.urlHelper.api.administration.module.get
   private apiSaveUrl = this.urlHelper.api.administration.view.save
 
   moduleData: ModuleEditData = {}
@@ -30,10 +27,10 @@ export class AdministrationViewsNewComponent implements OnInit {
   modules?: Module[]
 
   constructor(
-    private httpClient: HttpClient,
-    private toastService: HotToastService,
-    private translateService: TranslateService
-  ) { }
+    private httpClient: HttpClient
+  ) {
+
+  }
 
   ngOnInit(): void {
     this.setUpForm()

@@ -1,11 +1,12 @@
 <div class="sm:py-[1.5rem] pb-0 pt-[1.5rem] flex justify-between items-center flex-col sm:flex-row">
     <div class=" gp-input w-2/6 sm:order-1 order-0 w-full sm:w-auto sm:!mb-0 !mb-[1.5rem]">
-        <button *ngIf="hasNewButton" [routerLink]="['uj']" class="min-w-full submit sm:w-auto">Új képernyő</button>
+        <button *ngIf="hasNewButton" [routerLink]="['uj']" class="min-w-full submit sm:w-auto">{{ 'form.new' | translate
+            }}</button>
     </div>
     <div class="flex justify-end order-1 w-4/6 w-full sm:order-0">
         <div class="!mb-0 gp-input w-[70vw] sm:w-[30rem] mr-[1rem]">
             <input type="search" (keyup)="onViewSearch($event)" (search)="onViewSearch($event)"
-                placeholder="Keresés a találatok közt...">
+                [placeholder]="'form.searchText' | translate">
         </div>
         <div class="!mb-0 gp-input w-[30vw] sm:w-[10rem]">
             <select (change)="paginationService.changeLimit($event)">
@@ -16,7 +17,6 @@
         </div>
     </div>
 </div>
-
 <div class=" px-0 py-[1.5rem] ">
     <div class="gp-list">
         <div *ngFor="let module of views$ | async " class="gp-list__item" [routerLink]="['szerk', module[idParameter]]">

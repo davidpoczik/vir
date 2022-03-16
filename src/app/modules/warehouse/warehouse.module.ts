@@ -10,6 +10,7 @@ import { FaultyProductHandlerComponent } from './automatic-measurement/faulty-pr
 import { UnmeasuredItemsComponent } from './automatic-measurement/unmeasured-items/unmeasured-items.component';
 import { HandlePackagingComponent } from './automatic-measurement/handle-packaging/handle-packaging.component';
 import { CloseMeasurementComponent } from './automatic-measurement/close-measurement/close-measurement.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { CloseMeasurementComponent } from './automatic-measurement/close-measure
   ],
   imports: [
     CommonModule,
-    WarehouseRoutingModule
+    WarehouseRoutingModule,
+    SharedModule
   ]
 })
 export class WarehouseModule { }

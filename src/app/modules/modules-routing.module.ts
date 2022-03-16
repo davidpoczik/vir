@@ -19,11 +19,15 @@ export const routes: Routes = [
     canActivateChild: [ViewPermissionGuard]
   },
   {
+    path: 'raktar-pda',
+    loadChildren: () => import('./warehouse-pda/warehouse-pda.module').then(m => m.WarehousePdaModule),
+    canActivateChild: [ViewPermissionGuard]
+  },
+  {
     path: '**',
     redirectTo: 'vezerlopult',
   }
 ]
-
 @NgModule({
   imports: [
     RouterModule.forChild(routes),
