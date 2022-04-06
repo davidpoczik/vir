@@ -9,6 +9,7 @@ import { DashboardListComponent } from './shared/dashboard-list/dashboard-list.c
 import { AdministrationPermissionsEditComponent } from './permissions/administration-permissions-edit/administration-permissions-edit.component';
 
 
+
 @NgModule({
   declarations: [
     AdministrationViewsEditComponent,
@@ -24,6 +25,7 @@ import { AdministrationPermissionsEditComponent } from './permissions/administra
   ],
   exports: [
     PermissionListComponent
-  ]
+  ],
+
 })
 export class AdministrationModule { }

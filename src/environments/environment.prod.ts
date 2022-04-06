@@ -7,6 +7,7 @@ export const environment = {
 
   api: {
     base: `https://dev-api.gastroprof.com/api/`,
+    default: `https://dev-api.gastroprof.com/`,
     login: `login`,
     modules: `general/get-modules`,
     views: `general/get-views`,
@@ -35,4 +36,4 @@ export const environment = {
       }
     },
   }
-}; 
+};

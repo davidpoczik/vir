@@ -5,12 +5,23 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { WarehousePdaComponent } from './warehouse-pda.component';
 import { PdaCheckComponent } from './pda-check/pda-check.component';
 import { PdaStartComponent } from './warehouse-pda-start/warehouse-pda-start.component';
+import { PdaTransferSwitcherComponent } from './pda-transfer-switcher/pda-transfer-switcher.component';
+import { StoreToBaseComponent } from './pda-transfer-switcher/store-to-base/store-to-base.component';
+import { ComissionTransferComponent } from './pda-transfer-switcher/comission-transfer/comission-transfer.component';
+import { DataCheckComponent } from './data-check/data-check.component';
+import { StorageCheckerWorkerComponent } from './storage-checker-worker/storage-checker-worker.component';
+import { EventListenerService } from 'src/app/core/services/event-listener.service';
 
 @NgModule({
   declarations: [
     WarehousePdaComponent,
     PdaCheckComponent,
-    PdaStartComponent
+    PdaStartComponent,
+    PdaTransferSwitcherComponent,
+    StoreToBaseComponent,
+    ComissionTransferComponent,
+    DataCheckComponent,
+    StorageCheckerWorkerComponent
   ],
   imports: [
     CommonModule,

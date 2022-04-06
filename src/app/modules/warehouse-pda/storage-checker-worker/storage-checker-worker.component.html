@@ -1,0 +1,48 @@
+<section class="pda px-[1.5rem] py-[3rem]">
+    <div class="flex flex-col justify-between h-full">
+        <div class="pda__title">Ellenőrzés</div>
+        <ng-container *ngIf="!isChecked; else checkedContent">
+            <div class="pda__content">
+                <div class="text-center text-[2.8rem]">Az ellenőrzéshez olvassa le a tárhely vonalkódját.</div>
+            </div>
+        </ng-container>
+        <ng-template #checkedContent>
+            <div class="pda__content ">
+
+                <div class="text-[2.4rem] font-semibold text-center mb-[3rem]">
+                    <span class="text-[2.2rem]">Utolsó betöltött rakat:</span> <br> {{ storage?.utolso_betolt_rakat }}
+                </div>
+
+                <div class="text-[1.8rem] mb-[1rem]">
+                    Aktuális mennyiség: {{ storage?.akt_menny | number }}
+                </div>
+
+                <div class="text-[1.8rem] mb-[1rem]">
+                    Utolsó betöltött mennyiség: {{ storage?.utolso_betolt_menny }}
+                </div>
+
+                <div class="text-[1.8rem] mb-[1rem]">
+                    Munkatárs: {{ storage?.munk }}
+                </div>
+
+                <div class="text-[1.8rem] mb-[1rem]">
+                    Utolsó betöltés ideje: {{ storage?.idopont | date:'yy-MM-d':'hu-hu' }}
+                </div>
+
+                <div class="text-[1.8rem] mb-[1rem]">
+                    Cikknév: {{ storage?.cikk_nev }}
+
+                </div>
+
+            </div>
+        </ng-template>
+        <div class="!mb-0 cursor-pointer pda__menu__item" (click)="onSwitch('0')">
+            <div class="pda__menu__item__icon">
+                <span>0</span>
+            </div>
+            <div class="pda__menu__item__title">
+                Főmenü
+            </div>
+        </div>
+    </div>
+</section>

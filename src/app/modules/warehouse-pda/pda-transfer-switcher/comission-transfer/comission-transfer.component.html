@@ -1,0 +1,67 @@
+<section class="pda px-[1.5rem] -mx-[1.5rem] py-[3rem] bg-[#2B2B2A]">
+
+
+
+    <div class="flex flex-col justify-between h-full" [ngSwitch]="progress">
+
+        <ng-container *ngSwitchCase="0">
+            <div class="flex items-center justify-center h-full pda__content">
+                <div class="text-center text-[2.8rem] text-white leading-none">Kérem, olvassa le a tárhely vonalkódját!
+                </div>
+            </div>
+
+        </ng-container>
+
+        <ng-container *ngSwitchCase="1">
+            <div class="text-white pda__content">
+                <div class="text-[2.4rem] font-semibold text-center mb-[3rem]">R.{{ storage?.utolso_betolt_rakat }} |
+                    K1/1/03
+                </div>
+                <div class="text-[1.8rem] mb-[2rem]">
+                    {{ storage?.cikk_nev }}
+                </div>
+                <div class="text-[1.8rem] flex justify-between mb-[1rem]">
+                    <div class="text-left">
+                        N: {{ storage?.akt_menny | number }} kg
+                    </div>
+                    <div class="text-right">
+                        T: 0
+                    </div>
+                </div>
+                <div class="text-[1.8rem] flex justify-between  mb-[2rem]">
+                    <div class="text-left">
+                        B: {{ storage?.akt_menny | number }} kg
+                    </div>
+                    <div class="text-right">
+                        KOM.INF:0
+                    </div>
+                </div>
+                <div class="text-[1.8rem]  mb-[4rem]">
+                    Lejár.dát: {{ storage?.idopont | date:'yy-MMM.-d':'hu-hu' }}
+                </div>
+            </div>
+        </ng-container>
+
+        <div class="pda__menu">
+            <div *ngIf="progress === 2" class="cursor-pointer pda__menu__item" (click)="onSwitch('Enter')">
+                <div class="pda__menu__item__icon">
+                    <span>
+                        <i class="fas fa-sign-in-alt"></i>
+                    </span>
+                </div>
+                <div class="text-white pda__menu__item__title">
+                    Áttárolás
+                </div>
+            </div>
+            <div class="cursor-pointer pda__menu__item" (click)="onSwitch('0')">
+                <div class="pda__menu__item__icon">
+                    <span>0</span>
+                </div>
+                <div class="text-white pda__menu__item__title">
+                    Vissza
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>

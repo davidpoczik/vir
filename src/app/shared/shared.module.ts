@@ -34,7 +34,8 @@ import { TranslateModule } from '@ngx-translate/core';
     RouterModule,
     TranslateModule,
     HotToastModule.forRoot({
-      theme: 'snackbar'
+      theme: 'snackbar',
+      duration: 1000
     }),
 
   ],

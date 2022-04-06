@@ -1,4 +1,4 @@
-import { Component, Inject, InjectionToken, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, InjectionToken, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
@@ -23,11 +23,14 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   interval?: any
 
+  private unlistener?: () => void;
+
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private renderer2: Renderer2
   ) {
 
     this.loginForm = new FormGroup({
@@ -98,10 +101,11 @@ export class LoginComponent implements OnInit, OnDestroy {
     let barcodeSubject = this.barcode
     let barcodeValue = ''
     let interval = this.interval
+    const insideThis = this
 
-    if (!this.submitted) {
-      document.addEventListener('keyup', function (evt) {
+    this.unlistener = this.renderer2.listen("document", "keyup", function (evt) {
 
+      if (!insideThis.submitted) {
         if (interval) {
           clearInterval(interval)
         }
@@ -110,6 +114,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
             barcodeSubject.next(barcodeValue)
             barcodeValue = ''
+            clearInterval(interval)
+            console.log('cleared interval')
             return false
           }
           return false
@@ -119,15 +125,21 @@ export class LoginComponent implements OnInit, OnDestroy {
           barcodeValue += evt.key
         }
         interval = setInterval(() => { console.log('set', barcodeValue); barcodeValue = '' }, 50)
+        console.log('init interval')
+
         return
-      })
-    }
+      }
+      return
+    })
+
   }
 
   ngOnDestroy(): void {
     this.barcodeSubscription?.unsubscribe()
     this.passwordSubscription?.unsubscribe()
-
+    if (this.unlistener) {
+      this.unlistener()
+    }
   }
 
 }

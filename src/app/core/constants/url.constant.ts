@@ -29,6 +29,14 @@ export class Urls {
                 save: this.base + `administration/update-group-permission`
             }
         },
+
+    }
+    pda = {
+        storageCheck: this.base + "warehouse/pda/storage-checker",
+        storeToBase: this.base + "warehouse/pda/store-to-base",
+        storeToCommission: this.base + "warehouse/pda/comission-transfer",
+        stackCheck: this.base + "warehouse/pda/get-stack"
+
     }
 }
 

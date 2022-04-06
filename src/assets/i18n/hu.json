@@ -47,5 +47,13 @@
     },
     "developer": {
         "name": "Matusz-Vad Zrt."
-    }
+    },
+    "pda": {
+        "loading": "Címke beolvasása folyamatban!",
+        "success": "Sikeres beolvasás!",
+        "saving": "Áttárolás folyamatban!",
+        "success_save": "Sikeres Áttárolás!",
+        "bad_code": "Rossz típusú címke beolvasás!"
+    },
+    "missing_barcode": "Hibás címke"
 }

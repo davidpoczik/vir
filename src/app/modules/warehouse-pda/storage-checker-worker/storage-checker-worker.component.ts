@@ -9,13 +9,16 @@ import { CheckResponse, Storage } from 'src/app/core/services/pda.model';
 import { EventListenerService } from '../../../core/services/event-listener.service';
 
 const urlHelper = new Urls
+
 @Component({
-  templateUrl: './pda-check.component.html',
+  templateUrl: './storage-checker-worker.component.html',
   providers: [
     EventListenerService
   ]
 })
-export class PdaCheckComponent implements OnInit, OnDestroy {
+export class StorageCheckerWorkerComponent implements OnInit {
+
+
 
   listenerSubscription?: Subscription
   barcodeSubscription?: Subscription
@@ -42,7 +45,6 @@ export class PdaCheckComponent implements OnInit, OnDestroy {
 
     this.listenerSubscription = this.eventListenerService.eventKey
       .subscribe(response => {
-        console.log('asd')
         console.log('pdacheck', response)
         this.onSwitch(response)
       })
@@ -86,10 +88,8 @@ export class PdaCheckComponent implements OnInit, OnDestroy {
   }
 
   onSwitch(value: number | string) {
-    console.log('isscanning', this.eventListenerService.isScanning)
-    switch (value) {
-      case "0":
-
+    switch (+value) {
+      case 0:
         this.router.navigate(['../'], { relativeTo: this.route });
         break;
       default:
