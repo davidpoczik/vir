@@ -35,7 +35,13 @@ export class Urls {
         storageCheck: this.base + "warehouse/pda/storage-checker",
         storeToBase: this.base + "warehouse/pda/store-to-base",
         storeToCommission: this.base + "warehouse/pda/comission-transfer",
-        stackCheck: this.base + "warehouse/pda/get-stack"
+        stackCheck: this.base + "warehouse/pda/get-stack",
+        loadingRequestCheck: this.base + "warehouse/pda/loading-request-checker",
+        loadingRequestSave: this.base + "warehouse/pda/loading-request-save",
+        barcodeChecker: this.base + "warehouse/pda/barcode-checker",
+        pairingChecker: this.base + "warehouse/pda/pairing-checker",
+        inventorialChecker: this.base + "warehouse/pda/inventorial-checker",
+        pairingLog: this.base + "warehouse/pda/pairing-log",
 
     }
 }

@@ -11,19 +11,21 @@ import { EventListenerService } from '../../../core/services/event-listener.serv
 const urlHelper = new Urls
 
 @Component({
-  templateUrl: './data-check.component.html',
+  templateUrl: './barcode-checker.component.html',
   providers: [
     EventListenerService
   ]
 })
-export class DataCheckComponent implements OnInit {
-
+export class BarcodeCheckerComponent implements OnInit {
 
   listenerSubscription?: Subscription
   barcodeSubscription?: Subscription
-  checkUrl = urlHelper.pda.storageCheck
+  checkUrl = urlHelper.pda.barcodeChecker
   isChecked = false
-  storage?: Storage
+  storages?: Storage[]
+  product?: Storage
+  amount?: Number
+
 
   constructor(
     public eventListenerService: EventListenerService,
@@ -44,18 +46,16 @@ export class DataCheckComponent implements OnInit {
 
     this.listenerSubscription = this.eventListenerService.eventKey
       .subscribe(response => {
-        console.log('pdacheck', response)
         this.onSwitch(response)
       })
 
     this.barcodeSubscription = this.eventListenerService.bardcodeSubject
       .subscribe(code => {
-
         let toast = this.toastService.loading(
           this.translateService.instant('pda.loading')
         )
 
-        this.httpClient.post<CheckResponse | any>(this.checkUrl, { tarhelykod: code })
+        this.httpClient.post<CheckResponse | any>(this.checkUrl, { termekkod: code })
           .pipe(
             tap(response => {
               return response
@@ -71,13 +71,15 @@ export class DataCheckComponent implements OnInit {
             })
           )
           .subscribe((response: CheckResponse) => {
-            console.log(response)
+            //     console.log(response)
             toast.updateMessage(
               this.translateService.instant('pda.' + response.message ?? 'pda.success')
             )
 
             toast.updateToast({ type: 'success' })
-            this.storage = response.data.storage
+            this.storages = response.data.storage_data
+            this.product = response.data.product
+            this.amount = response.data.amount
             this.isChecked = true
             return response
           })
@@ -87,9 +89,9 @@ export class DataCheckComponent implements OnInit {
   }
 
   onSwitch(value: number | string) {
-
-    switch (+value) {
-      case 0:
+    //   console.log('isscanning', this.eventListenerService.isScanning)
+    switch (value) {
+      case "0":
         this.router.navigate(['../'], { relativeTo: this.route });
         break;
       default:
@@ -102,3 +104,4 @@ export class DataCheckComponent implements OnInit {
     this.barcodeSubscription?.unsubscribe()
   }
 }
+// CK

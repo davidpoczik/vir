@@ -3,7 +3,7 @@
     <div class="flex flex-col justify-between h-full" [ngSwitch]="progress">
         <ng-container *ngSwitchCase="0">
             <div class="flex items-center justify-center h-full pda__content">
-                <div class="text-center text-[2.8rem] text-white leading-none">Kérem, olvassa le a rakat vonalkódját!
+                <div class="text-center text-[2.8rem] text-white leading-none">Olvassa be a tárhelykódot.
                 </div>
             </div>
         </ng-container>
@@ -38,20 +38,34 @@
                     Lejár.dát: {{ storage?.lejarat_datum | date:'yy-MM-d':'hu-hu' }}
                 </div>
             </div>
+            <div class="text-white pda__content">
+                <div class="text-[2.4rem] font-semibold text-center mb-[3rem]">
+                    Biztos erre a Fix tárhelyre szeretne betöltési igényt generálni ?
+                </div>
+            </div>
         </ng-container>
 
         <div class="pda__menu">
-            <div *ngIf="progress === 2" class="cursor-pointer pda__menu__item" (click)="onSwitch('Enter')">
+            <div *ngIf="progress === 1" class="cursor-pointer pda__menu__item" (click)="onSwitch('7')">
                 <div class="pda__menu__item__icon">
                     <span>
-                        <i class="fas fa-sign-in-alt"></i>
+                        7 </span>
+                </div>
+                <div class="text-white pda__menu__item__title">
+                    Igen
+                </div>
+            </div>
+            <div *ngIf="progress === 1" class="cursor-pointer pda__menu__item" (click)="onSwitch('9')">
+                <div class="pda__menu__item__icon">
+                    <span>
+                        9
                     </span>
                 </div>
                 <div class="text-white pda__menu__item__title">
-                    Áttárolás
+                    Nem
                 </div>
             </div>
-            <div class="cursor-pointer pda__menu__item" (click)="onSwitch('0')">
+            <div *ngIf="progress !== 1" class="cursor-pointer pda__menu__item" (click)="onSwitch('0')">
                 <div class="pda__menu__item__icon">
                     <span>0</span>
                 </div>

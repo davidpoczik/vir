@@ -9,21 +9,22 @@ import { EventListenerService } from 'src/app/core/services/event-listener.servi
 import { CheckResponse, Storage } from 'src/app/core/services/pda.model';
 
 const urlHelper = new Urls
-
 @Component({
-  templateUrl: './store-to-base.component.html',
+  templateUrl: './loading-request.component.html',
   providers: [
     EventListenerService
   ]
 })
-export class StoreToBaseComponent implements OnInit {
+export class LoadingRequestComponent implements OnInit {
+
 
   listenerSubscription?: Subscription
   barcodeSubscription?: Subscription
-  checkUrl = urlHelper.pda.stackCheck
+  checkUrl = urlHelper.pda.loadingRequestCheck
+  storeUrl = urlHelper.pda.loadingRequestSave
   isChecked = false
   storage?: Storage
-
+  storageCode?: string
   progress = 0
 
   sp?: string
@@ -41,23 +42,17 @@ export class StoreToBaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.eventListenerService.watchKeyup()
-
     this.listenerSubscription = this.eventListenerService.eventKey
       .subscribe(response => {
-        console.log('attarolas-kom-tarhely pda', response)
         this.onSwitch(response)
       })
-
     this.eventListenerService.watchScan()
     this.barcodeSubscription = this.eventListenerService.bardcodeSubject
       .subscribe(code => {
-        console.log(code)
-
         if (this.progress === 1) {
-          if (code.startsWith('SP')) {
-            this.sp = code
+          if (code.startsWith('RK')) {
+            this.rk = code
             this.progressSwitcher()
           } else {
             this.toastService.error(
@@ -65,14 +60,13 @@ export class StoreToBaseComponent implements OnInit {
             )
           }
         }
-
         if (this.progress === 0) {
-          if (code.startsWith('RK')) {
+          if (code.startsWith('SP')) {
             let toast = this.toastService.loading(
               this.translateService.instant('pda.loading')
             )
 
-            this.httpClient.post<CheckResponse | any>(this.checkUrl, { barcode: code })
+            this.httpClient.post<CheckResponse | any>(this.checkUrl, { tarhelykod: code })
               .pipe(
                 tap(response => {
                   return response
@@ -81,17 +75,14 @@ export class StoreToBaseComponent implements OnInit {
                   toast.updateMessage(
                     this.translateService.instant(error.error.message)
                   )
-
                   toast.updateToast({ type: 'error' })
-
                   return error
                 })
               )
               .subscribe((response: CheckResponse) => {
-                this.rk = code
+                this.sp = code
                 this.progressSwitcher(response, toast)
                 return response
-
               })
             //  this.onSwitch(response) 
           } else {
@@ -100,14 +91,10 @@ export class StoreToBaseComponent implements OnInit {
             )
           }
         }
-
       })
   }
 
   progressSwitcher(response?: CheckResponse, toast?: any) {
-
-    console.log(this.progress, this.sp, this.rk)
-
     if (this.progress == 0) {
 
       toast.updateMessage(
@@ -115,15 +102,14 @@ export class StoreToBaseComponent implements OnInit {
       )
 
       toast.updateToast({ type: 'success' })
+
       this.storage = response?.data.storage
-      console.log(this.storage)
+      this.storageCode = response?.data?.storage_code
       this.isChecked = true
       this.progress = 1
     } else if (this.progress === 1) {
       this.progress = 2
     }
-
-    console.log(this.progress, this.sp, this.rk)
   }
 
 
@@ -131,45 +117,37 @@ export class StoreToBaseComponent implements OnInit {
 
     switch (value) {
       case "0":
-
         this.router.navigate(['../'], { relativeTo: this.route });
         break;
-      case "Enter":
-        if (this.progress === 2) {
+      case "9":
+        this.progress = 0;
+        break;
+      case "7":
+        if (this.progress === 1) {
           let toaster = this.toastService.loading(
             this.translateService.instant('pda.saving')
           )
-
-          console.log('retne')
-          if (this.sp && this.rk) {
-            this.httpClient.post(urlHelper.pda.storeToCommission, {
-              tarhely: this.sp,
-              rakat: this.rk
+          if (this.sp) {
+            this.httpClient.post(this.storeUrl, {
+              tarhelykod: this.storageCode
             }).pipe(
-              tap(response => {
-                return response
-              }),
               catchError(error => {
                 toaster.updateMessage(
                   this.translateService.instant(error.error.message)
                 )
-
                 toaster.updateToast({ type: 'error' })
-
                 return error
               })
             )
               .subscribe((response: any) => {
-
                 toaster.updateMessage(
                   this.translateService.instant('pda.' + response?.message ?? 'pda.success')
                 )
-
                 toaster.updateToast({ type: 'success' })
+                this.router.navigate(['../'], { relativeTo: this.route });
               })
           }
         }
-        this.router.navigate(['../'], { relativeTo: this.route });
         break;
       default:
         break;
@@ -178,12 +156,10 @@ export class StoreToBaseComponent implements OnInit {
 
   ngOnDestroy(): void {
     this.listenerSubscription?.unsubscribe()
-
     this.eventListenerService.removeWatchScan()
     this.eventListenerService.removeWatchKeyup()
   }
 }
 
 
-  // 1. rk 
-  // 2. sp
+// 1. sp 

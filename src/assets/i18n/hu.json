@@ -49,11 +49,14 @@
         "name": "Matusz-Vad Zrt."
     },
     "pda": {
+        "logging": "Logolás folyamatban!",
         "loading": "Címke beolvasása folyamatban!",
         "success": "Sikeres beolvasás!",
         "saving": "Áttárolás folyamatban!",
         "success_save": "Sikeres Áttárolás!",
-        "bad_code": "Rossz típusú címke beolvasás!"
+        "bad_code": "Rossz típusú címke beolvasás!",
+        "storage_error": "Hiba, olvassa be újra a jó tárhelykódot"
     },
-    "missing_barcode": "Hibás címke"
+    "missing_barcode": "Hibás címke",
+    "no_data": "Nincs megjeleníthető adat!"
 }

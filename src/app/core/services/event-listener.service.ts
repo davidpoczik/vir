@@ -17,8 +17,7 @@ export class EventListenerService implements OnDestroy {
         this.renderer2 = rendererFactor.createRenderer(null, null)
 
         this.isScanningSubject.subscribe(response => {
-
-            this.isScanning = response
+            //    this.isScanning = response
         })
     }
 
@@ -28,13 +27,12 @@ export class EventListenerService implements OnDestroy {
 
         this.keyUnlistener = this.renderer2.listen("document", "keyup", function (evt) {
             setTimeout(() => {
-
                 if (!serviceThis.isScanning) {
                     key.next(evt.key)
                 }
-            }, 100);
+            }, 30);
 
-        })
+        }).bind(this)
     }
 
     watchScan(intervalArgument?: any) {
@@ -45,28 +43,38 @@ export class EventListenerService implements OnDestroy {
         this.scanUnlistener = this.renderer2.listen("document", "keyup", function (evt) {
 
             if (interval) {
+
+
                 clearInterval(interval)
-                serviceThis.isScanningSubject.next(false)
+
             }
             if (evt.code == 'Enter') {
                 if (barcodeValue) {
-
                     barcodeSubject.next(barcodeValue)
-
-                    serviceThis.isScanningSubject.next(false)
-
+                    setTimeout(() => {
+                        serviceThis.isScanning = false
+                        serviceThis.isScanningSubject.next(false);
+                    }, 500)
                     barcodeValue = ''
                     return false
                 }
                 return false
             }
             if (evt.key !== 'Shift') {
-
-
                 barcodeValue += evt.key
-                serviceThis.isScanningSubject.next(true)
+                if (barcodeValue.length > 1) {
+                    serviceThis.isScanning = true
+                    serviceThis.isScanningSubject.next(true);
+                }
             }
-            interval = setInterval(() => { serviceThis.isScanningSubject.next(false); barcodeValue = '' }, 50)
+            interval = setInterval(() => {
+                if (serviceThis.isScanning) {
+                    serviceThis.isScanning = false
+                    serviceThis.isScanningSubject.next(false);
+                }
+                barcodeValue = '';
+
+            }, 50)
             return
         })
 
@@ -74,20 +82,20 @@ export class EventListenerService implements OnDestroy {
 
     removeWatchScan() {
         if (this.scanUnlistener) {
-            console.log('scanUnlistener closed')
+            //     console.log('scanUnlistener closed')
             this.scanUnlistener()
         }
     }
 
     removeWatchKeyup() {
         if (this.keyUnlistener) {
-            console.log('keyuplistener closed')
+            //      console.log('keyuplistener closed')
             this.keyUnlistener()
         }
     }
 
     ngOnDestroy(): void {
-        console.log('service destroyed')
+        //    console.log('service destroyed')
 
         this.removeWatchKeyup()
         this.removeWatchScan()

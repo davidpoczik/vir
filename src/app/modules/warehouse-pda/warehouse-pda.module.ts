@@ -11,6 +11,11 @@ import { ComissionTransferComponent } from './pda-transfer-switcher/comission-tr
 import { DataCheckComponent } from './data-check/data-check.component';
 import { StorageCheckerWorkerComponent } from './storage-checker-worker/storage-checker-worker.component';
 import { EventListenerService } from 'src/app/core/services/event-listener.service';
+import { LoadingRequestComponent } from './loading-request/loading-request.component';
+import { BarcodeCheckerComponent } from './barcode-checker/barcode-checker.component';
+import { InventoryComponent } from './inventory/inventory.component';
+import { InventoryPairingComponent } from './inventory/inventory-pairing/inventory-pairing.component';
+import { InventoryBaseComponent } from './inventory/inventory-base/inventory-base.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +26,12 @@ import { EventListenerService } from 'src/app/core/services/event-listener.servi
     StoreToBaseComponent,
     ComissionTransferComponent,
     DataCheckComponent,
-    StorageCheckerWorkerComponent
+    StorageCheckerWorkerComponent,
+    LoadingRequestComponent,
+    BarcodeCheckerComponent,
+    InventoryComponent,
+    InventoryPairingComponent,
+    InventoryBaseComponent
   ],
   imports: [
     CommonModule,

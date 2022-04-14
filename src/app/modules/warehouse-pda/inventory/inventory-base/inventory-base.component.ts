@@ -1,37 +1,38 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HotToastService } from '@ngneat/hot-toast';
 import { TranslateService } from '@ngx-translate/core';
 import { catchError, Subscription, tap } from 'rxjs';
 import { Urls } from 'src/app/core/constants/url.constant';
+import { EventListenerService } from 'src/app/core/services/event-listener.service';
 import { CheckResponse, Storage } from 'src/app/core/services/pda.model';
-import { EventListenerService } from '../../../core/services/event-listener.service';
-
 const urlHelper = new Urls
 
 @Component({
-  templateUrl: './data-check.component.html',
+  selector: 'gastroprof-inventory-base',
+  templateUrl: './inventory-base.component.html',
   providers: [
     EventListenerService
   ]
 })
-export class DataCheckComponent implements OnInit {
+export class InventoryBaseComponent implements OnInit {
 
 
-  listenerSubscription?: Subscription
-  barcodeSubscription?: Subscription
-  checkUrl = urlHelper.pda.storageCheck
-  isChecked = false
   storage?: Storage
 
+  isChecked = false
+  listenerSubscription?: Subscription
+  barcodeSubscription?: Subscription
+  checkUrl = urlHelper.pda.inventorialChecker
+
   constructor(
-    public eventListenerService: EventListenerService,
     private router: Router,
     private route: ActivatedRoute,
+    public eventListenerService: EventListenerService,
+    private translateService: TranslateService,
     private httpClient: HttpClient,
-    private toastService: HotToastService,
-    private translateService: TranslateService
+    private toastService: HotToastService
   ) {
 
   }
@@ -78,6 +79,7 @@ export class DataCheckComponent implements OnInit {
 
             toast.updateToast({ type: 'success' })
             this.storage = response.data.storage
+            console.log(this.storage)
             this.isChecked = true
             return response
           })
@@ -87,7 +89,6 @@ export class DataCheckComponent implements OnInit {
   }
 
   onSwitch(value: number | string) {
-
     switch (+value) {
       case 0:
         this.router.navigate(['../'], { relativeTo: this.route });
@@ -102,3 +103,5 @@ export class DataCheckComponent implements OnInit {
     this.barcodeSubscription?.unsubscribe()
   }
 }
+
+// rk

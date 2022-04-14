@@ -1,0 +1,44 @@
+<section class="pda px-[1.5rem] py-[3rem]">
+    <div class="flex flex-col justify-between h-full">
+        <div class="pda__title">Ellenőrzés</div>
+        <ng-container *ngIf="!isChecked; else checkedContent">
+            <div class="pda__content">
+                <div class="text-center text-[2.8rem]">Az ellenőrzéshez olvassa le
+                    a termék vonalkódját!</div>
+            </div>
+        </ng-container>
+        <ng-template #checkedContent>
+            <div class="pda__content ">
+                <div class="text-[1.8rem] flex w-full mb-[1rem] text-center align-center justify-center">
+                    A termék a rendszerben van !
+                </div>
+                <div class="text-[2.4rem] font-semibold text-center mb-[3rem]">{{ product?.nev }}
+                </div>
+                <div *ngIf="storages">
+                    <div class="text-[1.8rem] flex justify-between mb-[1rem]" *ngFor="let storage of storages">
+                        <div class="text-left">
+                            Rakt id: {{ storage?.k_raktar_id }}
+                        </div>
+                        <div class="text-right">
+                            Thr név: {{ storage?.k_trh_nev }}
+                        </div>
+                    </div>
+                </div>
+                <div class="text-[1.8rem] flex justify-between mb-[1rem]">
+                    <div class="text-left">
+                        Mennyiség: {{ amount }}
+                    </div>
+
+                </div>
+            </div>
+        </ng-template>
+        <div class="!mb-0 cursor-pointer pda__menu__item" (click)="onSwitch('0')">
+            <div class="pda__menu__item__icon">
+                <span>0</span>
+            </div>
+            <div class="pda__menu__item__title">
+                Főmenü
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,63 @@
+<section class="pda px-[1.5rem] py-[3rem]">
+    <div class="flex flex-col justify-between h-full">
+        <div class="pda__title">Ellenőrzés</div>
+        <ng-container *ngIf="!isChecked; else checkedContent">
+            <div class="pda__content">
+                <div class="text-center text-[2.8rem]">Olvassa be a tárhelykódot!</div>
+            </div>
+        </ng-container>
+        <ng-template #checkedContent>
+            <div class="pda__content ">
+                <div class="text-[2.4rem] font-semibold text-center mb-[3rem]">R.{{ storage?.k_rakat_id ??
+                    storage?.utolso_betolt_rakat }} | {{ storage?.k_trh_nev }}
+                </div>
+                <div class="text-[2.4rem] font-semibold text-center mb-[3rem]">
+                    Azonosak a rakatszámok ?
+                </div>
+
+            </div>
+        </ng-template>
+        <div>
+            <div *ngIf="isChecked" class="cursor-pointer pda__menu__item" (click)="onSwitch('7')">
+                <div class="pda__menu__item__icon">
+                    <span>7</span>
+                </div>
+                <div class="pda__menu__item__title">
+                    Igen
+                </div>
+            </div>
+            <div *ngIf="isChecked" class="cursor-pointer pda__menu__item" (click)="onSwitch('8')">
+                <div class="pda__menu__item__icon">
+                    <span>8</span>
+                </div>
+                <div class="pda__menu__item__title">
+                    Más Rakat
+                </div>
+            </div>
+            <div *ngIf="isChecked" class="cursor-pointer pda__menu__item " (click)="onSwitch('9')">
+                <div class="pda__menu__item__icon">
+                    <span>9</span>
+                </div>
+                <div class="pda__menu__item__title">
+                    Nem
+                </div>
+            </div>
+            <div *ngIf="isChecked" class="!mb-0 cursor-pointer pda__menu__item " (click)="onSwitch('0')">
+                <div class="pda__menu__item__icon">
+                    <span>0</span>
+                </div>
+                <div class="pda__menu__item__title">
+                    Vissza
+                </div>
+            </div>
+            <div *ngIf="!isChecked" class="!mb-0 cursor-pointer pda__menu__item" (click)="onSwitch('0')">
+                <div class="pda__menu__item__icon">
+                    <span>0</span>
+                </div>
+                <div class="pda__menu__item__title">
+                    Főmenü
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

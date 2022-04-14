@@ -42,14 +42,11 @@ export class PdaCheckComponent implements OnInit, OnDestroy {
 
     this.listenerSubscription = this.eventListenerService.eventKey
       .subscribe(response => {
-        console.log('asd')
-        console.log('pdacheck', response)
         this.onSwitch(response)
       })
 
     this.barcodeSubscription = this.eventListenerService.bardcodeSubject
       .subscribe(code => {
-
         let toast = this.toastService.loading(
           this.translateService.instant('pda.loading')
         )
@@ -70,7 +67,7 @@ export class PdaCheckComponent implements OnInit, OnDestroy {
             })
           )
           .subscribe((response: CheckResponse) => {
-            console.log(response)
+            //     console.log(response)
             toast.updateMessage(
               this.translateService.instant('pda.' + response.message ?? 'pda.success')
             )
@@ -86,7 +83,7 @@ export class PdaCheckComponent implements OnInit, OnDestroy {
   }
 
   onSwitch(value: number | string) {
-    console.log('isscanning', this.eventListenerService.isScanning)
+    //   console.log('isscanning', this.eventListenerService.isScanning)
     switch (value) {
       case "0":
 
