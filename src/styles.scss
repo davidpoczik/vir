@@ -7,3 +7,17 @@ html {
 body {
     font-size: 1.9rem;
 }
+
+@media (max-width: 320px) {
+    header,
+    footer {
+        display: none;
+    }
+}
+
+@media (max-height: 442px) {
+    header,
+    footer {
+        display: none;
+    }
+}

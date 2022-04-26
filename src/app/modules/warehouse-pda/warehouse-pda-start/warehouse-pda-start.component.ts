@@ -55,7 +55,7 @@ export class PdaStartComponent implements OnInit, OnDestroy {
         this.router.navigate(['./tarhely-ellenorzes-munkatars'], { relativeTo: this.route });
         break;
       case 0:
-        this.router.navigate(['../'], { relativeTo: this.route });
+        this.router.navigate(['/auth/logout']);
         break;
 
       default:

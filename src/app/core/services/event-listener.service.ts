@@ -48,7 +48,7 @@ export class EventListenerService implements OnDestroy {
                 clearInterval(interval)
 
             }
-            if (evt.code == 'Enter') {
+            if (evt.key == 'Enter') {
                 if (barcodeValue) {
                     barcodeSubject.next(barcodeValue)
                     setTimeout(() => {

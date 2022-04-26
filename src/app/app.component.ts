@@ -7,7 +7,8 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './app.component.html',
 })
 export class AppComponent {
-
+  navigator = navigator
+  viewport = visualViewport
   constructor(
     public translate: TranslateService
   ) {

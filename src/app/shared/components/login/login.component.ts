@@ -1,4 +1,4 @@
-import { Component, Inject, InjectionToken, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
@@ -9,12 +9,14 @@ import { BehaviorSubject, Subscription } from 'rxjs';
 @Component({
   selector: 'gastroprof-login',
   templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit, OnDestroy {
   showPassword = false
   showEyes = true
   submitted = false
   loginForm: FormGroup
+  bc?: string
 
   barcodeSubscription?: Subscription
   passwordSubscription?: Subscription
@@ -63,8 +65,10 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   barcodeValueWatching() {
     this.barcode.subscribe(valueResponse => {
-      if (valueResponse && valueResponse.length > 0)
+      if (valueResponse && valueResponse.length > 0) {
+        this.bc = valueResponse
         this.sendBarcodeLogin(valueResponse)
+      }
     })
   }
 
@@ -109,10 +113,12 @@ export class LoginComponent implements OnInit, OnDestroy {
         if (interval) {
           clearInterval(interval)
         }
-        if (evt.code == 'Enter') {
-          if (barcodeValue) {
 
+        if (evt.key == 'Enter') {
+
+          if (barcodeValue) {
             barcodeSubject.next(barcodeValue)
+            insideThis.bc = barcodeValue
             barcodeValue = ''
             clearInterval(interval)
             console.log('cleared interval')
@@ -120,9 +126,9 @@ export class LoginComponent implements OnInit, OnDestroy {
           }
           return false
         }
-        if (evt.key !== 'Shift') {
-
+        if (evt.key !== 'Shift' && evt.keyCode !== 0) {
           barcodeValue += evt.key
+          insideThis.bc = barcodeValue
         }
         interval = setInterval(() => { console.log('set', barcodeValue); barcodeValue = '' }, 50)
         console.log('init interval')

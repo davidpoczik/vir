@@ -1,0 +1,21 @@
+@media (max-width: 320px) and (max-height: 442px) {
+    .login {
+        &__copyright,
+        &__right {
+            display: none;
+        }
+        &__left {
+            height: 100vh !important;
+        }
+        &__title {
+            margin-top: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 3rem;
+        }
+        &__form {
+            &__submit {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
